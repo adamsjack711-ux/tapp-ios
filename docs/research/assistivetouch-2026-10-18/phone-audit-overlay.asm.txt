@@ -1,0 +1,201 @@
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityAudit.framework/AccessibilityAudit:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000254282da4 <-[AXAuditService deviceInspectorShowVisuals:]>:
+254282da4: d65f03c0    	ret
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityAudit.framework/AccessibilityAudit:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000254282fe0 <-[AXAuditService deviceHighlightIssue:]>:
+254282fe0: d503237f    	pacibsp
+254282fe4: d10103ff    	sub	sp, sp, #0x40
+254282fe8: a90157f6    	stp	x22, x21, [sp, #0x10]
+254282fec: a9024ff4    	stp	x20, x19, [sp, #0x20]
+254282ff0: a9037bfd    	stp	x29, x30, [sp, #0x30]
+254282ff4: 9100c3fd    	add	x29, sp, #0x30
+254282ff8: aa0003f3    	mov	x19, x0
+254282ffc: 94f80441    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df10c0>
+254283000: f90007e0    	str	x0, [sp, #0x8]
+254283004: 94f5f9b3    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d6e690>
+254283008: b40002c0    	cbz	x0,  <L0>
+25428300c: b00a8d48    	adrp	x8, 0x26942c000 <_task_for_pid+0x26942c000>
+254283010: f9424500    	ldr	x0, [x8, #0x488]
+254283014: 94f62f47    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d7bcf0>
+254283018: 94f803b2    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ea0>
+25428301c: aa0003f4    	mov	x20, x0
+254283020: b00a8d48    	adrp	x8, 0x26942c000 <_task_for_pid+0x26942c000>
+254283024: f9423100    	ldr	x0, [x8, #0x460]
+254283028: 94f803ca    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f10>
+25428302c: aa0003e3    	mov	x3, x0
+254283030: aa1403e0    	mov	x0, x20
+254283034: f94007e2    	ldr	x2, [sp, #0x8]
+254283038: 94f6adae    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d9b6b0>
+25428303c: 94f803a9    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ea0>
+254283040: aa0003f5    	mov	x21, x0
+254283044: 94f803df    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f80>
+254283048: aa1503e0    	mov	x0, x21
+25428304c: 94f6ab4d    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d9ad40>
+254283050: 94f803a4    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ea0>
+254283054: aa0003f4    	mov	x20, x0
+254283058: 94f803de    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f90>
+25428305c: 14000002    	b	 <L1>
+<L0>:
+254283060: d2800014    	mov	x20, #0x0               ; =0
+<L1>:
+254283064: aa1303e0    	mov	x0, x19
+254283068: aa1403e2    	mov	x2, x20
+25428306c: 94f6acd9    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d9b390>
+254283070: 94f803d4    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f80>
+254283074: f94007e0    	ldr	x0, [sp, #0x8]
+254283078: a9437bfd    	ldp	x29, x30, [sp, #0x30]
+25428307c: a9424ff4    	ldp	x20, x19, [sp, #0x20]
+254283080: a94157f6    	ldp	x22, x21, [sp, #0x10]
+254283084: 910103ff    	add	sp, sp, #0x40
+254283088: d50323ff    	autibsp
+25428308c: ca1e07d0    	eor	x16, x30, x30, lsl #1
+254283090: b6f00050    	tbz	x16, #0x3e,  <L2>
+254283094: d4388e20    	brk	#0xc471
+<L2>:
+254283098: 14f803be    	b	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f50>
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityAudit.framework/AccessibilityAudit:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+00000002542830a4 <-[AXAuditService deviceHighlightIssues:]>:
+2542830a4: d503237f    	pacibsp
+2542830a8: d104c3ff    	sub	sp, sp, #0x130
+2542830ac: a90d6ffc    	stp	x28, x27, [sp, #0xd0]
+2542830b0: a90e67fa    	stp	x26, x25, [sp, #0xe0]
+2542830b4: a90f5ff8    	stp	x24, x23, [sp, #0xf0]
+2542830b8: a91057f6    	stp	x22, x21, [sp, #0x100]
+2542830bc: a9114ff4    	stp	x20, x19, [sp, #0x110]
+2542830c0: a9127bfd    	stp	x29, x30, [sp, #0x120]
+2542830c4: 910483fd    	add	x29, sp, #0x120
+2542830c8: aa0003f3    	mov	x19, x0
+2542830cc: 9009fc88    	adrp	x8, 0x268213000 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x13f7ffc0>
+2542830d0: f947d508    	ldr	x8, [x8, #0xfa8]
+2542830d4: f9400108    	ldr	x8, [x8]
+2542830d8: f81a03a8    	stur	x8, [x29, #-0x60]
+2542830dc: 94f80409    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df10c0>
+2542830e0: aa0003f5    	mov	x21, x0
+2542830e4: f009f528    	adrp	x8, 0x26812a000 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x13e96fc0>
+2542830e8: f947c900    	ldr	x0, [x8, #0xf90]
+2542830ec: 94f5f8a9    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d6e350>
+2542830f0: 94f8037c    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ea0>
+2542830f4: aa0003f4    	mov	x20, x0
+2542830f8: 6f00e400    	movi.2d	v0, #0000000000000000
+2542830fc: ad0003e0    	stp	q0, q0, [sp]
+254283100: ad0103e0    	stp	q0, q0, [sp, #0x20]
+254283104: 94f80407    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df10e0>
+254283108: aa0003f5    	mov	x21, x0
+25428310c: 910003e2    	mov	x2, sp
+254283110: 910103e3    	add	x3, sp, #0x40
+254283114: 52800204    	mov	w4, #0x10               ; =16
+254283118: 94f5f972    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d6e6a0>
+25428311c: b4000700    	cbz	x0,  <L5>
+254283120: aa0003f6    	mov	x22, x0
+254283124: f9400be8    	ldr	x8, [sp, #0x10]
+254283128: f9400119    	ldr	x25, [x8]
+25428312c: b00a8d5a    	adrp	x26, 0x26942c000 <_task_for_pid+0x26942c000>
+254283130: b00a8d5b    	adrp	x27, 0x26942c000 <_task_for_pid+0x26942c000>
+<L0>:
+254283134: d280001c    	mov	x28, #0x0               ; =0
+<L1>:
+254283138: f9400be8    	ldr	x8, [sp, #0x10]
+25428313c: f9400108    	ldr	x8, [x8]
+254283140: eb19011f    	cmp	x8, x25
+254283144: 54000060    	b.eq	 <L2>
+254283148: aa1503e0    	mov	x0, x21
+25428314c: 94f8036d    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ec0>
+<L2>:
+254283150: f94007e8    	ldr	x8, [sp, #0x8]
+254283154: f87c7917    	ldr	x23, [x8, x28, lsl #3]
+254283158: aa1703e0    	mov	x0, x23
+25428315c: 94f5f95d    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d6e690>
+254283160: b40003a0    	cbz	x0,  <L4>
+254283164: f9424740    	ldr	x0, [x26, #0x488]
+254283168: 94f62ef2    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d7bcf0>
+25428316c: 94f8035d    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ea0>
+254283170: aa0003f8    	mov	x24, x0
+254283174: f9423360    	ldr	x0, [x27, #0x460]
+254283178: 94f80376    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f10>
+25428317c: aa0003e3    	mov	x3, x0
+254283180: aa1803e0    	mov	x0, x24
+254283184: aa1703e2    	mov	x2, x23
+254283188: 94f6ad5a    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d9b6b0>
+25428318c: 94f80355    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ea0>
+254283190: aa0003f7    	mov	x23, x0
+254283194: 94f8039b    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0fc0>
+254283198: aa1703e0    	mov	x0, x23
+25428319c: 94f6aaf9    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d9ad40>
+2542831a0: 94f80350    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ea0>
+2542831a4: aa0003f8    	mov	x24, x0
+2542831a8: 94f80396    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0fc0>
+2542831ac: b4000138    	cbz	x24,  <L3>
+2542831b0: aa1703e0    	mov	x0, x23
+2542831b4: 94f6aaf3    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d9ad40>
+2542831b8: 94f8034a    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0ea0>
+2542831bc: aa0003f8    	mov	x24, x0
+2542831c0: aa1403e0    	mov	x0, x20
+2542831c4: aa1803e2    	mov	x2, x24
+2542831c8: 94f5f82a    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d6e230>
+2542831cc: 94f8038d    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0fc0>
+<L3>:
+2542831d0: 94f80388    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0fb0>
+<L4>:
+2542831d4: 9100079c    	add	x28, x28, #0x1
+2542831d8: f10006d6    	subs	x22, x22, #0x1
+2542831dc: 54fffae1    	b.ne	 <L1>
+2542831e0: 910003e2    	mov	x2, sp
+2542831e4: 910103e3    	add	x3, sp, #0x40
+2542831e8: aa1503e0    	mov	x0, x21
+2542831ec: 52800204    	mov	w4, #0x10               ; =16
+2542831f0: 94f5f93c    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d6e6a0>
+2542831f4: aa0003f6    	mov	x22, x0
+2542831f8: b5fff9e0    	cbnz	x0,  <L0>
+<L5>:
+2542831fc: 94f80375    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f90>
+254283200: aa1303e0    	mov	x0, x19
+254283204: aa1403e2    	mov	x2, x20
+254283208: 94f6ac76    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3d9b3a0>
+25428320c: 94f8036d    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f80>
+254283210: 94f80370    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df0f90>
+254283214: f85a03a8    	ldur	x8, [x29, #-0x60]
+254283218: 9009fc89    	adrp	x9, 0x268213000 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x13f7ffc0>
+25428321c: f947d529    	ldr	x9, [x9, #0xfa8]
+254283220: f9400129    	ldr	x9, [x9]
+254283224: eb08013f    	cmp	x9, x8
+254283228: 54000121    	b.ne	 <L6>
+25428322c: a9527bfd    	ldp	x29, x30, [sp, #0x120]
+254283230: a9514ff4    	ldp	x20, x19, [sp, #0x110]
+254283234: a95057f6    	ldp	x22, x21, [sp, #0x100]
+254283238: a94f5ff8    	ldp	x24, x23, [sp, #0xf0]
+25428323c: a94e67fa    	ldp	x26, x25, [sp, #0xe0]
+254283240: a94d6ffc    	ldp	x28, x27, [sp, #0xd0]
+254283244: 9104c3ff    	add	sp, sp, #0x130
+254283248: d65f0fff    	retab
+<L6>:
+25428324c: 94f801f5    	bl	 <_objc_msgSend$writeToFile:atomically:encoding:error:+0x3df09e0>
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityAudit.framework/AccessibilityAudit:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+00000002542830a0 <-[AXAuditService highlightElements:]>:
+2542830a0: d65f03c0    	ret
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityAudit.framework/AccessibilityAudit:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000254283250 <-[AXAuditService deviceEnableHighlight:]>:
+254283250: d65f03c0    	ret

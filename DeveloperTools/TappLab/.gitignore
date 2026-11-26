@@ -1,0 +1,7 @@
+.build/
+Build/
+DeviceBuild/
+DeviceSimulatorBuild/
+__pycache__/
+*.xcuserstate
+xcuserdata/

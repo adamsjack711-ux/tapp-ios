@@ -1,0 +1,546 @@
+name: Windows x64
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - "*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-x64-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SWIFT_VERSION: 6.4-dev
+  SWIFT_INSTALLER_URL: https://download.swift.org/swift-6.4.x-branch/windows10/swift-6.4.x-DEVELOPMENT-SNAPSHOT-2026-08-01-a/swift-6.4.x-DEVELOPMENT-SNAPSHOT-2026-08-01-a-windows10.exe
+  SWIFT_INSTALLER_SHA256: C287DD533A65A73D657B1B9F2305BE50552F89B46199A0F6162A287DEE547149
+
+jobs:
+  test-windows:
+    runs-on: blacksmith-4vcpu-windows-2025
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Install pinned Swift toolchain
+        uses: ./.github/actions/setup-swift-windows
+        with:
+          version: ${{ env.SWIFT_VERSION }}
+          installer-url: ${{ env.SWIFT_INSTALLER_URL }}
+          installer-sha256: ${{ env.SWIFT_INSTALLER_SHA256 }}
+
+      - name: Run complete Windows test suite
+        run: |
+          swift test
+          if ($LASTEXITCODE -ne 0) {
+            throw "The complete Windows test suite failed."
+          }
+
+  test-static-runtime-probe:
+    runs-on: blacksmith-4vcpu-windows-2025
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Install pinned Swift toolchain and SDK
+        uses: ./.github/actions/setup-swift-windows
+        with:
+          version: ${{ env.SWIFT_VERSION }}
+          installer-url: ${{ env.SWIFT_INSTALLER_URL }}
+          installer-sha256: ${{ env.SWIFT_INSTALLER_SHA256 }}
+          require-static-sdk: "true"
+
+      - name: Run static delayed-task runtime probe
+        run: |
+          $runtimeProbe = Join-Path `
+            $env:RUNNER_TEMP `
+            "windows-static-runtime-probe.exe"
+          $runtimeProbeLinkLog = Join-Path `
+            $env:RUNNER_TEMP `
+            "windows-static-runtime-probe-link.log"
+          $runtimeProbeBuildOutput = & swiftc `
+            -sdk $env:SWIFT_STATIC_SDK_ROOT `
+            -static-stdlib `
+            -Xcc -Ddispatch_STATIC `
+            -Xcc -static-libclosure `
+            -parse-as-library `
+            "Tests\WindowsStaticRuntimeProbe\main.swift" `
+            -o $runtimeProbe `
+            2>&1
+          $runtimeProbeBuildExitCode = $LASTEXITCODE
+          $runtimeProbeBuildOutput |
+            Tee-Object -FilePath $runtimeProbeLinkLog
+
+          # These warnings were the link-time announcement of swiftlang/swift#91442, so this gate keeps the class a build failure instead of a field crash.
+          $runtimeProbeLinkText = Get-Content $runtimeProbeLinkLog -Raw
+          $runtimeProbeLinkWarningCount = [Regex]::Matches(
+            $runtimeProbeLinkText,
+            'LNK(?:4217|4049)'
+          ).Count
+          "Static runtime probe link warning count: $runtimeProbeLinkWarningCount"
+          if ($runtimeProbeLinkWarningCount -gt 0) {
+            Select-String `
+              -Path $runtimeProbeLinkLog `
+              -Pattern 'LNK(?:4217|4049)' |
+              ForEach-Object { $_.Line }
+            throw "The static runtime probe emitted locally defined symbol import warnings."
+          }
+          if ($runtimeProbeBuildExitCode -ne 0) {
+            throw "The static delayed-task runtime probe did not build."
+          }
+          & $runtimeProbe
+          if ($LASTEXITCODE -ne 0) {
+            throw "The static delayed-task runtime probe failed."
+          }
+
+  build-static-package:
+    runs-on: blacksmith-4vcpu-windows-2025
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Install pinned Swift toolchain and SDK
+        uses: ./.github/actions/setup-swift-windows
+        with:
+          version: ${{ env.SWIFT_VERSION }}
+          installer-url: ${{ env.SWIFT_INSTALLER_URL }}
+          installer-sha256: ${{ env.SWIFT_INSTALLER_SHA256 }}
+          require-static-sdk: "true"
+
+      - name: Build static release executable
+        run: |
+          $ErrorActionPreference = "Stop"
+          $compatibilityLibraries = Join-Path `
+            $env:RUNNER_TEMP `
+            "swift-static-link-compatibility"
+          New-Item `
+            -ItemType Directory `
+            -Path $compatibilityLibraries `
+            -Force |
+            Out-Null
+
+          # The pinned SDK records curl.lib in its autolink metadata but
+          # publishes the verified archive as libcurl.lib.
+          $curlSource = Join-Path `
+            $env:SWIFT_STATIC_RESOURCE_ROOT `
+            "libcurl.lib"
+          $curlCompatibility = Join-Path `
+            $compatibilityLibraries `
+            "curl.lib"
+          Copy-Item $curlSource $curlCompatibility
+          if (
+            (Get-FileHash $curlSource -Algorithm SHA256).Hash -ne
+            (Get-FileHash $curlCompatibility -Algorithm SHA256).Hash
+          ) {
+            throw "The static curl compatibility archive changed while copying."
+          }
+
+          # The pinned SDK does not encode the static network archive's
+          # compression dependencies in its autolink metadata.
+          $staticArguments = @(
+            "--disable-automatic-resolution",
+            "--triple", "x86_64-unknown-windows-msvc",
+            "--configuration", "release",
+            "-Xswiftc", "-sdk",
+            "-Xswiftc", $env:SWIFT_STATIC_SDK_ROOT,
+            "-Xswiftc", "-static-stdlib",
+            "-Xcc", "-Ddispatch_STATIC",
+            "-Xcc", "-static-libclosure",
+            "-Xlinker", "/LIBPATH:$compatibilityLibraries",
+            "-Xlinker", "zlibstatic.lib",
+            "-Xlinker", "brotlidec.lib",
+            "-Xlinker", "brotlicommon.lib"
+          )
+          $staticLinkLog = Join-Path `
+            $env:RUNNER_TEMP `
+            "rorkdevice-static-link.log"
+          $staticBuildOutput = & swift build `
+            @staticArguments `
+            --product rorkdevice `
+            2>&1
+          $staticBuildExitCode = $LASTEXITCODE
+          $staticBuildOutput |
+            Tee-Object -FilePath $staticLinkLog
+
+          # These warnings were the link-time announcement of swiftlang/swift#91442, so this gate keeps the class a build failure instead of a field crash.
+          $staticLinkText = Get-Content $staticLinkLog -Raw
+          $staticLinkWarningCount = [Regex]::Matches(
+            $staticLinkText,
+            'LNK(?:4217|4049)'
+          ).Count
+          "Static release link warning count: $staticLinkWarningCount"
+          if ($staticLinkWarningCount -gt 0) {
+            Select-String `
+              -Path $staticLinkLog `
+              -Pattern 'LNK(?:4217|4049)' |
+              ForEach-Object { $_.Line }
+            throw "The static release emitted locally defined symbol import warnings."
+          }
+          if ($staticBuildExitCode -ne 0) {
+            throw "The static release executable did not build."
+          }
+          Add-Content `
+            -Path $env:GITHUB_ENV `
+            -Value "RORKDEVICE_STATIC_LINK_LOG=$staticLinkLog"
+
+          $binaryDirectory = (
+            & swift build @staticArguments --show-bin-path
+          ).Trim()
+          $binary = Join-Path $binaryDirectory "rorkdevice.exe"
+          if (-not (Test-Path $binary -PathType Leaf)) {
+            throw "The static release executable was not found at $binary."
+          }
+          $versionSource = Get-Content `
+            "Sources/RorkDevice/Public/RorkDevice.swift" `
+            -Raw
+          $versionMatch = [Regex]::Match(
+            $versionSource,
+            'public static let version = "([^"]+)"'
+          )
+          if (-not $versionMatch.Success) {
+            throw "The package version could not be read."
+          }
+          $version = (& $binary --version).Trim()
+          if ($version -ne $versionMatch.Groups[1].Value) {
+            throw "The executable version does not match the package version."
+          }
+          & $binary --help *> $null
+          if ($LASTEXITCODE -ne 0) {
+            throw "The root help command could not start."
+          }
+          & $binary apps list --help *> $null
+          if ($LASTEXITCODE -ne 0) {
+            throw "The application listing command could not start."
+          }
+          & $binary tunnel start --help *> $null
+          if ($LASTEXITCODE -ne 0) {
+            throw "The tunnel command could not start."
+          }
+
+          Add-Content `
+            -Path $env:GITHUB_ENV `
+            -Value "RORKDEVICE_RELEASE=$binary"
+
+      - name: Inspect static release dependencies
+        run: |
+          $ErrorActionPreference = "Stop"
+          $inspection = Join-Path $env:RUNNER_TEMP "windows-x64-inspection"
+          New-Item `
+            -ItemType Directory `
+            -Path $inspection `
+            -Force |
+            Out-Null
+
+          swift --version |
+            Out-File (Join-Path $inspection "swift-version.txt")
+          $targetInfoText = (
+            swiftc `
+              -sdk $env:SWIFT_STATIC_SDK_ROOT `
+              -static-stdlib `
+              -print-target-info
+          ) -join "`n"
+          $targetInfoText |
+            Out-File (Join-Path $inspection "swift-target-info.json")
+          Copy-Item `
+            $env:RORKDEVICE_STATIC_LINK_LOG `
+            (Join-Path $inspection "rorkdevice-static-link.log")
+          @(
+            "Swift 6.4 development snapshot 2026-08-01",
+            "Static dispatch and Blocks runtime",
+            "ICU 76.1",
+            "curl 8.9.1-DEV",
+            "zlib 1.3.1",
+            "Brotli 1.2.0"
+          ) |
+            Out-File (Join-Path $inspection "static-sdk-components.txt")
+
+          Get-FileHash `
+            -Path $env:RORKDEVICE_RELEASE `
+            -Algorithm SHA256 |
+            Format-List |
+            Out-File (Join-Path $inspection "rorkdevice-sha256.txt")
+
+          $vswhere = Join-Path ${env:ProgramFiles(x86)} `
+            "Microsoft Visual Studio\Installer\vswhere.exe"
+          if (-not (Test-Path $vswhere -PathType Leaf)) {
+            throw "Visual Studio locator was not found."
+          }
+          $visualStudio = & $vswhere `
+            -latest `
+            -products * `
+            -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
+            -property installationPath |
+            Select-Object -First 1
+          if (-not $visualStudio) {
+            throw "The x64 Visual C++ build tools were not found."
+          }
+          $dumpbin = Get-ChildItem `
+            -Path (Join-Path $visualStudio "VC\Tools\MSVC") `
+            -Filter "dumpbin.exe" `
+            -File `
+            -Recurse |
+            Where-Object {
+              $_.FullName -match "Hostx64\\x64\\dumpbin\.exe$"
+            } |
+            Sort-Object FullName -Descending |
+            Select-Object -First 1
+          if ($null -eq $dumpbin) {
+            throw "The x64 dependency inspector was not found."
+          }
+          $dependencyOutput = (
+            & $dumpbin.FullName /DEPENDENTS $env:RORKDEVICE_RELEASE
+          ) -join "`n"
+          if ($LASTEXITCODE -ne 0) {
+            throw "The release dependency inspection failed."
+          }
+          $dependencyOutput |
+            Out-File (Join-Path $inspection "rorkdevice-dependencies.txt")
+
+          $dependencies = [Regex]::Matches(
+            $dependencyOutput,
+            '^\s+([A-Za-z0-9._-]+\.dll)\s*$',
+            [Text.RegularExpressions.RegexOptions]::Multiline
+          ) |
+            ForEach-Object { $_.Groups[1].Value } |
+            Sort-Object -Unique
+          $dependencies |
+            Out-File (Join-Path $inspection "rorkdevice-imports.txt")
+
+          $allowedDependencies = @(
+            "ADVAPI32.dll",
+            "bcrypt.dll",
+            "CRYPT32.dll",
+            "dbghelp.dll",
+            "IPHLPAPI.DLL",
+            "KERNEL32.dll",
+            "MSVCP140.dll",
+            "MSWSOCK.dll",
+            "ole32.dll",
+            "Secur32.dll",
+            "SHELL32.dll",
+            "SHLWAPI.dll",
+            "USER32.dll",
+            "USERENV.dll",
+            "VCRUNTIME140.dll",
+            "WINMM.dll",
+            "WS2_32.dll"
+          )
+          $unexpectedDependencies = $dependencies |
+            Where-Object {
+              $allowedDependencies -notcontains $_ -and
+              $_ -notmatch '^api-ms-win-'
+            }
+          if ($unexpectedDependencies) {
+            throw "The static release imports unexpected libraries: $($unexpectedDependencies -join ', ')."
+          }
+          $requiredRuntimeDependencies = @(
+            "MSVCP140.dll",
+            "VCRUNTIME140.dll"
+          )
+          foreach ($runtimeDependency in $requiredRuntimeDependencies) {
+            if ($dependencies -notcontains $runtimeDependency) {
+              throw "The documented runtime dependency $runtimeDependency was not found."
+            }
+          }
+          $requiredRuntimeDependencies |
+            Out-File (Join-Path $inspection "required-vc-runtime.txt")
+          Add-Content `
+            -Path $env:GITHUB_ENV `
+            -Value "WINDOWS_INSPECTION=$inspection"
+
+      - name: Package static Windows executable
+        run: |
+          $ErrorActionPreference = "Stop"
+          $package = Join-Path $env:RUNNER_TEMP "rorkdevice-windows-x64"
+          New-Item -ItemType Directory -Path $package -Force | Out-Null
+          $packagedExecutable = Join-Path $package "rorkdevice.exe"
+          Copy-Item $env:RORKDEVICE_RELEASE $packagedExecutable
+          Copy-Item "LICENSE" $package
+          Copy-Item "THIRD_PARTY_NOTICES.md" $package
+          Copy-Item "ThirdPartyLicenses" $package -Recurse
+
+          $strip = Get-Command llvm-strip.exe -ErrorAction Stop
+          & $strip.Source --strip-all $packagedExecutable
+          if ($LASTEXITCODE -ne 0) {
+            throw "The packaged executable could not be stripped."
+          }
+          $packagedLibraries = Get-ChildItem `
+            -Path $package `
+            -Filter "*.dll" `
+            -File `
+            -Recurse
+          if ($packagedLibraries) {
+            throw "The static package unexpectedly contains DLL files."
+          }
+
+          $previousPath = $env:Path
+          $smokeDirectory = Join-Path $env:RUNNER_TEMP "isolated-smoke"
+          New-Item `
+            -ItemType Directory `
+            -Path $smokeDirectory `
+            -Force |
+            Out-Null
+          try {
+            $env:Path = "$package;$env:SystemRoot\System32"
+            Push-Location $smokeDirectory
+            try {
+              & $packagedExecutable --version
+              if ($LASTEXITCODE -ne 0) {
+                throw "The packaged version command could not start."
+              }
+              & $packagedExecutable --help *> $null
+              if ($LASTEXITCODE -ne 0) {
+                throw "The packaged root help command could not start."
+              }
+              & $packagedExecutable apps list --help *> $null
+              if ($LASTEXITCODE -ne 0) {
+                throw "The packaged application listing command could not start."
+              }
+              & $packagedExecutable tunnel start --help *> $null
+              if ($LASTEXITCODE -ne 0) {
+                throw "The packaged tunnel command could not start."
+              }
+              & (Join-Path `
+                $env:GITHUB_WORKSPACE `
+                ".github\scripts\test-windows-static-runtime.ps1") `
+                -Binary $packagedExecutable `
+                -WorkingDirectory $smokeDirectory
+            } finally {
+              Pop-Location
+            }
+          } finally {
+            $env:Path = $previousPath
+          }
+
+          Get-FileHash `
+            -Path $packagedExecutable `
+            -Algorithm SHA256 |
+            Format-List |
+            Out-File (
+              Join-Path $env:WINDOWS_INSPECTION "packaged-rorkdevice-sha256.txt"
+            )
+          Get-Item $packagedExecutable |
+            Select-Object Name, Length |
+            Format-List |
+            Out-File (
+              Join-Path $env:WINDOWS_INSPECTION "packaged-rorkdevice-size.txt"
+            )
+
+          Add-Content `
+            -Path $env:GITHUB_ENV `
+            -Value "RORKDEVICE_PACKAGE=$package"
+
+      - name: Upload static runtime inspection
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: rorkdevice-windows-x64-runtime-inspection
+          path: ${{ env.WINDOWS_INSPECTION }}
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload static Windows executable
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: rorkdevice-windows-x64
+          path: ${{ env.RORKDEVICE_PACKAGE }}
+          if-no-files-found: error
+          retention-days: 14
+
+  publish-windows:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs:
+      - test-windows
+      - test-static-runtime-probe
+      - build-static-package
+    runs-on: blacksmith-4vcpu-windows-2025
+    permissions:
+      actions: write
+      contents: write
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Download static Windows executable
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $package = Join-Path $env:RUNNER_TEMP "rorkdevice-windows-x64"
+          gh run download `
+            $env:GITHUB_RUN_ID `
+            --repo $env:GITHUB_REPOSITORY `
+            --name "rorkdevice-windows-x64" `
+            --dir $package
+          if ($LASTEXITCODE -ne 0) {
+            throw "The static Windows artifact could not be downloaded."
+          }
+          $archive = Join-Path `
+            $env:RUNNER_TEMP `
+            "rorkdevice-windows-x64.zip"
+          Compress-Archive `
+            -Path (Join-Path $package "*") `
+            -DestinationPath $archive
+          Add-Content `
+            -Path $env:GITHUB_ENV `
+            -Value "WINDOWS_RELEASE_ARCHIVE=$archive"
+
+      - name: Publish static Windows executable
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view `
+            $env:GITHUB_REF_NAME `
+            --repo $env:GITHUB_REPOSITORY *> $null
+          if ($LASTEXITCODE -eq 0) {
+            gh release upload `
+              $env:GITHUB_REF_NAME `
+              $env:WINDOWS_RELEASE_ARCHIVE `
+              --repo $env:GITHUB_REPOSITORY `
+              --clobber
+          } else {
+            gh release create `
+              $env:GITHUB_REF_NAME `
+              $env:WINDOWS_RELEASE_ARCHIVE `
+              --repo $env:GITHUB_REPOSITORY `
+              --verify-tag `
+              --title $env:GITHUB_REF_NAME
+          }
+          if ($LASTEXITCODE -ne 0) {
+            throw "The static Windows release asset could not be published."
+          }
+
+      - name: Queue release checksums
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run release-checksums.yml `
+            --repo $env:GITHUB_REPOSITORY `
+            --ref main `
+            -f "tag=$env:GITHUB_REF_NAME"
+          if ($LASTEXITCODE -ne 0) {
+            throw "The release checksum workflow could not be started."
+          }

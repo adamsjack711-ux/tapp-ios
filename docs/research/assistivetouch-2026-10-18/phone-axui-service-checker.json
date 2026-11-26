@@ -1,0 +1,19 @@
+{
+  "path": "/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityUIService.framework/AccessibilityUIService",
+  "sha256": "4a12e5efc66fe716c305378bd77f3f1e47405412732135be9cc1ca929cc45b77",
+  "uuid": "UUID: E8EFC0EA-9A21-316C-9F67-EEA5581EA941 (arm64e) /Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityUIService.framework/AccessibilityUIService",
+  "functions": {
+    "-[AXUIServiceEntitlementChecker serviceCanProcessMessageWithIdentifier:fromClientWithConnection:possibleRequiredEntitlements:needsToRequireEntitlements:]": {
+      "start": "0x254a15dd0",
+      "end": "0x254a16270"
+    },
+    "-[AXUIServiceEntitlementChecker _clientProcessWithAuditToken:hasEntitlement:]": {
+      "start": "0x254a16470",
+      "end": "0x254a164e0"
+    },
+    "-[AXUIServiceEntitlementChecker _isSafeToProcessMessageFromUnentitledProcessWithIdentifier:]": {
+      "start": "0x254a16604",
+      "end": "0x254a16664"
+    }
+  }
+}

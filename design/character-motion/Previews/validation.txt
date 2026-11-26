@@ -1,0 +1,14 @@
+Tapp character-motion design study - 20 October 2026
+
+PASS: Xcode Debug build for the dedicated iPhone Air simulator.
+PASS: Original, Lavender and custom color controls; palette and custom color persist after relaunch.
+PASS: Shared color rendering on Orbit and Comet and the floating cursor.
+PASS: Say hello, Thinking, Listening and Little win controls and native renderer events.
+PASS: Peek returns to hidden; Pop out stays visible; Tuck in hides.
+PASS: Come home returns through the landing phase to hidden.
+PASS: Flight arrival recording shows soft landing, Island outline ripple, and disappearance.
+PASS: Quiet motion toggle and quiet peek; normal motion restored afterward.
+PASS: Final home and studio screenshots reviewed.
+PASS: One-page PDF rendered with Poppler and visually reviewed; three source links verified.
+
+Scope: simulator design prototype. No physical-device ActivityKit integration tested.

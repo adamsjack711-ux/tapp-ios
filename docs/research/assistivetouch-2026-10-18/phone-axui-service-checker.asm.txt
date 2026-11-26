@@ -1,0 +1,404 @@
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityUIService.framework/AccessibilityUIService:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000254a15dd0 <-[AXUIServiceEntitlementChecker serviceCanProcessMessageWithIdentifier:fromClientWithConnection:possibleRequiredEntitlements:needsToRequireEntitlements:]>:
+254a15dd0: d503237f    	pacibsp
+254a15dd4: d10603ff    	sub	sp, sp, #0x180
+254a15dd8: a9126ffc    	stp	x28, x27, [sp, #0x120]
+254a15ddc: a91367fa    	stp	x26, x25, [sp, #0x130]
+254a15de0: a9145ff8    	stp	x24, x23, [sp, #0x140]
+254a15de4: a91557f6    	stp	x22, x21, [sp, #0x150]
+254a15de8: a9164ff4    	stp	x20, x19, [sp, #0x160]
+254a15dec: a9177bfd    	stp	x29, x30, [sp, #0x170]
+254a15df0: 9105c3fd    	add	x29, sp, #0x170
+254a15df4: aa0503f5    	mov	x21, x5
+254a15df8: aa0403fa    	mov	x26, x4
+254a15dfc: f90013e2    	str	x2, [sp, #0x20]
+254a15e00: aa0003f6    	mov	x22, x0
+254a15e04: d009bfe8    	adrp	x8, 0x268213000 <_objc_msgSend$xpc_handler+0x137d8ca0>
+254a15e08: f947d508    	ldr	x8, [x8, #0xfa8]
+254a15e0c: f9400108    	ldr	x8, [x8]
+254a15e10: f81a03a8    	stur	x8, [x29, #-0x60]
+254a15e14: 94d9b8e3    	bl	 <_objc_msgSend$xpc_handler+0x3649e40>
+254a15e18: aa0003fc    	mov	x28, x0
+254a15e1c: aa1603e0    	mov	x0, x22
+254a15e20: 94d8824c    	bl	 <_objc_msgSend$xpc_handler+0x35fc3f0>
+254a15e24: 94d9b82f    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15e28: aa0003f4    	mov	x20, x0
+254a15e2c: 94d7ae29    	bl	 <_objc_msgSend$xpc_handler+0x35c7370>
+254a15e30: aa0003f7    	mov	x23, x0
+254a15e34: aa1603e0    	mov	x0, x22
+254a15e38: 94d882b6    	bl	 <_objc_msgSend$xpc_handler+0x35fc5b0>
+254a15e3c: 94d9b829    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15e40: aa0003f8    	mov	x24, x0
+254a15e44: 94d7ae23    	bl	 <_objc_msgSend$xpc_handler+0x35c7370>
+254a15e48: aa0003f9    	mov	x25, x0
+254a15e4c: 94d9b86d    	bl	 <_objc_msgSend$xpc_handler+0x3649ca0>
+254a15e50: 94d9b85c    	bl	 <_objc_msgSend$xpc_handler+0x3649c60>
+254a15e54: eb1902ff    	cmp	x23, x25
+254a15e58: 54000100    	b.eq	 <L1>
+254a15e5c: 94dab411    	bl	 <_objc_msgSend$xpc_handler+0x3688b40>
+254a15e60: 94d9b820    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15e64: aa0003f4    	mov	x20, x0
+254a15e68: 52800221    	mov	w1, #0x11               ; =17
+254a15e6c: 94d9b901    	bl	 <_objc_msgSend$xpc_handler+0x3649f10>
+254a15e70: 35001e20    	cbnz	w0,  <L29>
+<L0>:
+254a15e74: 94d9b853    	bl	 <_objc_msgSend$xpc_handler+0x3649c60>
+<L1>:
+254a15e78: f9000ffa    	str	x26, [sp, #0x18]
+254a15e7c: aa1603e0    	mov	x0, x22
+254a15e80: aa1c03e2    	mov	x2, x28
+254a15e84: 94d88043    	bl	 <_objc_msgSend$xpc_handler+0x35fbc30>
+254a15e88: aa0003f4    	mov	x20, x0
+254a15e8c: aa1603e0    	mov	x0, x22
+254a15e90: 94d882a0    	bl	 <_objc_msgSend$xpc_handler+0x35fc5b0>
+254a15e94: 94d9b813    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15e98: aa0003f9    	mov	x25, x0
+254a15e9c: d009b908    	adrp	x8, 0x268137000 <_objc_msgSend$xpc_handler+0x136fcca0>
+254a15ea0: f943e500    	ldr	x0, [x8, #0x7c8]
+254a15ea4: f94013f8    	ldr	x24, [sp, #0x20]
+254a15ea8: aa1803e2    	mov	x2, x24
+254a15eac: 94d7b265    	bl	 <_objc_msgSend$xpc_handler+0x35c84e0>
+254a15eb0: 94d9b80c    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15eb4: aa0003f7    	mov	x23, x0
+254a15eb8: 92f00008    	mov	x8, #0x7fffffffffffffff ; =9223372036854775807
+254a15ebc: eb08029f    	cmp	x20, x8
+254a15ec0: f90017fc    	str	x28, [sp, #0x28]
+254a15ec4: 54000081    	b.ne	 <L2>
+254a15ec8: aa1703f3    	mov	x19, x23
+254a15ecc: d280001a    	mov	x26, #0x0               ; =0
+254a15ed0: 1400000f    	b	 <L3>
+<L2>:
+254a15ed4: aa1903e0    	mov	x0, x25
+254a15ed8: aa1403e2    	mov	x2, x20
+254a15edc: 94d7b261    	bl	 <_objc_msgSend$xpc_handler+0x35c8500>
+254a15ee0: 94d9b800    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15ee4: aa0003fa    	mov	x26, x0
+254a15ee8: aa1703f3    	mov	x19, x23
+254a15eec: aa1703e2    	mov	x2, x23
+254a15ef0: 94d7b268    	bl	 <_objc_msgSend$xpc_handler+0x35c8530>
+254a15ef4: 94d9b7fb    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15ef8: b40000a0    	cbz	x0,  <L3>
+254a15efc: aa0003fb    	mov	x27, x0
+254a15f00: 94d7ad54    	bl	 <_objc_msgSend$xpc_handler+0x35c70f0>
+254a15f04: aa0003fc    	mov	x28, x0
+254a15f08: 14000085    	b	 <L19>
+<L3>:
+254a15f0c: aa1603e0    	mov	x0, x22
+254a15f10: aa1803e2    	mov	x2, x24
+254a15f14: 94d880c7    	bl	 <_objc_msgSend$xpc_handler+0x35fbed0>
+254a15f18: 94d9b7f2    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15f1c: aa0003fb    	mov	x27, x0
+254a15f20: b4000060    	cbz	x0,  <L4>
+254a15f24: d2800017    	mov	x23, #0x0               ; =0
+254a15f28: 14000007    	b	 <L5>
+<L4>:
+254a15f2c: aa1603e0    	mov	x0, x22
+254a15f30: aa1803e2    	mov	x2, x24
+254a15f34: 94d8803f    	bl	 <_objc_msgSend$xpc_handler+0x35fbcd0>
+254a15f38: 94d9b7ea    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a15f3c: aa0003f7    	mov	x23, x0
+254a15f40: b4000880    	cbz	x0,  <L14>
+<L5>:
+254a15f44: 6f00e400    	movi.2d	v0, #0000000000000000
+254a15f48: ad0383e0    	stp	q0, q0, [sp, #0x70]
+254a15f4c: b400009c    	cbz	x28,  <L6>
+254a15f50: 9101c3e8    	add	x8, sp, #0x70
+254a15f54: aa1c03e0    	mov	x0, x28
+254a15f58: 94d7ca32    	bl	 <_objc_msgSend$xpc_handler+0x35ce4c0>
+<L6>:
+254a15f5c: b400011b    	cbz	x27,  <L7>
+254a15f60: 9101c3e2    	add	x2, sp, #0x70
+254a15f64: aa1603e0    	mov	x0, x22
+254a15f68: aa1b03e3    	mov	x3, x27
+254a15f6c: 94d87fc1    	bl	 <_objc_msgSend$xpc_handler+0x35fbb10>
+254a15f70: aa0003fc    	mov	x28, x0
+254a15f74: 94d9b81f    	bl	 <_objc_msgSend$xpc_handler+0x3649c90>
+254a15f78: 1400003a    	b	 <L15>
+<L7>:
+254a15f7c: f9000bf9    	str	x25, [sp, #0x10]
+254a15f80: 6f00e400    	movi.2d	v0, #0000000000000000
+254a15f84: ad0283e0    	stp	q0, q0, [sp, #0x50]
+254a15f88: ad0183e0    	stp	q0, q0, [sp, #0x30]
+254a15f8c: 94d9b86d    	bl	 <_objc_msgSend$xpc_handler+0x3649de0>
+254a15f90: aa0003fc    	mov	x28, x0
+254a15f94: 9100c3e2    	add	x2, sp, #0x30
+254a15f98: 910243e3    	add	x3, sp, #0x90
+254a15f9c: 52800204    	mov	w4, #0x10               ; =16
+254a15fa0: 94d7add0    	bl	 <_objc_msgSend$xpc_handler+0x35c7380>
+254a15fa4: b40003a0    	cbz	x0,  <L11>
+254a15fa8: aa0003f9    	mov	x25, x0
+254a15fac: f94023e8    	ldr	x8, [sp, #0x40]
+254a15fb0: f9400118    	ldr	x24, [x8]
+254a15fb4: f90007f5    	str	x21, [sp, #0x8]
+<L8>:
+254a15fb8: d2800015    	mov	x21, #0x0               ; =0
+<L9>:
+254a15fbc: f94023e8    	ldr	x8, [sp, #0x40]
+254a15fc0: f9400108    	ldr	x8, [x8]
+254a15fc4: eb18011f    	cmp	x8, x24
+254a15fc8: 54000060    	b.eq	 <L10>
+254a15fcc: aa1c03e0    	mov	x0, x28
+254a15fd0: 94d9b7cc    	bl	 <_objc_msgSend$xpc_handler+0x3649ba0>
+<L10>:
+254a15fd4: f9401fe8    	ldr	x8, [sp, #0x38]
+254a15fd8: f8757903    	ldr	x3, [x8, x21, lsl #3]
+254a15fdc: 9101c3e2    	add	x2, sp, #0x70
+254a15fe0: aa1603e0    	mov	x0, x22
+254a15fe4: 94d87fa3    	bl	 <_objc_msgSend$xpc_handler+0x35fbb10>
+254a15fe8: 37000260    	tbnz	w0, #0x0,  <L12>
+254a15fec: 910006b5    	add	x21, x21, #0x1
+254a15ff0: f1000739    	subs	x25, x25, #0x1
+254a15ff4: 54fffe41    	b.ne	 <L9>
+254a15ff8: 9100c3e2    	add	x2, sp, #0x30
+254a15ffc: 910243e3    	add	x3, sp, #0x90
+254a16000: aa1c03e0    	mov	x0, x28
+254a16004: 52800204    	mov	w4, #0x10               ; =16
+254a16008: 94d7adb6    	bl	 <_objc_msgSend$xpc_handler+0x35c7380>
+254a1600c: aa0003f9    	mov	x25, x0
+254a16010: f94007f5    	ldr	x21, [sp, #0x8]
+254a16014: b5fffd20    	cbnz	x0,  <L8>
+<L11>:
+254a16018: 94d9b80a    	bl	 <_objc_msgSend$xpc_handler+0x3649ce0>
+254a1601c: aa1603e0    	mov	x0, x22
+254a16020: f94013f8    	ldr	x24, [sp, #0x20]
+254a16024: aa1803e2    	mov	x2, x24
+254a16028: 94d87fee    	bl	 <_objc_msgSend$xpc_handler+0x35fbc80>
+254a1602c: aa0003fc    	mov	x28, x0
+254a16030: 14000005    	b	 <L13>
+<L12>:
+254a16034: 94d9b803    	bl	 <_objc_msgSend$xpc_handler+0x3649ce0>
+254a16038: 5280003c    	mov	w28, #0x1               ; =1
+254a1603c: f94007f5    	ldr	x21, [sp, #0x8]
+254a16040: f94013f8    	ldr	x24, [sp, #0x20]
+<L13>:
+254a16044: f9400bf9    	ldr	x25, [sp, #0x10]
+254a16048: 94d9b7ea    	bl	 <_objc_msgSend$xpc_handler+0x3649c90>
+254a1604c: 14000005    	b	 <L15>
+<L14>:
+254a16050: aa1603e0    	mov	x0, x22
+254a16054: aa1803e2    	mov	x2, x24
+254a16058: 94d87fe2    	bl	 <_objc_msgSend$xpc_handler+0x35fbc80>
+254a1605c: aa0003fc    	mov	x28, x0
+<L15>:
+254a16060: 92f00008    	mov	x8, #0x7fffffffffffffff ; =9223372036854775807
+254a16064: eb08029f    	cmp	x20, x8
+254a16068: 54000441    	b.ne	 <L18>
+254a1606c: aa1603e0    	mov	x0, x22
+254a16070: 94d881b8    	bl	 <_objc_msgSend$xpc_handler+0x35fc3f0>
+254a16074: 94d9b79b    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a16078: aa0003f4    	mov	x20, x0
+254a1607c: b5000100    	cbnz	x0,  <L16>
+254a16080: 9009b8a8    	adrp	x8, 0x26812a000 <_objc_msgSend$xpc_handler+0x136efca0>
+254a16084: f947c900    	ldr	x0, [x8, #0xf90]
+254a16088: 94d9b7ba    	bl	 <_objc_msgSend$xpc_handler+0x3649c10>
+254a1608c: aa0003f4    	mov	x20, x0
+254a16090: aa1603e0    	mov	x0, x22
+254a16094: aa1403e2    	mov	x2, x20
+254a16098: 94d883e2    	bl	 <_objc_msgSend$xpc_handler+0x35fccc0>
+<L16>:
+254a1609c: aa1403e0    	mov	x0, x20
+254a160a0: f94017e2    	ldr	x2, [sp, #0x28]
+254a160a4: 94d7ac73    	bl	 <_objc_msgSend$xpc_handler+0x35c6f10>
+254a160a8: b5000119    	cbnz	x25,  <L17>
+254a160ac: 9009b8a8    	adrp	x8, 0x26812a000 <_objc_msgSend$xpc_handler+0x136efca0>
+254a160b0: f947c900    	ldr	x0, [x8, #0xf90]
+254a160b4: 94d9b7af    	bl	 <_objc_msgSend$xpc_handler+0x3649c10>
+254a160b8: aa0003f9    	mov	x25, x0
+254a160bc: aa1603e0    	mov	x0, x22
+254a160c0: aa1903e2    	mov	x2, x25
+254a160c4: 94d8840f    	bl	 <_objc_msgSend$xpc_handler+0x35fcda0>
+<L17>:
+254a160c8: 9009b8a8    	adrp	x8, 0x26812a000 <_objc_msgSend$xpc_handler+0x136efca0>
+254a160cc: f947d900    	ldr	x0, [x8, #0xfb0]
+254a160d0: 94d9b7a8    	bl	 <_objc_msgSend$xpc_handler+0x3649c10>
+254a160d4: aa0003f7    	mov	x23, x0
+254a160d8: 94d9b7d2    	bl	 <_objc_msgSend$xpc_handler+0x3649cc0>
+254a160dc: aa1903e0    	mov	x0, x25
+254a160e0: aa1703e2    	mov	x2, x23
+254a160e4: 94d7ac63    	bl	 <_objc_msgSend$xpc_handler+0x35c6f10>
+254a160e8: 94d9b7b6    	bl	 <_objc_msgSend$xpc_handler+0x3649c60>
+254a160ec: aa1703fa    	mov	x26, x23
+<L18>:
+254a160f0: b009b908    	adrp	x8, 0x268137000 <_objc_msgSend$xpc_handler+0x136fcca0>
+254a160f4: f943e500    	ldr	x0, [x8, #0x7c8]
+254a160f8: aa1c03e2    	mov	x2, x28
+254a160fc: 94d7bd29    	bl	 <_objc_msgSend$xpc_handler+0x35cb240>
+254a16100: 94d9b778    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a16104: aa0003f4    	mov	x20, x0
+254a16108: aa1a03e0    	mov	x0, x26
+254a1610c: aa1403e2    	mov	x2, x20
+254a16110: aa1303e3    	mov	x3, x19
+254a16114: 94d7b3b7    	bl	 <_objc_msgSend$xpc_handler+0x35c8c90>
+254a16118: 94d9b7aa    	bl	 <_objc_msgSend$xpc_handler+0x3649c60>
+<L19>:
+254a1611c: 94d9b7c5    	bl	 <_objc_msgSend$xpc_handler+0x3649cd0>
+254a16120: f9400ff7    	ldr	x23, [sp, #0x18]
+254a16124: b40000b7    	cbz	x23,  <L20>
+254a16128: 3600011c    	tbz	w28, #0x0,  <L22>
+254a1612c: f90002ff    	str	xzr, [x23]
+254a16130: b5000095    	cbnz	x21,  <L21>
+254a16134: 1400002c    	b	 <L28>
+<L20>:
+254a16138: b4000575    	cbz	x21,  <L28>
+254a1613c: 3600033c    	tbz	w28, #0x0,  <L25>
+<L21>:
+254a16140: 390002bf    	strb	wzr, [x21]
+254a16144: 14000028    	b	 <L28>
+<L22>:
+254a16148: aa1603e0    	mov	x0, x22
+254a1614c: aa1803e2    	mov	x2, x24
+254a16150: 94d88038    	bl	 <_objc_msgSend$xpc_handler+0x35fbed0>
+254a16154: 94d9b763    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a16158: aa0003f4    	mov	x20, x0
+254a1615c: b4000100    	cbz	x0,  <L23>
+254a16160: b009b8a8    	adrp	x8, 0x26812b000 <_objc_msgSend$xpc_handler+0x136f0ca0>
+254a16164: f9400d00    	ldr	x0, [x8, #0x18]
+254a16168: f90003ff    	str	xzr, [sp]
+254a1616c: aa1403e2    	mov	x2, x20
+254a16170: 94d7c5b0    	bl	 <_objc_msgSend$xpc_handler+0x35cd4d0>
+254a16174: 94d9b75b    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a16178: 14000005    	b	 <L24>
+<L23>:
+254a1617c: aa1603e0    	mov	x0, x22
+254a16180: aa1803e2    	mov	x2, x24
+254a16184: 94d87fab    	bl	 <_objc_msgSend$xpc_handler+0x35fbcd0>
+254a16188: 94d9b756    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+<L24>:
+254a1618c: 94d9b7bd    	bl	 <_objc_msgSend$xpc_handler+0x3649d20>
+254a16190: f90002e0    	str	x0, [x23]
+254a16194: 94d9b77f    	bl	 <_objc_msgSend$xpc_handler+0x3649c30>
+254a16198: 94d9b78a    	bl	 <_objc_msgSend$xpc_handler+0x3649c60>
+254a1619c: b4000255    	cbz	x21,  <L28>
+<L25>:
+254a161a0: aa1603e0    	mov	x0, x22
+254a161a4: aa1803e2    	mov	x2, x24
+254a161a8: 94d88022    	bl	 <_objc_msgSend$xpc_handler+0x35fbed0>
+254a161ac: 94d9b74d    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a161b0: aa0003f4    	mov	x20, x0
+254a161b4: b4000060    	cbz	x0,  <L26>
+254a161b8: 390002bf    	strb	wzr, [x21]
+254a161bc: 14000009    	b	 <L27>
+<L26>:
+254a161c0: aa1603e0    	mov	x0, x22
+254a161c4: aa1803e2    	mov	x2, x24
+254a161c8: 94d87f9a    	bl	 <_objc_msgSend$xpc_handler+0x35fbcd0>
+254a161cc: 94d9b745    	bl	 <_objc_msgSend$xpc_handler+0x3649b80>
+254a161d0: f100001f    	cmp	x0, #0x0
+254a161d4: 1a9f17e8    	cset	w8, eq
+254a161d8: 390002a8    	strb	w8, [x21]
+254a161dc: 94d9b76d    	bl	 <_objc_msgSend$xpc_handler+0x3649c30>
+<L27>:
+254a161e0: 94d9b778    	bl	 <_objc_msgSend$xpc_handler+0x3649c60>
+<L28>:
+254a161e4: 94d9b773    	bl	 <_objc_msgSend$xpc_handler+0x3649c50>
+254a161e8: 94d9b78e    	bl	 <_objc_msgSend$xpc_handler+0x3649cc0>
+254a161ec: 94d9b789    	bl	 <_objc_msgSend$xpc_handler+0x3649cb0>
+254a161f0: f94017e8    	ldr	x8, [sp, #0x28]
+254a161f4: 94d9b797    	bl	 <_objc_msgSend$xpc_handler+0x3649cf0>
+254a161f8: f85a03a8    	ldur	x8, [x29, #-0x60]
+254a161fc: b009bfe9    	adrp	x9, 0x268213000 <_objc_msgSend$xpc_handler+0x137d8ca0>
+254a16200: f947d529    	ldr	x9, [x9, #0xfa8]
+254a16204: f9400129    	ldr	x9, [x9]
+254a16208: eb08013f    	cmp	x9, x8
+254a1620c: 54000301    	b.ne	 <L30>
+254a16210: aa1c03e0    	mov	x0, x28
+254a16214: a9577bfd    	ldp	x29, x30, [sp, #0x170]
+254a16218: a9564ff4    	ldp	x20, x19, [sp, #0x160]
+254a1621c: a95557f6    	ldp	x22, x21, [sp, #0x150]
+254a16220: a9545ff8    	ldp	x24, x23, [sp, #0x140]
+254a16224: a95367fa    	ldp	x26, x25, [sp, #0x130]
+254a16228: a9526ffc    	ldp	x28, x27, [sp, #0x120]
+254a1622c: 910603ff    	add	sp, sp, #0x180
+254a16230: d65f0fff    	retab
+<L29>:
+254a16234: d00000c8    	adrp	x8, 0x254a30000 <___swift_reflection_version+0x90>
+254a16238: fd42a900    	ldr	d0, [x8, #0x550]
+254a1623c: bd0073e0    	str	s0, [sp, #0x70]
+254a16240: f80743f6    	stur	x22, [sp, #0x74]
+254a16244: d0ffffa0    	adrp	x0, 0x254a0c000 <_xpc_main+0x254a0c000>
+254a16248: 91000000    	add	x0, x0, #0x0
+254a1624c: 900000e3    	adrp	x3, 0x254a32000 <_xpc_main+0x254a32000>
+254a16250: 91219463    	add	x3, x3, #0x865
+254a16254: 9101c3e4    	add	x4, sp, #0x70
+254a16258: aa1403e1    	mov	x1, x20
+254a1625c: 52800222    	mov	w2, #0x11               ; =17
+254a16260: 52800185    	mov	w5, #0xc                ; =12
+254a16264: 94d9bdb3    	bl	 <_objc_msgSend$xpc_handler+0x364b5d0>
+254a16268: 17ffff03    	b	 <L0>
+<L30>:
+254a1626c: 94d9b5ed    	bl	 <_objc_msgSend$xpc_handler+0x36496c0>
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityUIService.framework/AccessibilityUIService:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000254a16470 <-[AXUIServiceEntitlementChecker _clientProcessWithAuditToken:hasEntitlement:]>:
+254a16470: d503237f    	pacibsp
+254a16474: a9be4ff4    	stp	x20, x19, [sp, #-0x20]!
+254a16478: a9017bfd    	stp	x29, x30, [sp, #0x10]
+254a1647c: 910043fd    	add	x29, sp, #0x10
+254a16480: aa0303e0    	mov	x0, x3
+254a16484: aa0203f3    	mov	x19, x2
+254a16488: 94d9b6fe    	bl	 <_objc_msgSend$xpc_handler+0x3649d20>
+254a1648c: 94d7ab39    	bl	 <_objc_msgSend$xpc_handler+0x35c6e10>
+254a16490: aa1303e1    	mov	x1, x19
+254a16494: 94dab2e3    	bl	 <_objc_msgSend$xpc_handler+0x3688cc0>
+254a16498: aa0003f3    	mov	x19, x0
+254a1649c: b40000e0    	cbz	x0,  <L0>
+254a164a0: aa1303e0    	mov	x0, x19
+254a164a4: 94d9fce3    	bl	 <_objc_msgSend$xpc_handler+0x365b4d0>
+254a164a8: d009bfe8    	adrp	x8, 0x268214000 <_objc_msgSend$xpc_handler+0x137d9ca0>
+254a164ac: f9434108    	ldr	x8, [x8, #0x680]
+254a164b0: eb08001f    	cmp	x0, x8
+254a164b4: 54000060    	b.eq	 <L1>
+<L0>:
+254a164b8: 52800014    	mov	w20, #0x0               ; =0
+254a164bc: 14000004    	b	 <L2>
+<L1>:
+254a164c0: aa1303e0    	mov	x0, x19
+254a164c4: 94d9fc7f    	bl	 <_objc_msgSend$xpc_handler+0x365b360>
+254a164c8: aa0003f4    	mov	x20, x0
+<L2>:
+254a164cc: 94d9b6b9    	bl	 <_objc_msgSend$xpc_handler+0x3649c50>
+254a164d0: aa1403e0    	mov	x0, x20
+254a164d4: a9417bfd    	ldp	x29, x30, [sp, #0x10]
+254a164d8: a8c24ff4    	ldp	x20, x19, [sp], #0x20
+254a164dc: d65f0fff    	retab
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityUIService.framework/AccessibilityUIService:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000254a16604 <-[AXUIServiceEntitlementChecker _isSafeToProcessMessageFromUnentitledProcessWithIdentifier:]>:
+254a16604: d503237f    	pacibsp
+254a16608: a9be4ff4    	stp	x20, x19, [sp, #-0x20]!
+254a1660c: a9017bfd    	stp	x29, x30, [sp, #0x10]
+254a16610: 910043fd    	add	x29, sp, #0x10
+254a16614: aa0203f3    	mov	x19, x2
+254a16618: 94d8823e    	bl	 <_objc_msgSend$xpc_handler+0x35fcbb0>
+254a1661c: aa0003f4    	mov	x20, x0
+254a16620: f0d18ee8    	adrp	x8, 0x1f7bf5000 <_xpc_main+0x1f7bf5000>
+254a16624: 91115d01    	add	x1, x8, #0x457
+254a16628: 94d9bcfa    	bl	 <_objc_msgSend$xpc_handler+0x364b6b0>
+254a1662c: 36000140    	tbz	w0, #0x0,  <L1>
+254a16630: aa1403e0    	mov	x0, x20
+254a16634: aa1303e2    	mov	x2, x19
+254a16638: a9417bfd    	ldp	x29, x30, [sp, #0x10]
+254a1663c: a8c24ff4    	ldp	x20, x19, [sp], #0x20
+254a16640: d50323ff    	autibsp
+254a16644: ca1e07d0    	eor	x16, x30, x30, lsl #1
+254a16648: b6f00050    	tbz	x16, #0x3e,  <L0>
+254a1664c: d4388e20    	brk	#0xc471
+<L0>:
+254a16650: 14d88158    	b	 <_objc_msgSend$xpc_handler+0x35fc850>
+<L1>:
+254a16654: 52800000    	mov	w0, #0x0                ; =0
+254a16658: a9417bfd    	ldp	x29, x30, [sp, #0x10]
+254a1665c: a8c24ff4    	ldp	x20, x19, [sp], #0x20
+254a16660: d65f0fff    	retab

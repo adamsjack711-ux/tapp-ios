@@ -1,0 +1,597 @@
+import XCTest
+
+@testable import RorkDevice
+
+/// Behavior of the reconnect engine that keeps `tunnel start` alive when the
+/// packet tunnel drops: retry scheduling, lifecycle events, and backoff reset.
+final class TunnelReconnectLoopTests: XCTestCase {
+    /// Backoff used by every test: 1s, then 2s, then 4s between attempts.
+    private let backoff = Backoff.exponential(
+        initial: .seconds(1),
+        factor: 2,
+        maximum: .seconds(60),
+        maxAttempts: Int.max
+    )
+
+    func testStopsWithoutEventsWhenTheTunnelClosesCleanly() async throws {
+        let recorder = ReconnectRecorder(cycles: [.serveThenClose])
+
+        try await TunnelReconnectLoop.run(
+            backoff: backoff,
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(recorder.events, [])
+        XCTAssertEqual(recorder.waits, [])
+        XCTAssertEqual(recorder.cycleCount, 1)
+    }
+
+    func testRetriesEstablishmentFailuresWithGrowingBackoff() async throws {
+        let recorder = ReconnectRecorder(cycles: [
+            .failToEstablish("usbmux is empty"),
+            .failToEstablish("still empty"),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: backoff,
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(recorder.events, [
+            .reestablishing(attempt: 1, delay: .seconds(1), reason: "usbmux is empty"),
+            .reestablishing(attempt: 2, delay: .seconds(2), reason: "still empty"),
+        ])
+        XCTAssertEqual(recorder.waits, [.seconds(1), .seconds(2)])
+        XCTAssertEqual(recorder.cycleCount, 3)
+    }
+
+    func testEmitsTunnelLostWhenAReadyTunnelDies() async throws {
+        let recorder = ReconnectRecorder(cycles: [
+            .serveThenLose("device unplugged"),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: backoff,
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(recorder.events, [
+            .tunnelLost(reason: "device unplugged"),
+            .reestablishing(attempt: 1, delay: .seconds(1), reason: "device unplugged"),
+        ])
+    }
+
+    func testEstablishmentFailuresDoNotReportATunnelLoss() async throws {
+        let recorder = ReconnectRecorder(cycles: [
+            .failToEstablish("no device"),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: backoff,
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(recorder.events, [
+            .reestablishing(attempt: 1, delay: .seconds(1), reason: "no device"),
+        ])
+    }
+
+    func testBackoffRestartsAfterAHealthyCycle() async throws {
+        let recorder = ReconnectRecorder(cycles: [
+            .failToEstablish("first outage a"),
+            .failToEstablish("first outage b"),
+            .serveThenLose("healthy tunnel died"),
+            .failToEstablish("second outage a"),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: backoff,
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(recorder.waits, [
+            .seconds(1),
+            .seconds(2),
+            .seconds(1),
+            .seconds(2),
+        ])
+        XCTAssertEqual(recorder.events, [
+            .reestablishing(attempt: 1, delay: .seconds(1), reason: "first outage a"),
+            .reestablishing(attempt: 2, delay: .seconds(2), reason: "first outage b"),
+            .tunnelLost(reason: "healthy tunnel died"),
+            .reestablishing(attempt: 1, delay: .seconds(1), reason: "healthy tunnel died"),
+            .reestablishing(attempt: 2, delay: .seconds(2), reason: "second outage a"),
+        ])
+    }
+
+    func testRetriesPastTheSchedulesAttemptBudget() async throws {
+        // Three-attempt budget: the immediate attempt, then 1s and 2s waits.
+        let exhaustibleBackoff = Backoff.delays([
+            .zero,
+            .seconds(1),
+            .seconds(2),
+        ])
+        let recorder = ReconnectRecorder(cycles: [
+            .failToEstablish("outage 1"),
+            .failToEstablish("outage 2"),
+            .failToEstablish("outage 3"),
+            .failToEstablish("outage 4"),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: exhaustibleBackoff,
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        // The loop outlives the schedule's attempt budget: attempts past the
+        // end keep retrying at the schedule's final delay instead of giving
+        // up, because only process supervision may decide to stop trying.
+        XCTAssertEqual(recorder.cycleCount, 5)
+        XCTAssertEqual(recorder.waits, [
+            .seconds(1),
+            .seconds(2),
+            .seconds(2),
+            .seconds(2),
+        ])
+    }
+
+    func testCancellationStopsTheLoopWithoutLifecycleEvents() async {
+        let recorder = ReconnectRecorder(cycles: [.throwCancellation])
+
+        do {
+            try await TunnelReconnectLoop.run(
+                backoff: backoff,
+                waitBeforeAttempt: recorder.wait,
+                emit: recorder.emit,
+                establishAndServe: recorder.establishAndServe
+            )
+            XCTFail("Expected cancellation to propagate")
+        } catch {
+            XCTAssertTrue(error is CancellationError)
+        }
+        XCTAssertEqual(recorder.events, [])
+        XCTAssertEqual(recorder.waits, [])
+    }
+
+    func testCancellationOfAReadyCycleEmitsNoLossEvent() async {
+        let recorder = ReconnectRecorder(cycles: [.serveThenThrowCancellation])
+
+        do {
+            try await TunnelReconnectLoop.run(
+                backoff: backoff,
+                waitBeforeAttempt: recorder.wait,
+                emit: recorder.emit,
+                establishAndServe: recorder.establishAndServe
+            )
+            XCTFail("Expected cancellation to propagate")
+        } catch {
+            XCTAssertTrue(error is CancellationError)
+        }
+        XCTAssertEqual(recorder.events, [])
+    }
+
+    func testWaitFailuresStopTheLoop() async {
+        let recorder = ReconnectRecorder(
+            cycles: [.failToEstablish("no device")],
+            waitError: CancellationError()
+        )
+
+        do {
+            try await TunnelReconnectLoop.run(
+                backoff: backoff,
+                waitBeforeAttempt: recorder.wait,
+                emit: recorder.emit,
+                establishAndServe: recorder.establishAndServe
+            )
+            XCTFail("Expected the wait failure to propagate")
+        } catch {
+            XCTAssertTrue(error is CancellationError)
+        }
+        XCTAssertEqual(recorder.cycleCount, 1)
+    }
+}
+
+/// Delay capping for failures that prompt nothing on the device.
+final class TunnelReconnectPassiveFailureTests: XCTestCase {
+    /// The schedule alone would wait a minute. A locked phone answers every
+    /// attempt instantly and shows no dialog, so waiting the full minute
+    /// only delays the recovery the user triggers by unlocking.
+    func testAPassiveFailureCapsTheScheduledDelay() async throws {
+        let recorder = ReconnectRecorder(cycles: [
+            .failToEstablish("Lockdown error: StartService failed: PasswordProtected"),
+            .failToEstablish("Lockdown error: StartService failed: PasswordProtected"),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: Backoff.delays([.seconds(60), .seconds(60)]),
+            passiveFailurePolicy: TunnelReconnectLoop.PassiveFailurePolicy(
+                cap: .seconds(10),
+                matches: { reason in reason.contains("PasswordProtected") }
+            ),
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(recorder.waits, [.seconds(10), .seconds(10)])
+    }
+
+    func testTheCappedDelayIsWhatTheLifecycleEventReports() async throws {
+        let recorder = ReconnectRecorder(cycles: [
+            .failToEstablish("Lockdown error: StartService failed: PasswordProtected"),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: Backoff.delays([.seconds(60)]),
+            passiveFailurePolicy: TunnelReconnectLoop.PassiveFailurePolicy(
+                cap: .seconds(10),
+                matches: { reason in reason.contains("PasswordProtected") }
+            ),
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(
+            recorder.events,
+            [
+                .reestablishing(
+                    attempt: 1,
+                    delay: .seconds(10),
+                    reason: "Lockdown error: StartService failed: PasswordProtected"
+                ),
+            ]
+        )
+    }
+
+    func testAPromptDrivingFailureKeepsTheFullSchedule() async throws {
+        let recorder = ReconnectRecorder(cycles: [
+            .failToEstablish("Pairing was rejected on the device."),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: Backoff.delays([.seconds(60)]),
+            passiveFailurePolicy: TunnelReconnectLoop.PassiveFailurePolicy(
+                cap: .seconds(10),
+                matches: { reason in reason.contains("PasswordProtected") }
+            ),
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(recorder.waits, [.seconds(60)])
+    }
+
+    func testAShortScheduledDelayIsNotLengthenedToTheCap() async throws {
+        let recorder = ReconnectRecorder(cycles: [
+            .failToEstablish("Lockdown error: StartService failed: PasswordProtected"),
+            .serveThenClose,
+        ])
+
+        try await TunnelReconnectLoop.run(
+            backoff: Backoff.delays([.seconds(1)]),
+            passiveFailurePolicy: TunnelReconnectLoop.PassiveFailurePolicy(
+                cap: .seconds(10),
+                matches: { reason in reason.contains("PasswordProtected") }
+            ),
+            waitBeforeAttempt: recorder.wait,
+            emit: recorder.emit,
+            establishAndServe: recorder.establishAndServe
+        )
+
+        XCTAssertEqual(recorder.waits, [.seconds(1)])
+    }
+}
+
+/// Deterministic reattach-wait behavior: which race participant may end the
+/// wait, and which events are ignored.
+final class TunnelReconnectReattachWaitTests: XCTestCase {
+    /// A sleep that never finishes, so only a device event can end the wait.
+    private static let sleepForever: @Sendable (Duration) async throws -> Void = { _ in
+        try await Task.sleep(for: .seconds(3_600))
+    }
+
+    func testReattachOfTheWatchedDeviceEndsTheWaitEarly() async throws {
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: "udid-1",
+            upTo: .seconds(60),
+            initialAttachments: { [] },
+            deviceEvents: {
+                deviceEventStream([
+                    .detached(identifier: "udid-1", connection: nil),
+                    .attached(usbDevice(identifier: "udid-1")),
+                ])
+            },
+            sleep: Self.sleepForever
+        )
+
+        XCTAssertEqual(outcome, .reattached)
+    }
+
+    func testAnyAttachEndsTheWaitWhenNoDeviceIsPinned() async throws {
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: nil,
+            upTo: .seconds(60),
+            initialAttachments: { [] },
+            deviceEvents: {
+                deviceEventStream([.attached(usbDevice(identifier: "whatever"))])
+            },
+            sleep: Self.sleepForever
+        )
+
+        XCTAssertEqual(outcome, .reattached)
+    }
+
+    func testOtherDevicesAndDetachEventsDoNotEndTheWait() async throws {
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: "udid-1",
+            upTo: .seconds(1),
+            initialAttachments: { [] },
+            deviceEvents: {
+                deviceEventStream([
+                    .attached(usbDevice(identifier: "udid-2")),
+                    .detached(identifier: "udid-1", connection: nil),
+                ])
+            },
+            sleep: { _ in }
+        )
+
+        XCTAssertEqual(outcome, .waited)
+    }
+
+    /// usbmuxd replays every currently attached device as an attach event
+    /// when a listen stream opens. A replayed attach is not a reattach, and
+    /// honoring it would defeat the whole backoff schedule while the device
+    /// sits attached with a persistent per-attempt failure, such as a locked
+    /// phone answering StartService with PasswordProtected.
+    func testAReplayedAttachOfAnAlreadyAttachedDeviceDoesNotEndTheWait() async throws {
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: "udid-1",
+            upTo: .seconds(1),
+            initialAttachments: { ["udid-1"] },
+            deviceEvents: {
+                deviceEventStream([.attached(usbDevice(identifier: "udid-1"))])
+            },
+            sleep: { _ in }
+        )
+
+        XCTAssertEqual(outcome, .waited)
+    }
+
+    func testADetachThenAttachOfAnAlreadyAttachedDeviceEndsTheWait() async throws {
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: "udid-1",
+            upTo: .seconds(60),
+            initialAttachments: { ["udid-1"] },
+            deviceEvents: {
+                deviceEventStream([
+                    .attached(usbDevice(identifier: "udid-1")),
+                    .detached(identifier: "udid-1", connection: nil),
+                    .attached(usbDevice(identifier: "udid-1")),
+                ])
+            },
+            sleep: Self.sleepForever
+        )
+
+        XCTAssertEqual(outcome, .reattached)
+    }
+
+    func testAReplayedAttachDoesNotEndTheWaitWhenNoDeviceIsPinned() async throws {
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: nil,
+            upTo: .seconds(1),
+            initialAttachments: { ["udid-1"] },
+            deviceEvents: {
+                deviceEventStream([.attached(usbDevice(identifier: "udid-1"))])
+            },
+            sleep: { _ in }
+        )
+
+        XCTAssertEqual(outcome, .waited)
+    }
+
+    /// Models a detach that fires while the initial attachment query is
+    /// still running. Events reach only an already-open stream, so this
+    /// passes only when the wait opens its event stream before querying.
+    func testADetachDuringTheInitialQueryStillUnlocksTheNextAttach() async throws {
+        let live = LiveDeviceEventFeed()
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: "udid-1",
+            upTo: .seconds(60),
+            initialAttachments: {
+                // The device unplugs and replugs mid-query. A wait that
+                // opened its stream first buffers both events; a wait that
+                // queries first never sees them.
+                live.emit(.detached(identifier: "udid-1", connection: nil))
+                live.emit(.attached(usbDevice(identifier: "udid-1")))
+                return ["udid-1"]
+            },
+            deviceEvents: live.open,
+            sleep: Self.sleepForever
+        )
+
+        XCTAssertEqual(outcome, .reattached)
+    }
+
+    func testAFailedInitialAttachmentQueryDegradesToHonoringEveryAttach() async throws {
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: "udid-1",
+            upTo: .seconds(60),
+            initialAttachments: { throw RorkDeviceError.transport("usbmuxd is down") },
+            deviceEvents: {
+                deviceEventStream([.attached(usbDevice(identifier: "udid-1"))])
+            },
+            sleep: Self.sleepForever
+        )
+
+        XCTAssertEqual(outcome, .reattached)
+    }
+
+    func testEventStreamFailureFallsBackToTheFullDelay() async throws {
+        let sleeps = SleepRecorder()
+        let outcome = try await TunnelReconnectLoop.waitForReattach(
+            of: "udid-1",
+            upTo: .seconds(1),
+            initialAttachments: { [] },
+            deviceEvents: {
+                AsyncThrowingStream { continuation in
+                    continuation.finish(
+                        throwing: RorkDeviceError.transport("usbmuxd is down")
+                    )
+                }
+            },
+            sleep: sleeps.record
+        )
+
+        XCTAssertEqual(outcome, .waited)
+        // The wait must have requested the entire delay, not a shortened one.
+        XCTAssertEqual(sleeps.requested, [.seconds(1)])
+    }
+}
+
+/// Scripted double for the reconnect loop's establish/serve dependency.
+///
+/// Each scripted cycle either fails before readiness, reports readiness and
+/// then loses the tunnel, or reports readiness and closes cleanly. Events and
+/// waits are recorded in call order for assertions.
+private final class ReconnectRecorder: @unchecked Sendable {
+    enum Cycle {
+        case failToEstablish(String)
+        case serveThenLose(String)
+        case serveThenClose
+        case throwCancellation
+        case serveThenThrowCancellation
+    }
+
+    private let cycles: [Cycle]
+    private let waitError: Error?
+    private(set) var events: [TunnelReconnectLoop.Event] = []
+    private(set) var waits: [Duration] = []
+    private(set) var cycleCount = 0
+
+    init(cycles: [Cycle], waitError: Error? = nil) {
+        self.cycles = cycles
+        self.waitError = waitError
+    }
+
+    func emit(_ event: TunnelReconnectLoop.Event) {
+        events.append(event)
+    }
+
+    func wait(_ delay: Duration) async throws {
+        waits.append(delay)
+        if let waitError {
+            throw waitError
+        }
+    }
+
+    func establishAndServe(_ onReady: () -> Void) async throws {
+        let cycle = cycles[cycleCount]
+        cycleCount += 1
+        switch cycle {
+        case .failToEstablish(let message):
+            throw ReconnectTestFailure(message: message)
+        case .serveThenLose(let message):
+            onReady()
+            throw ReconnectTestFailure(message: message)
+        case .serveThenClose:
+            onReady()
+        case .throwCancellation:
+            throw CancellationError()
+        case .serveThenThrowCancellation:
+            onReady()
+            throw CancellationError()
+        }
+    }
+}
+
+/// Failure whose rendered description is exactly its message, pinning the
+/// loop's `String(describing:)` reason contract without error-type prefixes.
+private struct ReconnectTestFailure: Error, CustomStringConvertible {
+    let message: String
+
+    var description: String {
+        message
+    }
+}
+
+/// Builds a finished event stream that replays the given events in order.
+private func deviceEventStream(
+    _ events: [DeviceEvent]
+) -> AsyncThrowingStream<DeviceEvent, Error> {
+    AsyncThrowingStream { continuation in
+        for event in events {
+            continuation.yield(event)
+        }
+        continuation.finish()
+    }
+}
+
+/// Records the durations handed to an injected sleep.
+private final class SleepRecorder: @unchecked Sendable {
+    private let lock = NSLock()
+    private var durations: [Duration] = []
+
+    /// The durations requested so far, in call order.
+    var requested: [Duration] {
+        lock.withLock { durations }
+    }
+
+    /// Records one requested duration and returns immediately.
+    @Sendable func record(_ duration: Duration) async throws {
+        lock.withLock {
+            durations.append(duration)
+        }
+    }
+}
+
+/// Delivers device events only to an already-open stream, like usbmuxd,
+/// which never replays events a listener missed.
+private final class LiveDeviceEventFeed: @unchecked Sendable {
+    private let lock = NSLock()
+    private var continuation: AsyncThrowingStream<DeviceEvent, Error>.Continuation?
+
+    /// Opens the listen stream that future events are delivered to.
+    func open() -> AsyncThrowingStream<DeviceEvent, Error> {
+        AsyncThrowingStream { continuation in
+            lock.withLock {
+                self.continuation = continuation
+            }
+        }
+    }
+
+    /// Emits one event, dropped when nobody is listening yet.
+    func emit(_ event: DeviceEvent) {
+        let continuation = lock.withLock { self.continuation }
+        continuation?.yield(event)
+    }
+}
+
+/// Minimal usbmux-visible device fixture for reattach matching.
+private func usbDevice(identifier: String) -> Device {
+    Device(
+        identifier: identifier,
+        connection: .usbmux(deviceID: 1)
+    )
+}

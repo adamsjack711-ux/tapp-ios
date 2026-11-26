@@ -1,0 +1,181 @@
+
+... disassembly excerpt ...
+10000dd3c:	66 dc 03 94	bl	0x100104ed4 ; symbol stub for: __os_signpost_emit_with_name_impl
+10000dd40:	3a dd 03 94	bl	0x100105228 ; symbol stub for: _objc_release_x22
+10000dd44:	e0 03 15 aa	mov	x0, x21
+10000dd48:	46 26 04 94	bl	0x100117660
+10000dd4c:	cf db 03 94	bl	0x100104c88 ; symbol stub for: __AXSAssistiveTouchScannerEnabled
+10000dd50:	f8 03 00 aa	mov	x24, x0
+10000dd54:	c4 db 03 94	bl	0x100104c64 ; symbol stub for: __AXSAssistiveTouchEnabled
+10000dd58:	f6 03 00 aa	mov	x22, x0
+10000dd5c:	f8 d8 03 94	bl	0x10010413c ; symbol stub for: _AXRuntimeCheck_AXAction_PointerControl
+10000dd60:	c0 00 00 34	cbz	w0, 0x10000dd78
+10000dd64:	f3 db 03 94	bl	0x100104d30 ; symbol stub for: __AXSPointerControlEnabled
+10000dd68:	1f 00 00 71	cmp	w0, #0x0
+10000dd6c:	fb 07 9f 1a	cset	w27, ne
+10000dd70:	98 00 00 34	cbz	w24, 0x10000dd80
+10000dd74:	0a 00 00 14	b	0x10000dd9c
+10000dd78:	1b 00 80 52	mov	w27, #0x0
+10000dd7c:	18 01 00 35	cbnz	w24, 0x10000dd9c
+10000dd80:	f6 00 00 35	cbnz	w22, 0x10000dd9c
+10000dd84:	db 00 00 37	tbnz	w27, #0x0, 0x10000dd9c
+10000dd88:	33 3c 00 b4	cbz	x19, 0x10000e50c
+10000dd8c:	68 0a 40 f9	ldr	x8, [x19, #0x10]
+10000dd90:	e0 03 13 aa	mov	x0, x19
+10000dd94:	00 01 3f d6	blr	x8
+10000dd98:	dd 01 00 14	b	0x10000e50c
+10000dd9c:	a0 2a 40 f9	ldr	x0, [x21, #0x50]
+10000dda0:	18 6a 04 94	bl	0x100128600
+10000dda4:	e2 dc 03 94	bl	0x10010512c ; symbol stub for: _objc_claimAutoreleasedReturnValue
+10000dda8:	f9 03 00 aa	mov	x25, x0
+10000ddac:	28 dd 03 94	bl	0x10010524c ; symbol stub for: _objc_release_x25
+10000ddb0:	39 02 00 b4	cbz	x25, 0x10000ddf4
+10000ddb4:	48 0d 00 d0	adrp	x8, 426 ; 0x1001b7000
+10000ddb8:	00 55 47 f9	ldr	x0, [x8, #0xea8] ; literal pool symbol address: _OBJC_CLASS_$_NSThread
+10000ddbc:	a9 08 04 94	bl	0x100110060
+10000ddc0:	db dc 03 94	bl	0x10010512c ; symbol stub for: _objc_claimAutoreleasedReturnValue
+10000ddc4:	f9 03 00 aa	mov	x25, x0
+10000ddc8:	81 0b 00 d0	adrp	x1, 370 ; 0x10017f000
+10000ddcc:	21 08 02 91	add	x1, x1, #0x82 ; literal pool for: "/Library/Caches/com.apple.xbs/5284EB20-2456-4131-9F24-E3CE959944C1/TemporaryDirectory.HlhCDk/Sources/AssistiveTouch_Sim/Source/HNDDisplayManager.m"
+10000ddd0:	e0 03 00 f9	str	x0, [sp]
+
+... disassembly excerpt ...
+10002a738:	b6 6a 03 94	bl	0x100105210 ; symbol stub for: _objc_release_x20
+10002a73c:	e0 03 13 aa	mov	x0, x19
+10002a740:	fd 7b 42 a9	ldp	x29, x30, [sp, #0x20]
+10002a744:	f4 4f 41 a9	ldp	x20, x19, [sp, #0x10]
+10002a748:	f6 57 c3 a8	ldp	x22, x21, [sp], #0x30
+10002a74c:	c0 03 5f d6	ret
+10002a750:	fd 7b bf a9	stp	x29, x30, [sp, #-0x10]!
+10002a754:	fd 03 00 91	mov	x29, sp
+10002a758:	79 66 03 94	bl	0x10010413c ; symbol stub for: _AXRuntimeCheck_AXAction_PointerControl
+10002a75c:	c0 00 00 34	cbz	w0, 0x10002a774
+10002a760:	74 69 03 94	bl	0x100104d30 ; symbol stub for: __AXSPointerControlEnabled
+10002a764:	40 01 00 34	cbz	w0, 0x10002a78c
+10002a768:	20 00 80 52	mov	w0, #0x1
+10002a76c:	fd 7b c1 a8	ldp	x29, x30, [sp], #0x10
+10002a770:	c0 03 5f d6	ret
+10002a774:	3c 69 03 94	bl	0x100104c64 ; symbol stub for: __AXSAssistiveTouchEnabled
+10002a778:	60 00 00 34	cbz	w0, 0x10002a784
+10002a77c:	07 69 03 94	bl	0x100104b98 ; symbol stub for: _UIAccessibilityIsSwitchControlRunning
+10002a780:	00 00 00 52	eor	w0, w0, #0x1
+10002a784:	fd 7b c1 a8	ldp	x29, x30, [sp], #0x10
+10002a788:	c0 03 5f d6	ret
+10002a78c:	54 69 03 94	bl	0x100104cdc ; symbol stub for: __AXSDwellControlEnabled
+10002a790:	1f 00 00 71	cmp	w0, #0x0
+10002a794:	e0 07 9f 1a	cset	w0, ne
+10002a798:	fd 7b c1 a8	ldp	x29, x30, [sp], #0x10
+10002a79c:	c0 03 5f d6	ret
+10002a7a0:	ff 03 01 d1	sub	sp, sp, #0x40
+10002a7a4:	f6 57 01 a9	stp	x22, x21, [sp, #0x10]
+10002a7a8:	f4 4f 02 a9	stp	x20, x19, [sp, #0x20]
+10002a7ac:	fd 7b 03 a9	stp	x29, x30, [sp, #0x30]
+10002a7b0:	fd c3 00 91	add	x29, sp, #0x30
+10002a7b4:	f3 03 00 aa	mov	x19, x0
+10002a7b8:	9a aa 03 94	bl	0x100115220
+10002a7bc:	5c 6a 03 94	bl	0x10010512c ; symbol stub for: _objc_claimAutoreleasedReturnValue
+10002a7c0:	f4 03 00 aa	mov	x20, x0
+10002a7c4:	68 0c 00 90	adrp	x8, 396 ; 0x1001b6000
+10002a7c8:	00 15 45 f9	ldr	x0, [x8, #0xa28] ; literal pool symbol address: _OBJC_CLASS_$_AXPICustomGesturePerformer
+10002a7cc:	76 6a 03 94	bl	0x1001051a4 ; symbol stub for: _objc_opt_class
+
+... disassembly excerpt ...
+1000a54a4:	f4 4f 41 a9	ldp	x20, x19, [sp, #0x10]
+1000a54a8:	ff c3 00 91	add	sp, sp, #0x30
+1000a54ac:	c0 03 5f d6	ret
+1000a54b0:	ff 83 01 d1	sub	sp, sp, #0x60
+1000a54b4:	f6 57 03 a9	stp	x22, x21, [sp, #0x30]
+1000a54b8:	f4 4f 04 a9	stp	x20, x19, [sp, #0x40]
+1000a54bc:	fd 7b 05 a9	stp	x29, x30, [sp, #0x50]
+1000a54c0:	fd 43 01 91	add	x29, sp, #0x50
+1000a54c4:	f4 03 01 aa	mov	x20, x1
+1000a54c8:	f3 03 00 aa	mov	x19, x0
+1000a54cc:	19 7e 01 94	bl	0x100104d30 ; symbol stub for: __AXSPointerControlEnabled
+1000a54d0:	80 02 00 34	cbz	w0, 0x1000a5520
+1000a54d4:	c8 09 00 f0	adrp	x8, 315 ; 0x1001e0000
+1000a54d8:	00 41 19 91	add	x0, x8, #0x650
+1000a54dc:	91 06 02 94	bl	0x100126f20
+1000a54e0:	13 7f 01 94	bl	0x10010512c ; symbol stub for: _objc_claimAutoreleasedReturnValue
+1000a54e4:	f3 03 00 aa	mov	x19, x0
+1000a54e8:	be e3 01 94	bl	0x10011e3e0
+1000a54ec:	43 7f 01 94	bl	0x1001051f8 ; symbol stub for: _objc_release_x19
+1000a54f0:	88 08 00 90	adrp	x8, 272 ; 0x1001b5000
+1000a54f4:	00 f5 46 f9	ldr	x0, [x8, #0xde8]
+1000a54f8:	8a 06 02 94	bl	0x100126f20
+1000a54fc:	0c 7f 01 94	bl	0x10010512c ; symbol stub for: _objc_claimAutoreleasedReturnValue
+1000a5500:	e0 03 00 f9	str	x0, [sp]
+1000a5504:	bf e3 01 94	bl	0x10011e400
+1000a5508:	e0 03 40 f9	ldr	x0, [sp]
+1000a550c:	fd 7b 45 a9	ldp	x29, x30, [sp, #0x50]
+1000a5510:	f4 4f 44 a9	ldp	x20, x19, [sp, #0x40]
+1000a5514:	f6 57 43 a9	ldp	x22, x21, [sp, #0x30]
+1000a5518:	ff 83 01 91	add	sp, sp, #0x60
+1000a551c:	31 7f 01 14	b	0x1001051e0 ; symbol stub for: _objc_release
+1000a5520:	04 7e 01 94	bl	0x100104d30 ; symbol stub for: __AXSPointerControlEnabled
+1000a5524:	e0 02 00 35	cbnz	w0, 0x1000a5580
+1000a5528:	88 08 00 90	adrp	x8, 272 ; 0x1001b5000
+1000a552c:	00 f5 46 f9	ldr	x0, [x8, #0xde8]
+1000a5530:	7c 06 02 94	bl	0x100126f20
+1000a5534:	fe 7e 01 94	bl	0x10010512c ; symbol stub for: _objc_claimAutoreleasedReturnValue
+1000a5538:	f5 03 00 aa	mov	x21, x0
+1000a553c:	e8 04 00 90	adrp	x8, 156 ; 0x100141000
+1000a5540:	00 6d 42 fd	ldr	d0, [x8, #0x4d8]
+1000a5544:	88 08 00 f0	adrp	x8, 275 ; 0x1001b8000
+1000a5548:	08 21 43 f9	ldr	x8, [x8, #0x640] ; literal pool symbol address: __NSConcreteStackBlock
+1000a554c:	e8 07 00 f9	str	x8, [sp, #0x8]
+1000a5550:	e0 0b 00 fd	str	d0, [sp, #0x10]
+1000a5554:	08 00 00 90	adrp	x8, 0 ; 0x1000a5000
+1000a5558:	08 51 16 91	add	x8, x8, #0x594
+1000a555c:	e9 07 00 f0	adrp	x9, 255 ; 0x1001a4000
+1000a5560:	29 21 20 91	add	x9, x9, #0x808
+1000a5564:	e8 a7 01 a9	stp	x8, x9, [sp, #0x18]
+1000a5568:	f4 17 00 f9	str	x20, [sp, #0x28]
+1000a556c:	e2 23 00 91	add	x2, sp, #0x8
+1000a5570:	cc ba 01 94	bl	0x1001140a0
+1000a5574:	2a 7f 01 94	bl	0x10010521c ; symbol stub for: _objc_release_x21
+1000a5578:	e0 03 13 aa	mov	x0, x19
+1000a557c:	f9 82 01 94	bl	0x100106160
+1000a5580:	fd 7b 45 a9	ldp	x29, x30, [sp, #0x50]
+1000a5584:	f4 4f 44 a9	ldp	x20, x19, [sp, #0x40]
+1000a5588:	f6 57 43 a9	ldp	x22, x21, [sp, #0x30]
+1000a558c:	ff 83 01 91	add	sp, sp, #0x60
+
+... disassembly excerpt ...
+1000a58c0:	13 fe 07 37	tbnz	w19, #0x0, 0x1000a5880
+1000a58c4:	88 08 00 d0	adrp	x8, 274 ; 0x1001b7000
+1000a58c8:	00 21 45 f9	ldr	x0, [x8, #0xa40] ; literal pool symbol address: _OBJC_CLASS_$_AXSettings
+1000a58cc:	8d 05 02 94	bl	0x100126f00
+1000a58d0:	17 7e 01 94	bl	0x10010512c ; symbol stub for: _objc_claimAutoreleasedReturnValue
+1000a58d4:	f3 03 00 aa	mov	x19, x0
+1000a58d8:	ea c9 01 94	bl	0x100118080
+1000a58dc:	f4 03 00 aa	mov	x20, x0
+1000a58e0:	46 7e 01 94	bl	0x1001051f8 ; symbol stub for: _objc_release_x19
+1000a58e4:	d4 fc 07 37	tbnz	w20, #0x0, 0x1000a587c
+1000a58e8:	12 7d 01 94	bl	0x100104d30 ; symbol stub for: __AXSPointerControlEnabled
+1000a58ec:	1f 00 00 71	cmp	w0, #0x0
+1000a58f0:	e8 17 9f 1a	cset	w8, eq
+1000a58f4:	e3 ff ff 17	b	0x1000a5880
+1000a58f8:	ff 43 01 d1	sub	sp, sp, #0x50
+1000a58fc:	f6 57 02 a9	stp	x22, x21, [sp, #0x20]
+1000a5900:	f4 4f 03 a9	stp	x20, x19, [sp, #0x30]
+1000a5904:	fd 7b 04 a9	stp	x29, x30, [sp, #0x40]
+1000a5908:	fd 03 01 91	add	x29, sp, #0x40
+1000a590c:	f3 03 00 aa	mov	x19, x0
+1000a5910:	ec 8c 01 94	bl	0x100108cc0
+1000a5914:	20 03 00 34	cbz	w0, 0x1000a5978
+1000a5918:	00 00 80 52	mov	w0, #0x0
+1000a591c:	e1 7c 01 94	bl	0x100104ca0 ; symbol stub for: __AXSAssistiveTouchSetEnabled
+1000a5920:	00 00 80 52	mov	w0, #0x0
+1000a5924:	dc 7c 01 94	bl	0x100104c94 ; symbol stub for: __AXSAssistiveTouchScannerSetEnabled
+1000a5928:	2a 79 01 94	bl	0x100103dd0 ; symbol stub for: _ASTLogCommon
+1000a592c:	00 7e 01 94	bl	0x10010512c ; symbol stub for: _objc_claimAutoreleasedReturnValue
+1000a5930:	f4 03 00 aa	mov	x20, x0
+1000a5934:	01 00 80 52	mov	w1, #0x0
+1000a5938:	ab 7e 01 94	bl	0x1001053e4 ; symbol stub for: _os_log_type_enabled
+1000a593c:	60 01 00 34	cbz	w0, 0x1000a5968
+1000a5940:	ff 03 00 79	strh	wzr, [sp]
+1000a5944:	c0 fa ff f0	adrp	x0, -165 ; 0x100000000
+1000a5948:	00 00 00 91	add	x0, x0, #0x0
+1000a594c:	43 07 00 d0	adrp	x3, 234 ; 0x10018f000
+1000a5950:	63 c4 06 91	add	x3, x3, #0x1b1 ; literal pool for: "AssistiveTouch preference was not enabled. Shutting down"
+1000a5954:	e4 03 00 91	mov	x4, sp

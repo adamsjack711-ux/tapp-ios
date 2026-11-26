@@ -1,0 +1,41 @@
+{
+  "repository": "https://github.com/Lessica/TrollSpeed",
+  "commit": "a609be260c8261ead36509c3bc4ded8479da9c40",
+  "files": [
+    {
+      "path": "sources/HUDApp.mm",
+      "url": "https://raw.githubusercontent.com/Lessica/TrollSpeed/a609be260c8261ead36509c3bc4ded8479da9c40/sources/HUDApp.mm",
+      "sha256": "9ca1f85734f0482638f6826681fcc1cbe4f0bab3ff60859042bc9174d8b2fec2"
+    },
+    {
+      "path": "headers/SBSAccessibilityWindowHostingController.h",
+      "url": "https://raw.githubusercontent.com/Lessica/TrollSpeed/a609be260c8261ead36509c3bc4ded8479da9c40/headers/SBSAccessibilityWindowHostingController.h",
+      "sha256": "2b591bc864aad969316a658e23f54bf3bd506058760d81cf2ddabdca9b2217e3"
+    },
+    {
+      "path": "supports/entitlements.plist",
+      "url": "https://raw.githubusercontent.com/Lessica/TrollSpeed/a609be260c8261ead36509c3bc4ded8479da9c40/supports/entitlements.plist",
+      "sha256": "3d7030ef9ffb202635b72bd6a75583c41a215d99f22cda017153d49066a34d9c"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/Lessica/TrollSpeed/a609be260c8261ead36509c3bc4ded8479da9c40/LICENSE",
+      "sha256": "cc81c2a899100c1f4877876bbf969d5f8d9c8f491283db36027bd8cabfdc0a12"
+    },
+    {
+      "path": "sources/HUDMainWindow.mm",
+      "url": "https://raw.githubusercontent.com/Lessica/TrollSpeed/a609be260c8261ead36509c3bc4ded8479da9c40/sources/HUDMainWindow.mm",
+      "sha256": "efaec166e8fa364651962b22c901377a2714249b06d7c11225ce4ff97fc77342"
+    },
+    {
+      "path": "sources/HUDMainApplication.mm",
+      "url": "https://raw.githubusercontent.com/Lessica/TrollSpeed/a609be260c8261ead36509c3bc4ded8479da9c40/sources/HUDMainApplication.mm",
+      "sha256": "28ab42fa41bfa4e5cc35165b0f9b27a6a74367a891ea0aa1c88ad5e9b915adf9"
+    },
+    {
+      "path": "sources/HUDMainApplicationDelegate.mm",
+      "url": "https://raw.githubusercontent.com/Lessica/TrollSpeed/a609be260c8261ead36509c3bc4ded8479da9c40/sources/HUDMainApplicationDelegate.mm",
+      "sha256": "66378fe48faa8e868c6e80f580820f26c9c7e09628307d2e143cd4ea5016844c"
+    }
+  ]
+}

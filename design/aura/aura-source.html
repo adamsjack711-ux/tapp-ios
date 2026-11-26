@@ -1,0 +1,187 @@
+<style>
+#hitapp-performative .hp-stage{min-height:850px;padding:24px 8px 20px;box-sizing:border-box;display:flex;justify-content:center;align-items:flex-start}
+#hitapp-performative .hp-phone{--hp-glow:.68;--hp-radius:26px;color-scheme:dark;position:relative;isolation:isolate;width:390px;max-width:100%;min-height:790px;box-sizing:border-box;border:1px solid #43434c;border-radius:48px;background:#09090e;color:#f5f4fb;box-shadow:0 20px 50px #0003,inset 0 0 0 5px #131318;font:400 15px/1.45 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden;padding:17px 22px 25px;display:flex;flex-direction:column;gap:0}
+#hitapp-performative .hp-phone *{box-sizing:border-box}
+#hitapp-performative .hp-phone :where(button,input,textarea){font:inherit;color:inherit}
+#hitapp-performative .hp-phone :where(button){border:0;background:none;padding:0;min-height:44px;touch-action:manipulation}
+#hitapp-performative .hp-phone button:active{transform:scale(.97)}
+#hitapp-performative .hp-phone button:disabled{opacity:.5}
+#hitapp-performative .hp-phone svg{width:19px;height:19px;stroke-width:1.6;flex-shrink:0}
+#hitapp-performative .hp-status{position:relative;display:flex;align-items:center;justify-content:space-between;height:28px;font-size:13px;font-weight:600;padding:0 6px;margin-bottom:26px}
+#hitapp-performative .hp-island{position:absolute;left:50%;top:0;transform:translateX(-50%);height:28px;width:104px;border-radius:30px;background:#020203;border:1px solid #181820;display:flex;justify-content:center;align-items:center;gap:7px;font-size:10px;color:#a9baff}
+#hitapp-performative .hp-island.active{width:142px;box-shadow:0 0 25px #6683ff22}
+#hitapp-performative .hp-island .hp-eye{width:4px;height:5px;background:#a9baff;border-radius:4px}
+#hitapp-performative .hp-device{display:flex;gap:4px;align-items:center}
+#hitapp-performative .hp-device svg{width:14px;height:14px}
+#hitapp-performative .hp-header{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:2}
+#hitapp-performative .hp-brand{font-size:22px;letter-spacing:-1px;font-weight:600;display:flex;align-items:center;gap:8px}
+#hitapp-performative .hp-brand .hp-brand-dot{width:8px;height:8px;border-radius:50%;background:#a996ff;box-shadow:0 0 15px #9b6dff}
+#hitapp-performative .hp-icon{width:44px;flex-shrink:0;display:inline-flex;justify-content:center;align-items:center;border-radius:50%}
+#hitapp-performative .hp-phone .hp-icon{background:#ffffff07;border:1px solid #ffffff0d}
+#hitapp-performative .hp-kicker{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#b5accc;font-weight:500}
+#hitapp-performative .hp-aurora{position:absolute;z-index:-1;pointer-events:none;top:90px;left:-50px;right:-50px;height:380px;opacity:var(--hp-glow);background:radial-gradient(ellipse at 22% 50%,#713db499,transparent 57%),radial-gradient(ellipse at 77% 25%,#295da888,transparent 50%),radial-gradient(ellipse at 63% 70%,#b64f7e66,transparent 53%);filter:blur(28px);transform:rotate(-15deg)}
+#hitapp-performative .hp-hero{padding:39px 0 24px;position:relative}
+#hitapp-performative .hp-phone h1{font-size:37px;line-height:1.12;font-weight:500;letter-spacing:-1.7px;margin:14px 0 15px;color:inherit}
+#hitapp-performative .hp-phone h2{font-size:21px;line-height:1.25;font-weight:500;letter-spacing:-.6px;margin:0;color:inherit}
+#hitapp-performative .hp-phone p{margin:0}
+#hitapp-performative .hp-muted{color:#b0aabf;font-size:13px}
+#hitapp-performative .hp-soft{color:#a8a2ba}
+#hitapp-performative .hp-glass{border:1px solid #ffffff20;border-radius:var(--hp-radius);background:linear-gradient(135deg,#ffffff10,#ffffff04 65%),#12111ce8;box-shadow:inset 0 1px 0 #ffffff0a,0 12px 35px #0002;backdrop-filter:blur(20px)}
+#hitapp-performative .hp-presence{display:flex;align-items:center;gap:16px;padding:18px;margin:5px 0 20px;position:relative}
+#hitapp-performative .hp-presence:after{content:'';position:absolute;left:30px;right:30px;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,#9883e9aa,transparent)}
+#hitapp-performative .hp-pal{--hp-pal-size:24px;--hp-cursor-shape:polygon(7% 2%,94% 57%,60% 64%,79% 94%,59% 100%,40% 70%,14% 92%);width:var(--hp-pal-size);height:calc(var(--hp-pal-size) * 1.12);flex-shrink:0;position:relative;filter:drop-shadow(0 2px 3px #15132b99) drop-shadow(0 0 6px #7983ef44);transform:rotate(-6deg)}
+#hitapp-performative .hp-pal:before{content:'';position:absolute;inset:0;clip-path:var(--hp-cursor-shape);background:linear-gradient(140deg,#f2f5ff,#bdcaff 48%,#7474c9 90%)}
+#hitapp-performative .hp-pal:after{content:'';position:absolute;inset:.75px;clip-path:var(--hp-cursor-shape);background:radial-gradient(ellipse at 30% 25%,#edf1ffc9,transparent 43%),linear-gradient(145deg,#b3ccff,#7284ea 52%,#443a92 88%)}
+#hitapp-performative .hp-pal b{position:absolute;z-index:1;top:42%;left:30%;width:calc(var(--hp-pal-size) * .085);height:calc(var(--hp-pal-size) * .16);border-radius:5px;background:#252346;box-shadow:0 1px 0 #ffffff40}
+#hitapp-performative .hp-pal b:nth-child(2){left:49%}
+#hitapp-performative .hp-pal .hp-mouth{position:absolute;z-index:1;top:59%;left:38%;width:calc(var(--hp-pal-size) * .15);height:calc(var(--hp-pal-size) * .07);border-bottom:1px solid #252346;border-radius:0 0 8px 8px}
+#hitapp-performative .hp-bubble{position:absolute;z-index:3;left:10%;bottom:calc(100% - 3px);width:31px;height:19px;border:1px solid #b5a5db66;border-radius:9px;background:linear-gradient(145deg,#4a405e,#2c263c);box-shadow:inset 0 1px 0 #ffffff18,0 3px 8px #0003;display:flex;align-items:center;justify-content:center;gap:3px;transform:rotate(6deg);transform-origin:7px 100%;pointer-events:none}
+#hitapp-performative .hp-bubble:after{content:'';position:absolute;left:6px;bottom:-4px;width:6px;height:6px;background:#30293f;border-right:1px solid #b5a5db66;border-bottom:1px solid #b5a5db66;transform:rotate(45deg)}
+#hitapp-performative .hp-bubble span{width:3px;height:3px;border-radius:50%;background:#ded5f4}
+#hitapp-performative .hp-phone .hp-pal-trigger{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;min-height:44px;border-radius:12px}
+#hitapp-performative .hp-phone .hp-pal-trigger:active{transform:translate(-50%,-50%)}
+#hitapp-performative .hp-bubbling .hp-bubble,#hitapp-performative .hp-phone[data-state=working] .hp-bubble{animation:hp-bubble-pop .48s cubic-bezier(.2,.8,.25,1) both}
+#hitapp-performative .hp-bubbling .hp-bubble span,#hitapp-performative .hp-phone[data-state=working] .hp-bubble span{animation:hp-bubble-dot .65s ease-in-out 3;animation-delay:.35s}
+#hitapp-performative .hp-bubbling .hp-bubble span:nth-child(2),#hitapp-performative .hp-phone[data-state=working] .hp-bubble span:nth-child(2){animation-delay:.46s}
+#hitapp-performative .hp-bubbling .hp-bubble span:nth-child(3),#hitapp-performative .hp-phone[data-state=working] .hp-bubble span:nth-child(3){animation-delay:.57s}
+@keyframes hp-bubble-pop{0%{opacity:0;transform:translate(-5px,9px) rotate(-8deg) scale(.15)}70%{opacity:1;transform:translateY(-1px) rotate(7deg) scale(1.1)}100%{opacity:1;transform:rotate(6deg) scale(1)}}
+@keyframes hp-bubble-dot{0%,100%{opacity:.55;transform:translateY(0)}45%{opacity:1;transform:translateY(-2px)}}
+#hitapp-performative .hp-state{font-size:13px;font-weight:500;margin-bottom:3px}
+#hitapp-performative .hp-online{width:5px;height:5px;border-radius:100%;background:#a8dcc9;display:inline-block;margin-right:5px}
+#hitapp-performative .hp-caption{display:flex;align-items:center;justify-content:space-between;margin:2px 0 10px;font-size:11px;color:#a9a3b8;letter-spacing:1.2px;text-transform:uppercase}
+#hitapp-performative .hp-suggestion{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:11px 0!important;border-bottom:1px solid #ffffff0c!important;font-size:14px}
+#hitapp-performative .hp-suggestion>svg:first-child{color:#b8abdf}
+#hitapp-performative .hp-suggestion>svg:last-child{margin-left:auto;color:#847c97;width:15px}
+#hitapp-performative .hp-footer{margin-top:auto;padding-top:27px;position:relative;z-index:2}
+#hitapp-performative .hp-composer{border:1px solid #b9a7ff42;border-radius:25px;padding:16px 13px 10px;background:linear-gradient(130deg,#201e2d,#101018 80%);box-shadow:0 -5px 35px #9a7aff0a,inset 0 1px 0 #ffffff0b}
+#hitapp-performative .hp-composer textarea{width:100%;height:47px;resize:none;background:none;border:0;padding:0 3px;color:#ece9f7;font-size:16px;line-height:1.4}
+#hitapp-performative .hp-composer textarea::placeholder{color:#a09aaf}
+#hitapp-performative .hp-composer-bottom{display:flex;align-items:center;gap:7px;margin-top:7px}
+#hitapp-performative .hp-composer-bottom .hp-icon{background:transparent;border:0;color:#c1bacf}
+#hitapp-performative .hp-composer-hint{font-size:11px;color:#a19aad;margin-right:auto;flex:1;min-width:0}
+#hitapp-performative .hp-phone .hp-send{background:linear-gradient(145deg,#d2b9fb,#8978db 58%,#577fa9);box-shadow:inset 0 1px 1px #ffffffb3,0 3px 12px #5d4c9833;color:#151021;border:1px solid #d4bbff80;border-radius:15px}
+#hitapp-performative .hp-homebar{width:108px;height:4px;border-radius:4px;background:#d8d6e3;margin:19px auto -11px;opacity:.75}
+#hitapp-performative .hp-connection{display:flex;justify-content:center;gap:5px;align-items:center;color:#a19bad;font-size:11px;margin-top:12px}
+#hitapp-performative .hp-attachment{display:flex;align-items:center;gap:7px;padding:5px 10px;margin-bottom:10px;border-radius:12px;background:#ffffff09;color:#c9c3d9;font-size:11px}
+#hitapp-performative .hp-attachment button{margin-left:auto;min-height:34px;width:34px}
+#hitapp-performative .hp-attachment[hidden]{display:none}
+#hitapp-performative .hp-orbit .hp-aurora{height:430px;top:60px;opacity:calc(var(--hp-glow) * .7);background:radial-gradient(ellipse at 50% 10%,#294f9e99,transparent 60%),radial-gradient(ellipse at 75% 75%,#804dc766,transparent 60%)}
+#hitapp-performative .hp-conversation-head{padding:28px 0 22px;text-align:center}
+#hitapp-performative .hp-orbit .hp-pal{--hp-pal-size:32px;margin:7px auto 20px}
+#hitapp-performative .hp-conversation-head h1{font-size:29px;letter-spacing:-1px;margin:10px 0}
+#hitapp-performative .hp-thread{display:flex;flex-direction:column;gap:17px}
+#hitapp-performative .hp-user-message{align-self:flex-end;max-width:88%;background:#242331;border:1px solid #ffffff0b;border-radius:20px 20px 5px 20px;padding:12px 15px;font-size:14px;color:#ddd8e9}
+#hitapp-performative .hp-assistant-message{font-size:15px;max-width:95%;padding:0 3px;line-height:1.55}
+#hitapp-performative .hp-thread-action{display:flex;align-items:center;gap:10px;background:#151420;border:1px solid #a18cc62e;border-radius:17px;padding:12px;text-align:left;width:100%;margin-top:13px;font-size:13px;min-height:58px!important}
+#hitapp-performative .hp-thread-action svg:last-child{margin-left:auto}
+#hitapp-performative .hp-pill{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:30px;padding:0 15px!important;font-size:12px;color:#c3bcda;background:#ffffff09!important;border:1px solid #ffffff0e!important}
+#hitapp-performative .hp-orbit .hp-footer{padding-top:22px}
+#hitapp-performative .hp-relay .hp-aurora{top:410px;height:300px;opacity:calc(var(--hp-glow) * .5)}
+#hitapp-performative .hp-relay .hp-header{margin-bottom:27px}
+#hitapp-performative .hp-connection-button{font-size:11px;color:#bbb5ca;display:flex;align-items:center;gap:4px;padding:0 7px!important}
+#hitapp-performative .hp-task-head{display:flex;justify-content:space-between;align-items:center;margin:0 0 17px}
+#hitapp-performative .hp-mini-pal{--hp-pal-size:24px}
+#hitapp-performative .hp-task{padding:19px;margin:0 0 17px;background:linear-gradient(140deg,#272134,#15141c 70%)}
+#hitapp-performative .hp-task-icon{width:38px;height:38px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:#b7a3ed16;color:#d4beff;margin-bottom:17px}
+#hitapp-performative .hp-task h2{font-size:24px;margin-bottom:9px}
+#hitapp-performative .hp-meta{display:flex;gap:14px;margin:17px 0 20px;font-size:11px;color:#c2b9d3}
+#hitapp-performative .hp-meta span{display:flex;align-items:center;gap:6px}
+#hitapp-performative .hp-meta svg{width:13px;height:13px}
+#hitapp-performative .hp-phone .hp-primary{width:100%;min-height:46px;border-radius:15px;background:linear-gradient(115deg,#b7a4e7,#8b7bbd);border:1px solid #d8c7ff66;box-shadow:inset 0 1px 0 #ffffff40;color:#17121e;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+#hitapp-performative .hp-mode{display:flex;gap:4px;padding:4px;border:1px solid #ffffff12;background:#111117;border-radius:17px;margin-bottom:14px}
+#hitapp-performative .hp-mode button{flex:1;border-radius:12px;font-size:13px;color:#a8a2b9}
+#hitapp-performative .hp-mode button[aria-pressed=true]{background:#2b2738;color:#e9e2fb;box-shadow:inset 0 1px 0 #ffffff13}
+#hitapp-performative .hp-mode-description{font-size:12px;color:#b0a8c1;min-height:36px;margin-bottom:13px!important}
+#hitapp-performative .hp-toast{margin-top:12px;padding:10px 12px;border-radius:12px;background:#a99ae114;color:#d5cbea;font-size:12px;border:1px solid #9b85be25}
+#hitapp-performative .hp-toast[hidden]{display:none}
+#hitapp-performative .hp-overlay{position:absolute;z-index:5;inset:54px 0 0;padding:16px 17px 30px;background:#09090ef2;backdrop-filter:blur(18px);display:flex;flex-direction:column;justify-content:flex-end;gap:14px}
+#hitapp-performative .hp-overlay[hidden]{display:none}
+#hitapp-performative .hp-sheet-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:auto}
+#hitapp-performative .hp-overlay .hp-pal{margin:25px auto 5px;--hp-pal-size:28px}
+#hitapp-performative .hp-sheet-title{font-size:27px;letter-spacing:-.8px;text-align:center;margin:4px 0 2px;font-weight:500}
+#hitapp-performative .hp-sheet-subtitle{text-align:center;font-size:13px;color:#b2a9c5;margin:0 9px 20px!important}
+#hitapp-performative .hp-review{padding:20px;margin:0 0 10px}
+#hitapp-performative .hp-review-label{font-size:11px;text-transform:uppercase;letter-spacing:1.4px;color:#a89cbd;margin-bottom:8px}
+#hitapp-performative .hp-review-name{font-size:21px;letter-spacing:-.6px;margin-bottom:20px}
+#hitapp-performative .hp-review-line{border-top:1px solid #ffffff0d;padding-top:14px;margin-top:14px;display:flex;justify-content:space-between;font-size:13px;gap:15px}
+#hitapp-performative .hp-review-line span:first-child{color:#aaa2bb}
+#hitapp-performative .hp-secondary{width:100%;min-height:46px!important;border:1px solid #ffffff16!important;border-radius:15px;background:#17141f!important;color:#c9bfdc}
+#hitapp-performative .hp-wave{height:45px;display:flex;gap:5px;justify-content:center;align-items:center;margin:15px 0 20px}
+#hitapp-performative .hp-wave span{height:12px;width:4px;border-radius:4px;background:#b6a4e3}
+#hitapp-performative .hp-phone[data-state=done] .hp-pal b{height:calc(var(--hp-pal-size) * .1);border:1px solid #252346;border-bottom:0;background:none;border-radius:6px 6px 0 0}
+#hitapp-performative .hp-phone[data-state=working] .hp-glyph{display:inline-block}
+#hitapp-performative .hp-glyph{font-size:26px;color:#c2b0ee}
+#hitapp-performative .hp-draft{padding:18px;background:#211c30;border:1px solid #bba2f63d;border-radius:18px;font-size:16px;margin-bottom:12px}
+@media(max-width:420px){#hitapp-performative .hp-stage{padding:14px 0 18px;min-height:850px}#hitapp-performative .hp-phone{border-radius:35px;padding-left:18px;padding-right:18px;min-height:802px}#hitapp-performative .hp-phone h1{font-size:34px}#hitapp-performative .hp-orbit h1{font-size:28px}#hitapp-performative .hp-composer-hint{font-size:10px}}
+@media(prefers-reduced-motion:reduce){#hitapp-performative *{animation:none!important;transition:none!important}}
+#hitapp-performative .hp-phone.hp-reduce *{animation:none!important;transition:none!important}
+#hitapp-performative .hp-stage{min-height:940px}
+#hitapp-performative .hp-phone{min-height:880px}
+#hitapp-performative .hp-overlay{background:radial-gradient(ellipse at 50% 62%,#48355830,transparent 55%),#09090ef2}
+#hitapp-performative .hp-toast{position:absolute;bottom:calc(100% + 8px);left:0;right:0;margin:0;background:#241d32;box-shadow:0 5px 20px #0005}
+@media(max-width:420px){#hitapp-performative .hp-stage{min-height:980px}#hitapp-performative .hp-phone{min-height:920px}}
+</style>
+<div id="hitapp-performative" class="viz-dotted-background" aria-label="hitapp Aura design">
+ <section data-variant="Aura" aria-label="Aura home design">
+  <div class="hp-stage"><div class="hp-phone hp-aura" data-design="Aura" aria-label="Aura appearance">
+   <div class="hp-aurora"></div>
+   <div class="hp-status"><span>9:41</span><div class="hp-island"></div><div class="hp-device"><i data-lucide="signal" aria-hidden="true"></i><i data-lucide="wifi" aria-hidden="true"></i><i data-lucide="battery-full" aria-hidden="true"></i></div></div>
+   <header class="hp-header"><div class="hp-brand"><span class="hp-brand-dot"></span>hitapp</div><button class="hp-icon cursor-interaction" data-action="history" aria-label="Recent conversations"><i data-lucide="history" aria-hidden="true"></i></button></header>
+   <main><div class="hp-hero"><div class="hp-kicker">A little less to do</div><h1>What's on<br>your mind, Jack?</h1><p class="hp-muted">A thought, a task, a tiny favour.</p></div>
+   <div class="hp-presence hp-glass"><div class="hp-pal" aria-hidden="true"><b></b><b></b><span class="hp-mouth"></span></div><div><div class="hp-state">Right here with you.</div><div class="hp-muted"><span class="hp-online"></span>Connected to your Mac</div></div></div>
+   <div class="hp-caption"><span>A place to start</span><span>↗</span></div>
+   <button class="hp-suggestion cursor-interaction" data-action="reminder"><i data-lucide="bell" aria-hidden="true"></i><span>Remember something for me</span><i data-lucide="arrow-up-right" aria-hidden="true"></i></button>
+   <button class="hp-suggestion cursor-interaction" data-action="screenshot"><i data-lucide="scan-line" aria-hidden="true"></i><span>Help with what's on my screen</span><i data-lucide="arrow-up-right" aria-hidden="true"></i></button>
+   </main><div class="hp-footer" data-composer></div><div class="hp-homebar"></div>
+  </div></div>
+ </section>
+</div>
+<script>
+(() => {
+ const root=document.getElementById('hitapp-performative');
+ const phones=[...root.querySelectorAll('.hp-phone')];
+ const memories={};
+ const icon=(name)=>`<i data-lucide="${name}" aria-hidden="true"></i>`;
+ const pal='<div class="hp-pal" aria-hidden="true"><b></b><b></b><span class="hp-mouth"></span></div>';
+ const icons=()=>{root.querySelectorAll('.hp-pal').forEach(pal=>{if(pal.querySelector('.hp-bubble'))return;const bubble=document.createElement('span');bubble.className='hp-bubble';bubble.setAttribute('aria-hidden','true');bubble.innerHTML='<span></span><span></span><span></span>';pal.append(bubble);pal.removeAttribute('aria-hidden');const trigger=document.createElement('button');trigger.type='button';trigger.className='hp-pal-trigger cursor-interaction';trigger.setAttribute('aria-label','Animate cursor bubble');trigger.addEventListener('click',()=>{pal.classList.remove('hp-bubbling');void pal.offsetWidth;pal.classList.add('hp-bubbling');clearTimeout(pal.bubbleTimer);pal.bubbleTimer=setTimeout(()=>pal.classList.remove('hp-bubbling'),2600);});pal.append(trigger);});if(globalThis.lucide)lucide.createIcons({attrs:{width:19,height:19}})};
+ const save=()=>{if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{designDrafts:memories},privateContent:null}).catch(()=>{});};
+ phones.forEach(phone=>{
+  const name=phone.dataset.design;let timer,toastTimer,mode='guide',lastFocus;
+  phone.querySelector('[data-composer]').innerHTML=`<div class="hp-composer"><div class="hp-attachment" hidden>${icon('image')}<span>Sample screenshot attached</span><button class="cursor-interaction" data-action="remove" aria-label="Remove sample screenshot">${icon('x')}</button></div><textarea aria-label="Message hitapp" placeholder="Ask anything, or just talk…" rows="2"></textarea><div class="hp-composer-bottom"><button class="hp-icon cursor-interaction" data-action="screenshot" aria-label="Attach sample screenshot">${icon('plus')}</button><span class="hp-composer-hint">${name==='Relay'?'Your next move':'Text, voice, or a screenshot'}</span><button class="hp-icon cursor-interaction" data-action="mic" aria-label="Preview voice input">${icon('mic')}</button><button class="hp-icon hp-send cursor-interaction" data-action="send" aria-label="Send message">${icon('arrow-up')}</button></div></div><div class="hp-connection"><span class="hp-online"></span>${name==='Orbit'?'Here when you need a hand':'Private connection · Your Mac'}</div><div class="hp-toast" role="status" hidden></div>`;
+  const overlay=document.createElement('div');overlay.className='hp-overlay';overlay.hidden=true;overlay.setAttribute('role','dialog');overlay.setAttribute('aria-label','Action preview');phone.append(overlay);
+  const draft=phone.querySelector('textarea');
+  const toast=(msg)=>{clearTimeout(toastTimer);const el=phone.querySelector('.hp-toast');el.textContent=msg;el.hidden=false;toastTimer=setTimeout(()=>el.hidden=true,3500);};
+  const state=(s,label='')=>{phone.dataset.state=s;const island=phone.querySelector('.hp-island');island.classList.toggle('active',!!label);island.replaceChildren();if(label){const eye=document.createElement('span');eye.className='hp-eye';island.append(eye,document.createTextNode(label));}};
+  const close=()=>{clearTimeout(timer);overlay.hidden=true;state('idle');[...phone.children].filter(x=>x!==overlay).forEach(x=>x.inert=false);lastFocus?.focus();};
+  const show=(body,label='Action preview')=>{if(overlay.hidden)lastFocus=document.activeElement;overlay.setAttribute('aria-label',label);overlay.innerHTML=`<div class="hp-sheet-top"><span class="hp-kicker">hitapp · ${label}</span><button class="hp-icon cursor-interaction" data-action="close" aria-label="Close preview">${icon('x')}</button></div>${body}`;overlay.hidden=false;[...phone.children].filter(x=>x!==overlay).forEach(x=>x.inert=true);icons();overlay.querySelector('button')?.focus();};
+  const review=()=>{state('idle','Ready for review');show(`${pal}<div class="hp-sheet-title">Look good?</div><p class="hp-sheet-subtitle">One small thing, ready to leave your mind.</p><div class="hp-review hp-glass"><div class="hp-review-label">Create reminder</div><div class="hp-review-name">Call Mum</div><div class="hp-review-line"><span>When</span><span>Today, 6:00 pm</span></div><div class="hp-review-line"><span>Add to</span><span>Reminders · Personal</span></div></div><button class="hp-primary cursor-interaction" data-action="approve">${icon('check')}Add reminder</button><button class="hp-secondary cursor-interaction" data-action="edit">Edit request</button>`,'Review');};
+  const done=()=>{state('done','Done');show(`${pal}<div class="hp-sheet-title">One less thing.</div><p class="hp-sheet-subtitle">Your reminder is ready in this preview.</p><div class="hp-review hp-glass"><div class="hp-review-label">Reminder preview</div><div class="hp-review-name" style="margin-bottom:7px">Call Mum</div><p class="hp-muted">Today at 6:00 pm · Personal</p></div><button class="hp-primary cursor-interaction" data-action="close">Lovely. What's next?</button>`,'Done');memories[name]={lastAction:'Previewed reminder completion'};save();};
+  const working=(finish,verb)=>{state('working',verb);show(`${pal}<div class="hp-sheet-title"><span class="hp-glyph">✳</span> ${verb}</div><p class="hp-sheet-subtitle" role="status">${verb==='Getting it ready'?'Turning your request into an action to review.':'Adding your reminder in this preview.'}</p><div style="height:150px"></div><button class="hp-secondary cursor-interaction" data-action="close">Cancel</button>`,'Working');timer=setTimeout(finish,1800);};
+  const send=()=>{const value=draft.value.trim();if(!value){toast('Type a message, or try the microphone.');draft.focus();return;}memories[name]={draft:value};save();if(/mum|remind|remember|call/i.test(value)){working(review,'Getting it ready');}else{state('done','Draft received');show(`${pal}<div class="hp-sheet-title">Got your thought.</div><p class="hp-sheet-subtitle">This design preview keeps your message here.</p><div class="hp-draft"></div><button class="hp-primary cursor-interaction" data-action="reminder">Try a reminder</button><button class="hp-secondary cursor-interaction" data-action="close">Back to conversation</button>`,'Conversation');overlay.querySelector('.hp-draft').textContent=value;}};
+  phone.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const action=b.dataset.action;
+   if(action==='close'){close();return;}
+   if(action==='reminder'){draft.value='Remind me to call Mum today at 6 pm';working(review,'Getting it ready');return;}
+   if(action==='review'){review();return;}
+   if(action==='approve'){working(done,'Adding reminder');return;}
+   if(action==='edit'){close();draft.value='Remind me to call Mum today at 6 pm';draft.focus();return;}
+   if(action==='send'){send();return;}
+   if(action==='screenshot'){phone.querySelector('.hp-attachment').hidden=false;draft.placeholder='What would you like to do with this?';toast('Sample context attached. Add your question below.');draft.focus();return;}
+   if(action==='remove'){phone.querySelector('.hp-attachment').hidden=true;draft.placeholder='Ask anything, or just talk…';return;}
+   if(action==='mic'){state('listening','Listening');show(`${pal}<div class="hp-sheet-title">I'm listening.</div><p class="hp-sheet-subtitle">Sample voice draft</p><div class="hp-wave" aria-hidden="true">${Array.from({length:17},(_,i)=>`<span style="--i:${i%7}"></span>`).join('')}</div><div class="hp-draft">Remind me to call Mum today at six.</div><button class="hp-primary cursor-interaction" data-action="voice-done">Review voice draft</button><button class="hp-secondary cursor-interaction" data-action="close">Cancel</button>`,'Voice');timer=setTimeout(()=>{state('idle','Draft ready');overlay.querySelector('.hp-sheet-title').textContent='Ready when you are.';overlay.querySelector('.hp-sheet-subtitle').textContent='Review your words before sending.';},3500);return;}
+   if(action==='voice-done'){close();draft.value='Remind me to call Mum today at 6 pm';draft.focus();toast('Voice draft ready. You choose when to send.');return;}
+   if(action==='act'||action==='guide'){mode=action;phone.querySelectorAll('.hp-mode button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.action===mode)));phone.querySelector('.hp-mode-description').textContent=mode==='act'?'Review each proposed action before it runs.':'Get steps you can follow on your phone.';memories[name]={mode};save();return;}
+   if(action==='new'){draft.value='';toast('A fresh conversation. What’s on your mind?');draft.focus();return;}
+   if(action==='history'){show(`<div class="hp-sheet-title" style="text-align:left">Recent conversations</div><button class="hp-thread-action cursor-interaction" data-action="reminder">${icon('bell')}Remember the little things${icon('arrow-right')}</button><p class="hp-muted" style="margin:0 4px 140px">Today · Reminder conversation</p><button class="hp-secondary cursor-interaction" data-action="close">Back</button>`,'Conversations');return;}
+   if(action==='connection'){show(`${pal}<div class="hp-sheet-title">Your Mac is here.</div><p class="hp-sheet-subtitle">A quiet connection to your assistant.</p><div class="hp-review hp-glass"><div class="hp-review-line" style="border:0;margin:0;padding:0"><span>Connection</span><span>Mac · Available</span></div><div class="hp-review-line"><span>Session</span><span>Preview</span></div></div><button class="hp-primary cursor-interaction" data-action="close">Done</button>`,'Connection');}
+  });
+  draft.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}});
+  overlay.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  draft.addEventListener('change',()=>{memories[name]={...memories[name],draft:draft.value};save();});
+  const appearance={glow:68,corners:26,reducedMotion:false};
+  if(globalThis.Tweak){const tweak=new Tweak({container:phone,onChange:()=>{phone.style.setProperty('--hp-glow',appearance.glow/100);phone.style.setProperty('--hp-radius',appearance.corners+'px');phone.classList.toggle('hp-reduce',appearance.reducedMotion);}});tweak.addSlider(appearance,'glow',{label:'Aurora glow',min:0,max:100,unit:'%'});tweak.addSlider(appearance,'corners',{label:'Glass corners',min:12,max:32,unit:'px'});tweak.addToggle(appearance,'reducedMotion',{label:'Reduced motion'});}
+ });
+ const restore=s=>{const data=s?.modelContent?.designDrafts;if(!data)return;phones.forEach(p=>{const saved=data[p.dataset.design];if(saved?.draft)p.querySelector('textarea').value=saved.draft;memories[p.dataset.design]=saved||{};});};
+ restore(window.openai?.widgetState);window.addEventListener('openai:set_globals',e=>restore(e.detail?.globals?.widgetState));
+ icons();
+})();
+</script>

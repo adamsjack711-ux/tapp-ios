@@ -1,0 +1,27 @@
+{
+  "path": "/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityAudit.framework/AccessibilityAudit",
+  "sha256": "58c2c6348049211f336e37b3ba4576c37b6a75f72d9d11c2a32a1ea9486bdbb9",
+  "uuid": "UUID: 9DF5B78B-7BC7-35B5-BBEB-FAE8DCE942F0 (arm64e) /Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/AccessibilityAudit.framework/AccessibilityAudit",
+  "functions": {
+    "-[AXAuditService deviceInspectorShowVisuals:]": {
+      "start": "0x254282da4",
+      "end": "0x254282da8"
+    },
+    "-[AXAuditService deviceHighlightIssue:]": {
+      "start": "0x254282fe0",
+      "end": "0x25428309c"
+    },
+    "-[AXAuditService deviceHighlightIssues:]": {
+      "start": "0x2542830a4",
+      "end": "0x254283250"
+    },
+    "-[AXAuditService highlightElements:]": {
+      "start": "0x2542830a0",
+      "end": "0x2542830a4"
+    },
+    "-[AXAuditService deviceEnableHighlight:]": {
+      "start": "0x254283250",
+      "end": "0x254283254"
+    }
+  }
+}

@@ -1,0 +1,214 @@
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/usr/lib/libAccessibility.dylib:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+000000018fbfdd2c <__AXSPointerControlEnabled>:
+18fbfdd2c: d503237f    	pacibsp
+18fbfdd30: a9bf7bfd    	stp	x29, x30, [sp, #-0x10]!
+18fbfdd34: 910003fd    	mov	x29, sp
+18fbfdd38: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdd3c: f9433108    	ldr	x8, [x8, #0x660]
+18fbfdd40: b100051f    	cmn	x8, #0x1
+18fbfdd44: 540002a1    	b.ne	 <L4>
+<L0>:
+18fbfdd48: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdd4c: f9432908    	ldr	x8, [x8, #0x650]
+18fbfdd50: b100051f    	cmn	x8, #0x1
+18fbfdd54: 540002e1    	b.ne	 <L5>
+<L1>:
+18fbfdd58: 52800000    	mov	w0, #0x0                ; =0
+18fbfdd5c: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdd60: 39592108    	ldrb	w8, [x8, #0x648]
+18fbfdd64: 7100051f    	cmp	w8, #0x1
+18fbfdd68: 54000141    	b.ne	 <L3>
+18fbfdd6c: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdd70: 39596108    	ldrb	w8, [x8, #0x658]
+18fbfdd74: 360000e8    	tbz	w8, #0x0,  <L3>
+18fbfdd78: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdd7c: f9401108    	ldr	x8, [x8, #0x20]
+18fbfdd80: b100051f    	cmn	x8, #0x1
+18fbfdd84: 54000221    	b.ne	 <L6>
+<L2>:
+18fbfdd88: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdd8c: 3940a100    	ldrb	w0, [x8, #0x28]
+<L3>:
+18fbfdd90: a8c17bfd    	ldp	x29, x30, [sp], #0x10
+18fbfdd94: d65f0fff    	retab
+<L4>:
+18fbfdd98: 902dc340    	adrp	x0, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdd9c: 91198000    	add	x0, x0, #0x660
+18fbfdda0: b029b721    	adrp	x1, 0x1e32e2000 <_xpc_copy_entitlement_for_self+0x1e32e2000>
+18fbfdda4: 913c2021    	add	x1, x1, #0xf08
+18fbfdda8: 94130926    	bl	 <_objc_msgSend$valueWithPointer:+0x4991e0>
+18fbfddac: 17ffffe7    	b	 <L0>
+<L5>:
+18fbfddb0: 902dc340    	adrp	x0, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfddb4: 91194000    	add	x0, x0, #0x650
+18fbfddb8: d029b721    	adrp	x1, 0x1e32e3000 <___block_literal_global.493+0x18>
+18fbfddbc: 9102a021    	add	x1, x1, #0xa8
+18fbfddc0: 94130920    	bl	 <_objc_msgSend$valueWithPointer:+0x4991e0>
+18fbfddc4: 17ffffe5    	b	 <L1>
+<L6>:
+18fbfddc8: 902dc340    	adrp	x0, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfddcc: 91008000    	add	x0, x0, #0x20
+18fbfddd0: 9029b741    	adrp	x1, 0x1e32e5000 <___block_literal_global.214+0x18>
+18fbfddd4: 91242021    	add	x1, x1, #0x908
+18fbfddd8: 9413091a    	bl	 <_objc_msgSend$valueWithPointer:+0x4991e0>
+18fbfdddc: 17ffffeb    	b	 <L2>
+
+000000018fbfdde0 <____AXSPointerControlEnabled_block_invoke>:
+18fbfdde0: d503237f    	pacibsp
+18fbfdde4: d10103ff    	sub	sp, sp, #0x40
+18fbfdde8: a90157f6    	stp	x22, x21, [sp, #0x10]
+18fbfddec: a9024ff4    	stp	x20, x19, [sp, #0x20]
+18fbfddf0: a9037bfd    	stp	x29, x30, [sp, #0x30]
+18fbfddf4: 9100c3fd    	add	x29, sp, #0x30
+18fbfddf8: f02f1368    	adrp	x8, 0x1ede6c000 <_AXDeviceSupportsLiveRecognition.onceToken+0x2a068b0>
+18fbfddfc: f942e508    	ldr	x8, [x8, #0x5c8]
+18fbfde00: b100051f    	cmn	x8, #0x1
+18fbfde04: 540005a1    	b.ne	 <L3>
+<L0>:
+18fbfde08: f02f1368    	adrp	x8, 0x1ede6c000 <_AXDeviceSupportsLiveRecognition.onceToken+0x2a068b0>
+18fbfde0c: 39536108    	ldrb	w8, [x8, #0x4d8]
+18fbfde10: 37000368    	tbnz	w8, #0x0,  <L1>
+18fbfde14: d0282768    	adrp	x8, 0x1e00eb000 <_objc_msgSend$valueWithPointer:+0x504c3fa0>
+18fbfde18: f9453900    	ldr	x0, [x8, #0xa70]
+18fbfde1c: 941024bd    	bl	 <_objc_msgSend$valueWithPointer:+0x3e00b0>
+18fbfde20: 941309b8    	bl	 <_objc_msgSend$valueWithPointer:+0x4994a0>
+18fbfde24: aa0003f3    	mov	x19, x0
+18fbfde28: 941024be    	bl	 <_objc_msgSend$valueWithPointer:+0x3e00c0>
+18fbfde2c: 941309b5    	bl	 <_objc_msgSend$valueWithPointer:+0x4994a0>
+18fbfde30: aa0003f4    	mov	x20, x0
+18fbfde34: d029b762    	adrp	x2, 0x1e32eb000 <_xpc_copy_entitlement_for_self+0x1e32eb000>
+18fbfde38: 9127a042    	add	x2, x2, #0x9e8
+18fbfde3c: 941011e5    	bl	 <_objc_msgSend$valueWithPointer:+0x3db570>
+18fbfde40: aa0003f5    	mov	x21, x0
+18fbfde44: 941309f3    	bl	 <_objc_msgSend$valueWithPointer:+0x4995b0>
+18fbfde48: 941309ee    	bl	 <_objc_msgSend$valueWithPointer:+0x4995a0>
+18fbfde4c: 37000195    	tbnz	w21, #0x0,  <L1>
+18fbfde50: 94132498    	bl	 <_objc_msgSend$valueWithPointer:+0x4a0050>
+18fbfde54: f029b763    	adrp	x3, 0x1e32ec000 <_xpc_copy_entitlement_for_self+0x1e32ec000>
+18fbfde58: 911fa063    	add	x3, x3, #0x7e8
+18fbfde5c: b0ffff50    	adrp	x16, 0x18fbe6000 <__AXSAttentionAwarenessFeaturesEnabled+0x20>
+18fbfde60: 91183210    	add	x16, x16, #0x60c
+18fbfde64: dac123f0    	paciza	x16
+18fbfde68: aa1003e2    	mov	x2, x16
+18fbfde6c: d2800001    	mov	x1, #0x0                ; =0
+18fbfde70: d2800004    	mov	x4, #0x0                ; =0
+18fbfde74: 52800085    	mov	w5, #0x4                ; =4
+18fbfde78: 9413248a    	bl	 <_objc_msgSend$valueWithPointer:+0x4a0040>
+<L1>:
+18fbfde7c: 52800028    	mov	w8, #0x1                ; =1
+18fbfde80: 39003fe8    	strb	w8, [sp, #0xf]
+18fbfde84: d02dc328    	adrp	x8, 0x1eb463000 <_kAXSVoiceOverTouchHapticIntensityPreference>
+18fbfde88: f9426d00    	ldr	x0, [x8, #0x4d8]
+18fbfde8c: 91003fe1    	add	x1, sp, #0xf
+18fbfde90: 97ff8f2c    	bl	 <__getBooleanPreference>
+18fbfde94: 39403fe8    	ldrb	w8, [sp, #0xf]
+18fbfde98: 34000068    	cbz	w8,  <L2>
+18fbfde9c: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdea0: 3900a100    	strb	w0, [x8, #0x28]
+<L2>:
+18fbfdea4: a9437bfd    	ldp	x29, x30, [sp, #0x30]
+18fbfdea8: a9424ff4    	ldp	x20, x19, [sp, #0x20]
+18fbfdeac: a94157f6    	ldp	x22, x21, [sp, #0x10]
+18fbfdeb0: 910103ff    	add	sp, sp, #0x40
+18fbfdeb4: d65f0fff    	retab
+<L3>:
+18fbfdeb8: f02f1360    	adrp	x0, 0x1ede6c000 <_AXDeviceSupportsLiveRecognition.onceToken+0x2a068b0>
+18fbfdebc: 91172000    	add	x0, x0, #0x5c8
+18fbfdec0: d029b721    	adrp	x1, 0x1e32e3000 <___block_literal_global.493+0x18>
+18fbfdec4: 9134a021    	add	x1, x1, #0xd28
+18fbfdec8: 941308de    	bl	 <_objc_msgSend$valueWithPointer:+0x4991e0>
+18fbfdecc: 17ffffcf    	b	 <L0>
+
+000000018fbfded0 <__AXSPointerControlSetEnabled>:
+18fbfded0: d503237f    	pacibsp
+18fbfded4: a9be4ff4    	stp	x20, x19, [sp, #-0x20]!
+18fbfded8: a9017bfd    	stp	x29, x30, [sp, #0x10]
+18fbfdedc: 910043fd    	add	x29, sp, #0x10
+18fbfdee0: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdee4: f9433108    	ldr	x8, [x8, #0x660]
+18fbfdee8: b100051f    	cmn	x8, #0x1
+18fbfdeec: 540004a1    	b.ne	 <L4>
+<L0>:
+18fbfdef0: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdef4: f9432908    	ldr	x8, [x8, #0x650]
+18fbfdef8: b100051f    	cmn	x8, #0x1
+18fbfdefc: 54000541    	b.ne	 <L5>
+<L1>:
+18fbfdf00: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdf04: 39592108    	ldrb	w8, [x8, #0x648]
+18fbfdf08: 7100051f    	cmp	w8, #0x1
+18fbfdf0c: 54000341    	b.ne	 <L3>
+18fbfdf10: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdf14: 39596108    	ldrb	w8, [x8, #0x658]
+18fbfdf18: 360002e8    	tbz	w8, #0x0,  <L3>
+18fbfdf1c: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdf20: 3900a100    	strb	w0, [x8, #0x28]
+18fbfdf24: d02dc328    	adrp	x8, 0x1eb463000 <_kAXSVoiceOverTouchHapticIntensityPreference>
+18fbfdf28: f9426d13    	ldr	x19, [x8, #0x4d8]
+18fbfdf2c: d0282768    	adrp	x8, 0x1e00eb000 <_objc_msgSend$valueWithPointer:+0x504c3fa0>
+18fbfdf30: f944ed08    	ldr	x8, [x8, #0x9d8]
+18fbfdf34: aa0003e2    	mov	x2, x0
+18fbfdf38: aa0803e0    	mov	x0, x8
+18fbfdf3c: 9410236d    	bl	 <_objc_msgSend$valueWithPointer:+0x3dfc90>
+18fbfdf40: aa0003e2    	mov	x2, x0
+18fbfdf44: f029b763    	adrp	x3, 0x1e32ec000 <_xpc_copy_entitlement_for_self+0x1e32ec000>
+18fbfdf48: 911fa063    	add	x3, x3, #0x7e8
+18fbfdf4c: aa1303e0    	mov	x0, x19
+18fbfdf50: d2800001    	mov	x1, #0x0                ; =0
+18fbfdf54: 97ffbdf1    	bl	 <__setPreferenceAppWithNotification>
+18fbfdf58: a9417bfd    	ldp	x29, x30, [sp, #0x10]
+18fbfdf5c: a8c24ff4    	ldp	x20, x19, [sp], #0x20
+18fbfdf60: d50323ff    	autibsp
+18fbfdf64: ca1e07d0    	eor	x16, x30, x30, lsl #1
+18fbfdf68: b6f00050    	tbz	x16, #0x3e,  <L2>
+18fbfdf6c: d4388e20    	brk	#0xc471
+<L2>:
+18fbfdf70: 17ffb4c8    	b	 <__updateAccessibilitySettings>
+<L3>:
+18fbfdf74: a9417bfd    	ldp	x29, x30, [sp, #0x10]
+18fbfdf78: a8c24ff4    	ldp	x20, x19, [sp], #0x20
+18fbfdf7c: d65f0fff    	retab
+<L4>:
+18fbfdf80: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdf84: 91198108    	add	x8, x8, #0x660
+18fbfdf88: b029b721    	adrp	x1, 0x1e32e2000 <_xpc_copy_entitlement_for_self+0x1e32e2000>
+18fbfdf8c: 913c2021    	add	x1, x1, #0xf08
+18fbfdf90: aa0003f3    	mov	x19, x0
+18fbfdf94: aa0803e0    	mov	x0, x8
+18fbfdf98: 941308aa    	bl	 <_objc_msgSend$valueWithPointer:+0x4991e0>
+18fbfdf9c: aa1303e0    	mov	x0, x19
+18fbfdfa0: 17ffffd4    	b	 <L0>
+<L5>:
+18fbfdfa4: 902dc348    	adrp	x8, 0x1eb465000 <__kAXSCachePencilExtendedSqueezeRangeEnabled>
+18fbfdfa8: 91194108    	add	x8, x8, #0x650
+18fbfdfac: d029b721    	adrp	x1, 0x1e32e3000 <___block_literal_global.493+0x18>
+18fbfdfb0: 9102a021    	add	x1, x1, #0xa8
+18fbfdfb4: aa0003f3    	mov	x19, x0
+18fbfdfb8: aa0803e0    	mov	x0, x8
+18fbfdfbc: 941308a1    	bl	 <_objc_msgSend$valueWithPointer:+0x4991e0>
+18fbfdfc0: aa1303e0    	mov	x0, x19
+18fbfdfc4: 17ffffcf    	b	 <L1>
+
+000000018fbfdfc8 <__AXSSoundActionEnabledForSwitchControl>:
+18fbfdfc8: d503237f    	pacibsp
+18fbfdfcc: d104c3ff    	sub	sp, sp, #0x130
+18fbfdfd0: a90d6ffc    	stp	x28, x27, [sp, #0xd0]
+18fbfdfd4: a90e67fa    	stp	x26, x25, [sp, #0xe0]
+18fbfdfd8: a90f5ff8    	stp	x24, x23, [sp, #0xf0]
+18fbfdfdc: a91057f6    	stp	x22, x21, [sp, #0x100]
+18fbfdfe0: a9114ff4    	stp	x20, x19, [sp, #0x110]
+18fbfdfe4: a9127bfd    	stp	x29, x30, [sp, #0x120]
+18fbfdfe8: 910483fd    	add	x29, sp, #0x120
+18fbfdfec: f0282b28    	adrp	x8, 0x1e0164000 <_objc_msgSend$valueWithPointer:+0x5053cfa0>
+18fbfdff0: f9453908    	ldr	x8, [x8, #0xa70]
+18fbfdff4: f9400108    	ldr	x8, [x8]
+18fbfdff8: f81a83a8    	stur	x8, [x29, #-0x58]
+18fbfdffc: b029b760    	adrp	x0, 0x1e32ea000 <_xpc_copy_entitlement_for_self+0x1e32ea000>
+18fbfe000: 9126a000    	add	x0, x0, #0x9a8
+18fbfe004: 9413061b    	bl	 <_objc_msgSend$valueWithPointer:+0x498810>
+18fbfe008: 9029b762    	adrp	x2, 0x1e32ea000 <_xpc_copy_entitlement_for_self+0x1e32ea000>
+18fbfe00c: 91272042    	add	x2, x2, #0x9c8

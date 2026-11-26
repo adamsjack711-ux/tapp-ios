@@ -1,0 +1,46 @@
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+# Tailscale Serve terminates HTTPS and forwards only to this loopback listener.
+# No access log, directory serving, model management, or unauthenticated routes.
+http://:11435 {
+	bind 127.0.0.1
+	header Cache-Control "no-store"
+	request_body {
+		max_size 1MB
+	}
+
+	@chat {
+		method POST
+		path /v1/chat/completions
+		header Authorization "Bearer {$POCKET_AGENT_TOKEN}"
+	}
+	handle @chat {
+		reverse_proxy 127.0.0.1:11434 {
+			header_up -Authorization
+			header_up Host 127.0.0.1:11434
+			transport http {
+				response_header_timeout 300s
+			}
+		}
+	}
+
+	@models {
+		method GET
+		path /v1/models
+		header Authorization "Bearer {$POCKET_AGENT_TOKEN}"
+	}
+	handle @models {
+		reverse_proxy 127.0.0.1:11434 {
+			header_up -Authorization
+			header_up Host 127.0.0.1:11434
+		}
+	}
+
+	handle {
+		respond "Unauthorized or unsupported endpoint." 403
+	}
+}

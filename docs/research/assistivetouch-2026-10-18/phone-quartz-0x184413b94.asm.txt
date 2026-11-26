@@ -1,0 +1,44 @@
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/Frameworks/QuartzCore.framework/QuartzCore:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000184413b94 <+[CAContext remoteContextWithOptions:]>:
+184413b94: d503237f    	pacibsp
+184413b98: a9be4ff4    	stp	x20, x19, [sp, #-0x20]!
+184413b9c: a9017bfd    	stp	x29, x30, [sp, #0x10]
+184413ba0: 910043fd    	add	x29, sp, #0x10
+184413ba4: aa0203f3    	mov	x19, x2
+184413ba8: b02e0e28    	adrp	x8, 0x1e05d8000 <_xpc_user_sessions_get_foreground_uid+0x1e05d8000>
+184413bac: f9449d00    	ldr	x0, [x8, #0x938]
+184413bb0: 94f49754    	bl	 <_objc_msgSend$zoom+0x39d4480>
+184413bb4: aa1303e2    	mov	x2, x19
+184413bb8: 94f01b52    	bl	 <_objc_msgSend$zoom+0x38b5480>
+184413bbc: a9417bfd    	ldp	x29, x30, [sp, #0x10]
+184413bc0: a8c24ff4    	ldp	x20, x19, [sp], #0x20
+184413bc4: d50323ff    	autibsp
+184413bc8: ca1e07d0    	eor	x16, x30, x30, lsl #1
+184413bcc: b6f00050    	tbz	x16, #0x3e,  <L0>
+184413bd0: d4388e20    	brk	#0xc471
+<L0>:
+184413bd4: 14f49dab    	b	 <_objc_msgSend$zoom+0x39d5e00>
+
+0000000184413bd8 <-[CASDFOutputEffect configureLayer:transaction:]>:
+184413bd8: d503237f    	pacibsp
+184413bdc: 6dbd23e9    	stp	d9, d8, [sp, #-0x30]!
+184413be0: a9014ff4    	stp	x20, x19, [sp, #0x10]
+184413be4: a9027bfd    	stp	x29, x30, [sp, #0x20]
+184413be8: 910083fd    	add	x29, sp, #0x20
+184413bec: aa0203f3    	mov	x19, x2
+184413bf0: aa0003f4    	mov	x20, x0
+184413bf4: 94efec4b    	bl	 <_objc_msgSend$zoom+0x38a98a0>
+184413bf8: 1e624008    	fcvt	s8, d0
+184413bfc: aa1403e0    	mov	x0, x20
+184413c00: 94efeb84    	bl	 <_objc_msgSend$zoom+0x38a9590>
+184413c04: 52800028    	mov	w8, #0x1                ; =1
+184413c08: 39026268    	strb	w8, [x19, #0x98]
+184413c0c: 1e624000    	fcvt	s0, d0
+184413c10: 2d030268    	stp	s8, s0, [x19, #0x18]
+184413c14: 6f00e400    	movi.2d	v0, #0000000000000000
+184413c18: ad010260    	stp	q0, q0, [x19, #0x20]
+184413c1c: ad020260    	stp	q0, q0, [x19, #0x40]

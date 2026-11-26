@@ -1,0 +1,27 @@
+{
+    admin off
+    auto_https off
+    persist_config off
+    default_sni jacks-mac-studio.tail6472bd.ts.net
+    servers {
+        protocols h1 h2
+    }
+}
+
+# Owner-approved, current home LAN only. The existing loopback gateway still
+# enforces the access key, method/path allowlist and body limit. No access logs.
+https://:11436 {
+    bind 192.168.1.75
+    tls "/Users/jackadamslovell/Library/Application Support/PocketAgent/home-wifi.crt" "/Users/jackadamslovell/Library/Application Support/PocketAgent/home-wifi.key"
+    @phone remote_ip 192.168.1.69 192.168.1.75
+    handle @phone {
+        reverse_proxy 127.0.0.1:11435 {
+            transport http {
+                response_header_timeout 300s
+            }
+        }
+    }
+    handle {
+        respond "This device is not allowed." 403
+    }
+}

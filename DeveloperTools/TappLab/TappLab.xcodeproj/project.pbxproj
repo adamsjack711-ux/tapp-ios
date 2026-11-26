@@ -1,0 +1,619 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15DD26818CDED6DBDF1CFB4D /* TappGlobalRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 964177AB1CF2CFFDB58427CF /* TappGlobalRenderer.m */; };
+		221DCA50E7AFD0ECD49357A5 /* TappMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B752BB4849DEE27DCC65FBF /* TappMotion.swift */; };
+		5E106D456C6F166787A5B521 /* SystemPointerProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8B8348C4CBF84055A5A22 /* SystemPointerProbe.swift */; };
+		5E9FD25DE346A7A99BA1641F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF0133BC61B44631E955F88 /* main.m */; };
+		73775C6DDFD307BE745C732C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB2EEDF58DBFBDD37A03C28 /* main.m */; };
+		B8EBB97BE1739AA561CCAB76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D7167E140C2C7A2CB1E9A5 /* main.m */; };
+		CDC238A31A11CA68AFB82905 /* TappGlobalRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 964177AB1CF2CFFDB58427CF /* TappGlobalRenderer.m */; };
+		E35BE076F4B5E89C76BABB25 /* TappLabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C66CEC9C1B8B6C90A0C8DED /* TappLabApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1420D2791A5AFC72E4CFB1D2 /* TappClickTarget.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TappClickTarget.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E220FE29B48D2251BC51AC7 /* TappGlobalRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TappGlobalRenderer.h; sourceTree = "<group>"; };
+		21E67EE496E5B264E3D34D2F /* TappDeviceProbe.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TappDeviceProbe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AB2EEDF58DBFBDD37A03C28 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		60D7167E140C2C7A2CB1E9A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		69F8B8348C4CBF84055A5A22 /* SystemPointerProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPointerProbe.swift; sourceTree = "<group>"; };
+		964177AB1CF2CFFDB58427CF /* TappGlobalRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TappGlobalRenderer.m; sourceTree = "<group>"; };
+		9B752BB4849DEE27DCC65FBF /* TappMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappMotion.swift; sourceTree = "<group>"; };
+		9C66CEC9C1B8B6C90A0C8DED /* TappLabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappLabApp.swift; sourceTree = "<group>"; };
+		B96108BD999F0B4E3AFA6136 /* TappLab.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TappLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBF0133BC61B44631E955F88 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FC62215479BFEB4E3028FD9B /* TappOverlayProbe.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = TappOverlayProbe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3F6F65CBEDE872B1DCE435A9 /* ClickTarget */ = {
+			isa = PBXGroup;
+			children = (
+				BBF0133BC61B44631E955F88 /* main.m */,
+			);
+			path = ClickTarget;
+			sourceTree = "<group>";
+		};
+		59A05319985D7B050918256B /* TappMotion */ = {
+			isa = PBXGroup;
+			children = (
+				9B752BB4849DEE27DCC65FBF /* TappMotion.swift */,
+			);
+			name = TappMotion;
+			path = Sources/TappMotion;
+			sourceTree = "<group>";
+		};
+		95D89DE89AA935942A86C461 /* OverlayProbe */ = {
+			isa = PBXGroup;
+			children = (
+				60D7167E140C2C7A2CB1E9A5 /* main.m */,
+			);
+			path = OverlayProbe;
+			sourceTree = "<group>";
+		};
+		A501D00743573F06971CE15B = {
+			isa = PBXGroup;
+			children = (
+				FD0D1659ECEF1AD24AE9CB0D /* App */,
+				3F6F65CBEDE872B1DCE435A9 /* ClickTarget */,
+				C75D2F3E333FF149EFA57005 /* DeviceProbe */,
+				95D89DE89AA935942A86C461 /* OverlayProbe */,
+				CF9D9E31BE08E98DF8BC6081 /* SharedRenderer */,
+				59A05319985D7B050918256B /* TappMotion */,
+				D52BFA6160AEF3EE1CA93558 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C75D2F3E333FF149EFA57005 /* DeviceProbe */ = {
+			isa = PBXGroup;
+			children = (
+				3AB2EEDF58DBFBDD37A03C28 /* main.m */,
+			);
+			path = DeviceProbe;
+			sourceTree = "<group>";
+		};
+		CF9D9E31BE08E98DF8BC6081 /* SharedRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				1E220FE29B48D2251BC51AC7 /* TappGlobalRenderer.h */,
+				964177AB1CF2CFFDB58427CF /* TappGlobalRenderer.m */,
+			);
+			path = SharedRenderer;
+			sourceTree = "<group>";
+		};
+		D52BFA6160AEF3EE1CA93558 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1420D2791A5AFC72E4CFB1D2 /* TappClickTarget.app */,
+				21E67EE496E5B264E3D34D2F /* TappDeviceProbe.app */,
+				B96108BD999F0B4E3AFA6136 /* TappLab.app */,
+				FC62215479BFEB4E3028FD9B /* TappOverlayProbe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FD0D1659ECEF1AD24AE9CB0D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				69F8B8348C4CBF84055A5A22 /* SystemPointerProbe.swift */,
+				9C66CEC9C1B8B6C90A0C8DED /* TappLabApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6B10D817A5D14A463427C3D3 /* TappDeviceProbe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7234865B4E3E204823D8E26F /* Build configuration list for PBXNativeTarget "TappDeviceProbe" */;
+			buildPhases = (
+				19BE6EB411C013F42BECFE3D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TappDeviceProbe;
+			packageProductDependencies = (
+			);
+			productName = TappDeviceProbe;
+			productReference = 21E67EE496E5B264E3D34D2F /* TappDeviceProbe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A2627D56A3F0CB3056953AF4 /* TappOverlayProbe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01A52A60D3EC64B6F06792D5 /* Build configuration list for PBXNativeTarget "TappOverlayProbe" */;
+			buildPhases = (
+				C9D236D9122A8968589738A6 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TappOverlayProbe;
+			packageProductDependencies = (
+			);
+			productName = TappOverlayProbe;
+			productReference = FC62215479BFEB4E3028FD9B /* TappOverlayProbe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A505FAFD229C9E042D7AA615 /* TappClickTarget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9591F2A359C63FF1C849DD07 /* Build configuration list for PBXNativeTarget "TappClickTarget" */;
+			buildPhases = (
+				2CFF4A356C8511507BDF9A66 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TappClickTarget;
+			packageProductDependencies = (
+			);
+			productName = TappClickTarget;
+			productReference = 1420D2791A5AFC72E4CFB1D2 /* TappClickTarget.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF945D324133889D2A522326 /* TappLab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B02A420F73CA192ECBB955C /* Build configuration list for PBXNativeTarget "TappLab" */;
+			buildPhases = (
+				F29B48336EC3EF3E0EB1C1AF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TappLab;
+			packageProductDependencies = (
+			);
+			productName = TappLab;
+			productReference = B96108BD999F0B4E3AFA6136 /* TappLab.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF9A3D975FD302C2254E5431 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					6B10D817A5D14A463427C3D3 = {
+						DevelopmentTeam = 92X682GNVP;
+						ProvisioningStyle = Automatic;
+					};
+					A505FAFD229C9E042D7AA615 = {
+						DevelopmentTeam = 92X682GNVP;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = AF7037E6F3CD9E17CAE07A4E /* Build configuration list for PBXProject "TappLab" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A501D00743573F06971CE15B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D52BFA6160AEF3EE1CA93558 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A505FAFD229C9E042D7AA615 /* TappClickTarget */,
+				6B10D817A5D14A463427C3D3 /* TappDeviceProbe */,
+				A2627D56A3F0CB3056953AF4 /* TappOverlayProbe */,
+				FF945D324133889D2A522326 /* TappLab */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		19BE6EB411C013F42BECFE3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15DD26818CDED6DBDF1CFB4D /* TappGlobalRenderer.m in Sources */,
+				73775C6DDFD307BE745C732C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CFF4A356C8511507BDF9A66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E9FD25DE346A7A99BA1641F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9D236D9122A8968589738A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDC238A31A11CA68AFB82905 /* TappGlobalRenderer.m in Sources */,
+				B8EBB97BE1739AA561CCAB76 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F29B48336EC3EF3E0EB1C1AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E106D456C6F166787A5B521 /* SystemPointerProbe.swift in Sources */,
+				E35BE076F4B5E89C76BABB25 /* TappLabApp.swift in Sources */,
+				221DCA50E7AFD0ECD49357A5 /* TappMotion.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2AD4B8D2630B06DD0EF4D36F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tapp Overlay Probe";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hitapp.research.TappOverlayProbe;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		3F3B482FE8D7E8CDED1481F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92X682GNVP;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tapp Click Test";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackadamslovell.TappClickTarget;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		45A41523C6F725FFB287B706 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		781D1E0D273A28D4609BCB1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7950F8C628DF548A206564B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tapp Overlay Probe";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hitapp.research.TappOverlayProbe;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		83B2AFA1C0611B94D6D171CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92X682GNVP;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tapp Research";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackadamslovell.TappDeviceProbe;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		8CBD719ED95E81F2B9A03F12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92X682GNVP;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tapp Research";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackadamslovell.TappDeviceProbe;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		97B003DD7063766E093CBF5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tapp Lab";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hitapp.research.TappLab;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B9DF7CA64E40850478EEA63A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tapp Lab";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hitapp.research.TappLab;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		EF7CC7F5872CA9738C301CED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92X682GNVP;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Tapp Click Test";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackadamslovell.TappClickTarget;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01A52A60D3EC64B6F06792D5 /* Build configuration list for PBXNativeTarget "TappOverlayProbe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7950F8C628DF548A206564B0 /* Debug */,
+				2AD4B8D2630B06DD0EF4D36F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7234865B4E3E204823D8E26F /* Build configuration list for PBXNativeTarget "TappDeviceProbe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CBD719ED95E81F2B9A03F12 /* Debug */,
+				83B2AFA1C0611B94D6D171CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7B02A420F73CA192ECBB955C /* Build configuration list for PBXNativeTarget "TappLab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97B003DD7063766E093CBF5C /* Debug */,
+				B9DF7CA64E40850478EEA63A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9591F2A359C63FF1C849DD07 /* Build configuration list for PBXNativeTarget "TappClickTarget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F3B482FE8D7E8CDED1481F6 /* Debug */,
+				EF7CC7F5872CA9738C301CED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AF7037E6F3CD9E17CAE07A4E /* Build configuration list for PBXProject "TappLab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				781D1E0D273A28D4609BCB1F /* Debug */,
+				45A41523C6F725FFB287B706 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF9A3D975FD302C2254E5431 /* Project object */;
+}

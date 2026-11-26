@@ -1,0 +1,177 @@
+{
+  "scope": "Offline cached phone-image analysis; no runtime feature-state measurement",
+  "images": [
+    {
+      "path": "/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/usr/lib/libAccessibility.dylib",
+      "sha256": "713874d0eaa850e655e79049ac465b7f743d95d9404c36d45e23078d2efae593",
+      "uuid": "UUID: AD6CB2B8-707A-3EDA-9327-681C41E72411 (arm64e) /Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/usr/lib/libAccessibility.dylib",
+      "functions": {
+        "__AXSPointerControlEnabled": {
+          "start": "0x18fbfdd2c",
+          "end": "0x18fbfdde0"
+        },
+        "__AXSPointerControlSetEnabled": {
+          "start": "0x18fbfded0",
+          "end": "0x18fbfdfc8"
+        },
+        "_AXRuntimeCheck_AXAction": {
+          "start": "0x18fc17f90",
+          "end": "0x18fc17fd8"
+        },
+        "_AXRuntimeCheck_AXAction_PointerControl": {
+          "start": "0x18fc18008",
+          "end": "0x18fc18084"
+        }
+      }
+    },
+    {
+      "path": "/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/Frameworks/QuartzCore.framework/QuartzCore",
+      "sha256": "4d4373a2cdd65eeab64587ea5b3826155010c1dfd814fff894f6f6c6e8c69030",
+      "uuid": "UUID: 8E4A1B70-6528-301C-842E-28211CD9A585 (arm64e) /Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/Frameworks/QuartzCore.framework/QuartzCore",
+      "functions": {
+        "__ZN2CA6Render6Server24audit_token_cache_lookupERK13audit_token_t": {
+          "start": "0x1843e42f8",
+          "end": "0x1843e4554"
+        },
+        "__XRegisterClient": {
+          "start": "0x1844151c8",
+          "end": "0x184415738"
+        },
+        "__ZN2CA6Render7ContextC1EPK14__CFDictionaryjji": {
+          "start": "0x18441307c",
+          "end": "0x184413690"
+        },
+        "__ZN2CA12WindowServer6Server15context_createdEPNS_6Render6ObjectEPvS5_": {
+          "start": "0x184413690",
+          "end": "0x184413754"
+        }
+      },
+      "entitlements_table": {
+        "address": "0x1e05cbbc0",
+        "entries": [
+          {
+            "bit": 0,
+            "entitlement": "com.apple.QuartzCore.global-capture"
+          },
+          {
+            "bit": 1,
+            "entitlement": "com.apple.QuartzCore.displayable-context"
+          },
+          {
+            "bit": 2,
+            "entitlement": "com.apple.QuartzCore.secure-mode"
+          },
+          {
+            "bit": 3,
+            "entitlement": "com.apple.QuartzCore.secure-capture"
+          },
+          {
+            "bit": 4,
+            "entitlement": "com.apple.QuartzCore.get-info"
+          },
+          {
+            "bit": 5,
+            "entitlement": "com.apple.QuartzCore.get-client-port"
+          },
+          {
+            "bit": 6,
+            "entitlement": "com.apple.QuartzCore.flipbook"
+          },
+          {
+            "bit": 7,
+            "entitlement": "com.apple.QuartzCore.webkit-end-points"
+          },
+          {
+            "bit": 8,
+            "entitlement": "com.apple.QuartzCore.debug"
+          },
+          {
+            "bit": 9,
+            "entitlement": "com.apple.QuartzCore.cache-asynchronous"
+          },
+          {
+            "bit": 10,
+            "entitlement": "com.apple.QuartzCore.webkit-limited-types"
+          },
+          {
+            "bit": 11,
+            "entitlement": "com.apple.QuartzCore.occlusion-override"
+          },
+          {
+            "bit": 12,
+            "entitlement": "com.apple.QuartzCore.system-layers"
+          },
+          {
+            "bit": 13,
+            "entitlement": "com.apple.QuartzCore.no-contexts"
+          },
+          {
+            "bit": 14,
+            "entitlement": "com.apple.QuartzCore.presets"
+          },
+          {
+            "bit": 15,
+            "entitlement": "com.apple.QuartzCore.content-stream"
+          },
+          {
+            "bit": 16,
+            "entitlement": "com.apple.QuartzCore.display-state"
+          }
+        ],
+        "layout_scope": "17 entries verified for cached iOS 27.2 24B5089g image"
+      },
+      "context_options": {
+        "_kCAContextDisplayable": {
+          "string_object_address": "0x1e22170e0",
+          "value": "displayable"
+        },
+        "_kCAContextDisplayId": {
+          "string_object_address": "0x1e2224a20",
+          "value": "displayId"
+        }
+      }
+    },
+    {
+      "path": "/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUIServices.framework/PointerUIServices",
+      "sha256": "ebe0d1d6adf194fe14c156fff39dd7bc5ccc7e1c0afea26fc3ce3bbbf742c837",
+      "uuid": "UUID: 21E4E55E-88DF-3664-BC81-9DE6CDE776C8 (arm64e) /Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUIServices.framework/PointerUIServices",
+      "functions": {
+        "-[PSPointerClientController clientInteractionState]": {
+          "start": "0x227cfeb6c",
+          "end": "0x227cfeb74"
+        },
+        "-[PSPointerClientController pointerVisibilityState]": {
+          "start": "0x227cfeb74",
+          "end": "0x227cfeb7c"
+        },
+        "-[PSPointerClientController isClientInteractionEnabled]": {
+          "start": "0x227cfa8d0",
+          "end": "0x227cfa8e0"
+        },
+        "___61-[PSPointerClientController clientInteractionStateDidChange:]_block_invoke_2": {
+          "start": "0x227cfc09c",
+          "end": "0x227cfc150"
+        },
+        "___61-[PSPointerClientController pointerVisibilityStateDidChange:]_block_invoke.52": {
+          "start": "0x227cfc2e0",
+          "end": "0x227cfc348"
+        }
+      }
+    },
+    {
+      "path": "/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUISystemServices.framework/PointerUISystemServices",
+      "sha256": "f937e540f850e2ed8772b9a67f38d2965cdc38b7e0e535ea7093102b5da198d1",
+      "uuid": "UUID: DADEDA8C-3FE7-318D-9ADA-ED6D4ABAFA3B (arm64e) /Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUISystemServices.framework/PointerUISystemServices",
+      "functions": {
+        "-[PSPointerSystemClientController prepareScenesForPointerForDisplayConfiguration:]": {
+          "start": "0x29e81b250",
+          "end": "0x29e81b32c"
+        },
+        "-[PSPointerSystemClientController invalidateScenesForPointerForDisplayConfiguration:]": {
+          "start": "0x29e81b99c",
+          "end": "0x29e81ba78"
+        }
+      }
+    }
+  ]
+}

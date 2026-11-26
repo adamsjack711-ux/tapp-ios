@@ -1,0 +1,441 @@
+import Foundation
+
+/// Low-level client for the Lockdown plist protocol.
+///
+/// Lockdown is the device service used to authenticate a paired host, read
+/// device values, and start other services. Most applications should prefer
+/// `DeviceClient` and `DeviceSession`; use `LockdownClient` directly when you
+/// need custom Lockdown requests or protocol tests.
+public final class LockdownClient {
+    /// Byte stream carrying framed Lockdown property lists.
+    private let connection: DeviceConnection
+
+    /// Client label included in device-side diagnostics.
+    private let label: String
+
+    /// Creates a Lockdown client over an existing Lockdown connection.
+    ///
+    /// The connection must already point at the Lockdown port. This initializer
+    /// does not take ownership of discovery, pairing lookup, or secure-session
+    /// upgrade.
+    ///
+    /// - Parameters:
+    ///   - connection: Byte stream connected to Lockdown.
+    ///   - label: Client label included in requests for device-side logs.
+    public init(connection: DeviceConnection, label: String = "rorkdevice") {
+        self.connection = connection
+        self.label = label
+    }
+
+    /// Closes the underlying Lockdown control connection.
+    ///
+    /// Long-lived hosts, such as the tunnel reconnect loop, call this between
+    /// establishment cycles so abandoned control connections do not accumulate
+    /// while the device stays attached. The client must not be used afterward.
+    public func close() {
+        connection.close()
+    }
+
+    /// Starts a Lockdown session using an existing pairing record.
+    ///
+    /// This sends `HostID` and `SystemBUID` from the record. If the response
+    /// sets `EnableSessionSSL`, callers must upgrade the connection before
+    /// issuing further Lockdown requests.
+    ///
+    /// - Returns: Session metadata, including whether secure traffic is
+    ///   required.
+    public func startSession(using pairingRecord: PairingRecord) async throws -> LockdownSessionStart {
+        let response = try await request([
+            "Label": label,
+            "Request": "StartSession",
+            "HostID": pairingRecord.hostID,
+            "SystemBUID": pairingRecord.systemBUID,
+        ])
+        try checkResult(response, request: "StartSession")
+        return LockdownSessionStart(
+            sessionID: response.string("SessionID"),
+            requiresSecureConnection: response.bool("EnableSessionSSL") ?? false
+        )
+    }
+
+    /// Queries the default Lockdown value domain.
+    ///
+    /// This is the common form used for device identity and OS information.
+    /// Use `value(for:)` when a workflow needs one typed Lockdown value and
+    /// `value(domain:key:)` when it needs a complete named domain.
+    ///
+    /// - Returns: The decoded top-level device information dictionary.
+    public func deviceValues() async throws -> [String: Any] {
+        let values = try await value(domain: nil, key: nil)
+        guard let dictionary = values as? [String: Any] else {
+            throw RorkDeviceError.protocolViolation("Lockdown GetValue did not return a dictionary.")
+        }
+        return dictionary
+    }
+
+    /// Queries a Lockdown value by optional domain and key.
+    ///
+    /// Use `value(for:)` for typed single-key lookups and `deviceValues()` for
+    /// the default top-level device information dictionary. Domain/key values
+    /// are sent as-is here so callers can query whole domains and unusual
+    /// values without waiting for wrapper APIs.
+    ///
+    /// - Returns: The decoded plist value from the `Value` field.
+    public func value(domain: String?, key: String?) async throws -> Any {
+        var request: [String: Any] = [
+            "Label": label,
+            "Request": "GetValue",
+        ]
+        if let domain {
+            request["Domain"] = domain
+        }
+        if let key {
+            request["Key"] = key
+        }
+
+        let response = try await self.request(request)
+        try checkResult(response, request: "GetValue")
+        guard let value = response["Value"] else {
+            throw RorkDeviceError.protocolViolation("Lockdown GetValue response is missing Value.")
+        }
+        return value
+    }
+
+    /// Queries one typed value in the key's Lockdown domain.
+    ///
+    /// - Parameter key: Open key containing the expected value type and domain.
+    /// - Returns: The decoded value after validating its declared type.
+    /// - Throws: An input error for an empty key or domain, plus Lockdown,
+    ///   transport, and protocol errors.
+    public func value<Value>(
+        for key: LockdownValueKey<Value>
+    ) async throws -> Value {
+        try validate(key)
+        let rawValue = try await value(
+            domain: key.domain,
+            key: key.rawValue
+        )
+        guard let value = rawValue as? Value else {
+            let expectedType = String(describing: Value.self)
+            let location = Self.valueLocation(
+                key: key.rawValue,
+                domain: key.domain
+            )
+            throw RorkDeviceError.protocolViolation(
+                "Lockdown value \(location) does not match \(expectedType)."
+            )
+        }
+        return value
+    }
+
+    /// Sets a Lockdown value by optional domain and key.
+    ///
+    /// The value must be representable in an Apple property list. Domain and
+    /// key values are sent as-is so callers can configure newer Lockdown
+    /// settings without waiting for a dedicated wrapper API.
+    ///
+    /// - Parameters:
+    ///   - value: Property-list value written by Lockdown.
+    ///   - domain: Optional Lockdown preference domain.
+    ///   - key: Optional key within the selected domain.
+    func setValue(
+        _ value: Any,
+        domain: String? = nil,
+        key: String? = nil
+    ) async throws {
+        var request: [String: Any] = [
+            "Label": label,
+            "Request": "SetValue",
+            "Value": value,
+        ]
+        if let domain {
+            request["Domain"] = domain
+        }
+        if let key {
+            request["Key"] = key
+        }
+
+        let response = try await self.request(request)
+        try checkResult(response, request: "SetValue")
+    }
+
+    /// Sets one value using the type and domain carried by its key.
+    func setValue<Value>(
+        _ value: Value,
+        for key: LockdownValueKey<Value>
+    ) async throws {
+        try validate(key)
+        try await setValue(
+            value,
+            domain: key.domain,
+            key: key.rawValue
+        )
+    }
+
+    /// Reads the Developer Mode state from Lockdown's AMFI domain.
+    ///
+    /// This is a passive query. It reads the setting but does not enable
+    /// Developer Mode or restart the device.
+    ///
+    /// - Returns: `true` only when iOS reports Developer Mode as enabled.
+    public func developerModeStatus() async throws -> Bool {
+        let key = LockdownValueKey<Bool>.developerModeStatus
+        let value = try await value(
+            domain: key.domain,
+            key: key.rawValue
+        )
+        guard let enabled = value as? Bool else {
+            throw RorkDeviceError.protocolViolation(
+                "Lockdown DeveloperModeStatus was not a Boolean."
+            )
+        }
+        return enabled
+    }
+
+    /// Rejects typed keys that cannot identify one concrete Lockdown value.
+    private func validate<Value>(
+        _ key: LockdownValueKey<Value>
+    ) throws {
+        guard !key.rawValue.isEmpty else {
+            throw RorkDeviceError.invalidInput(
+                "Lockdown value key must not be empty."
+            )
+        }
+        if let domain = key.domain, domain.isEmpty {
+            throw RorkDeviceError.invalidInput(
+                "Lockdown value domain must not be empty."
+            )
+        }
+    }
+
+    /// Describes one key location for type-mismatch diagnostics.
+    private static func valueLocation(
+        key: String,
+        domain: String?
+    ) -> String {
+        guard let domain else {
+            return key
+        }
+        return "\(key) in domain \(domain)"
+    }
+
+    /// Requests host pairing with the connected device.
+    ///
+    /// The request sends only public certificates and host identifiers from the
+    /// supplied record. Private keys remain on the host. A device that has not
+    /// yet received a user decision returns
+    /// `LockdownPairingError.userConfirmationRequired`; callers may reconnect
+    /// and retry the same pairing material after the Trust dialog is accepted.
+    ///
+    /// - Parameter pairingRecord: Candidate host pairing material.
+    /// - Returns: Escrow data issued by the device for the saved host record.
+    /// - Throws: `LockdownPairingError` for typed pairing rejections and a
+    ///   protocol violation when a successful response omits its escrow bag.
+    public func pair(
+        using pairingRecord: PairingRecord
+    ) async throws -> Data {
+        let response = try await request([
+            "Label": label,
+            "Request": "Pair",
+            "ProtocolVersion": "2",
+            "PairRecord": try pairingRecord.pairingRequestValues(),
+            "PairingOptions": [
+                "ExtendedPairingErrors": true,
+            ],
+        ])
+        if let error = response.string("Error") {
+            throw LockdownPairingError(responseValue: error)
+        }
+        guard let escrowBag = response["EscrowBag"] as? Data,
+              !escrowBag.isEmpty else {
+            throw RorkDeviceError.protocolViolation(
+                "Lockdown Pair response was missing EscrowBag."
+            )
+        }
+        return escrowBag
+    }
+
+    /// Revokes the supplied host identity from the connected device.
+    ///
+    /// Lockdown identifies the trusted host from the public certificates and
+    /// identifiers in `pairingRecord`; private keys and escrow material remain
+    /// on the host. Some device versions acknowledge `Unpair` with a response
+    /// whose `Request` field is incorrectly labeled `ValidatePair`, so success
+    /// is determined from the response result and error fields instead of the
+    /// echoed request name.
+    ///
+    /// This method changes device-side trust only. Callers that use usbmux
+    /// pairing-record storage must remove the corresponding host record after
+    /// the device accepts the request.
+    ///
+    /// - Parameter pairingRecord: Existing host identity trusted by the device.
+    /// - Throws: `RorkDeviceError.invalidPairingRecord` when required public
+    ///   material is missing, or `RorkDeviceError.lockdown` when the device
+    ///   rejects the request.
+    public func unpair(
+        using pairingRecord: PairingRecord
+    ) async throws {
+        let response = try await request([
+            "Label": label,
+            "Request": "Unpair",
+            "ProtocolVersion": "2",
+            "PairRecord": try pairingRecord.pairingRequestValues(),
+        ])
+        guard response.string("Request") != nil else {
+            throw RorkDeviceError.protocolViolation(
+                "Lockdown Unpair response was missing Request."
+            )
+        }
+        try checkResult(response, request: "Unpair")
+    }
+
+    /// Starts a Lockdown service and returns its port descriptor.
+    ///
+    /// After a successful response, open a new transport connection to the
+    /// returned port. If `requiresSecureConnection` is true, upgrade that
+    /// service connection before speaking the service protocol. Some paired
+    /// service flows can also include escrow material from the pairing record
+    /// so the device can authorize the service start without another trust
+    /// exchange.
+    ///
+    /// - Parameters:
+    ///   - serviceName: Lockdown service identifier.
+    ///   - escrowBag: Optional `EscrowBag` bytes from the pairing record.
+    public func startService(_ serviceName: String, escrowBag: Data? = nil) async throws -> LockdownService {
+        var serviceRequest: [String: Any] = [
+            "Label": label,
+            "Request": "StartService",
+            "Service": serviceName,
+        ]
+        if let escrowBag {
+            serviceRequest["EscrowBag"] = escrowBag
+        }
+
+        let response = try await request(serviceRequest)
+        try checkResult(response, request: "StartService")
+        guard let port = response.int("Port") else {
+            throw RorkDeviceError.protocolViolation("Lockdown StartService response is missing Port.")
+        }
+        guard let servicePort = UInt16(exactly: port) else {
+            throw RorkDeviceError.protocolViolation("Lockdown StartService response has invalid Port \(port).")
+        }
+        return LockdownService(
+            name: serviceName,
+            port: servicePort,
+            requiresSecureConnection: response.bool("EnableServiceSSL") ?? false
+        )
+    }
+
+    /// Starts one of the modeled Lockdown services.
+    ///
+    /// Use this overload when the service is one of the public modeled
+    /// services. The string overload remains available for custom or newly
+    /// discovered Lockdown service identifiers.
+    ///
+    /// - Parameters:
+    ///   - serviceName: Modeled Lockdown service identifier.
+    ///   - escrowBag: Optional `EscrowBag` bytes from the pairing record.
+    public func startService(_ serviceName: LockdownServiceName, escrowBag: Data? = nil) async throws -> LockdownService {
+        try await startService(serviceName.rawValue, escrowBag: escrowBag)
+    }
+
+    /// Sends one Lockdown request and returns its decoded response dictionary.
+    private func request(_ dictionary: [String: Any]) async throws -> [String: Any] {
+        try await PropertyListMessageFramer.send(dictionary, to: connection)
+        return try await PropertyListMessageFramer.receive(from: connection)
+    }
+}
+
+/// Typed rejection returned by Lockdown while establishing host trust.
+///
+/// User-actionable states are separated from generic protocol failures so an
+/// application can keep its Trust instructions visible, stop after an explicit
+/// rejection, or explain why pairing is prohibited on the current device.
+public enum LockdownPairingError: Error, Equatable, Sendable, LocalizedError {
+    /// iOS is waiting for the user to accept or reject the Trust dialog.
+    case userConfirmationRequired
+
+    /// The user rejected the host trust request on the device.
+    case userDenied
+
+    /// The device must be unlocked before it can complete pairing.
+    case deviceLocked
+
+    /// Device policy prohibits pairing over the current connection.
+    case prohibited
+
+    /// The device did not resolve its Trust dialog before the caller's
+    /// configured deadline.
+    case timedOut
+
+    /// Lockdown returned a pairing error not modeled by this package version.
+    case rejected(String)
+
+    /// Creates the typed representation of a Lockdown error identifier.
+    init(responseValue: String) {
+        switch responseValue {
+        case "PairingDialogResponsePending":
+            self = .userConfirmationRequired
+        case "UserDeniedPairing":
+            self = .userDenied
+        case "PasswordProtected":
+            self = .deviceLocked
+        case "PairingProhibitedOverThisConnection":
+            self = .prohibited
+        default:
+            self = .rejected(responseValue)
+        }
+    }
+
+    /// Human-readable text suitable for UI and command-line diagnostics.
+    public var errorDescription: String? {
+        switch self {
+        case .userConfirmationRequired:
+            return "Approve the Trust dialog on the device to continue pairing."
+        case .userDenied:
+            return "The device rejected the host trust request."
+        case .deviceLocked:
+            return "Unlock the device before pairing."
+        case .prohibited:
+            return "The device prohibits pairing over this connection."
+        case .timedOut:
+            return "The device did not complete the Trust request in time."
+        case let .rejected(message):
+            return "Lockdown rejected pairing: \(message)"
+        }
+    }
+}
+
+/// Result of a Lockdown `StartSession` request.
+public struct LockdownSessionStart: Equatable, Sendable {
+    /// Session identifier returned by the device, when present.
+    public let sessionID: String?
+
+    /// Whether subsequent Lockdown traffic must be sent through a secure
+    /// connection.
+    public let requiresSecureConnection: Bool
+}
+
+/// Descriptor returned by Lockdown after starting a device service.
+public struct LockdownService: Equatable, Sendable {
+    /// Service name requested from Lockdown.
+    public let name: String
+
+    /// Device-side TCP port for the service.
+    public let port: UInt16
+
+    /// Whether this service requires a secure connection before protocol data
+    /// is exchanged.
+    public let requiresSecureConnection: Bool
+}
+
+/// Validates common Lockdown `Result` and `Error` fields.
+func checkResult(_ response: [String: Any], request: String) throws {
+    if let result = response.string("Result"), result != "Success" {
+        let error = response.string("Error") ?? result
+        throw RorkDeviceError.lockdown("\(request) failed: \(error)")
+    }
+    if let error = response.string("Error") {
+        throw RorkDeviceError.lockdown("\(request) failed: \(error)")
+    }
+}

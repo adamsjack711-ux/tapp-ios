@@ -1,0 +1,88 @@
+name: iOS build and TestFlight
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_27.app/Contents/Developer
+
+jobs:
+  build:
+    name: Test and build on a hosted Mac
+    runs-on: xcode-27
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check Xcode
+        run: xcodebuild -version
+      - name: Run core tests
+        run: swift test
+      - name: Build iPhone simulator app and extensions
+        run: |
+          xcodebuild build \
+            -project PocketAgent.xcodeproj \
+            -scheme PocketAgent -configuration Release \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/TappBuild" \
+            -onlyUsePackageVersionsFromResolvedFile \
+            CODE_SIGNING_ALLOWED=NO
+      - name: Package simulator build
+        run: |
+          tar -czf "$RUNNER_TEMP/Tapp-simulator.tar.gz" \
+            -C "$RUNNER_TEMP/TappBuild/Build/Products/Release-iphonesimulator" PocketAgent.app
+      - name: Save simulator build
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: Tapp-simulator-${{ github.run_number }}
+          path: ${{ runner.temp }}/Tapp-simulator.tar.gz
+          retention-days: 7
+          if-no-files-found: error
+      - name: Explain release status
+        if: github.ref == 'refs/heads/main' && vars.TESTFLIGHT_ENABLED != 'true'
+        run: |
+          echo '### Cloud build only' >> "$GITHUB_STEP_SUMMARY"
+          echo 'TestFlight uploads are not activated. Add the Apple signing secrets listed in CI/README.md, then set TESTFLIGHT_ENABLED=true.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'The simulator artifact cannot be installed on an iPhone.' >> "$GITHUB_STEP_SUMMARY"
+
+  testflight:
+    name: Sign and upload to TestFlight
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.TESTFLIGHT_ENABLED == 'true'
+    runs-on: xcode-27
+    timeout-minutes: 45
+    environment: testflight
+    env:
+      IOS_DISTRIBUTION_P12_BASE64: ${{ secrets.IOS_DISTRIBUTION_P12_BASE64 }}
+      IOS_P12_PASSWORD: ${{ secrets.IOS_P12_PASSWORD }}
+      IOS_APP_PROFILE_BASE64: ${{ secrets.IOS_APP_PROFILE_BASE64 }}
+      IOS_TUNNEL_PROFILE_BASE64: ${{ secrets.IOS_TUNNEL_PROFILE_BASE64 }}
+      IOS_ACTIVITY_PROFILE_BASE64: ${{ secrets.IOS_ACTIVITY_PROFILE_BASE64 }}
+      ASC_API_PRIVATE_KEY: ${{ secrets.ASC_API_PRIVATE_KEY }}
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Import signing credentials and configure profiles
+        run: python3 CI/prepare_signing.py
+      - name: Archive and upload
+        run: bash CI/upload_testflight.sh
+      - name: Remove signing credentials
+        if: always()
+        run: |
+          security delete-keychain "$RUNNER_TEMP/tapp-signing.keychain-db" 2>/dev/null || true
+          python3 CI/prepare_signing.py --cleanup

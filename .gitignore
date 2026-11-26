@@ -1,0 +1,40 @@
+# Build outputs and local environments
+.build/
+DerivedData/
+[Bb]uild/
+DeviceBuild/
+ClickBuild/
+DeviceSimulatorBuild/
+*.xcarchive/
+*.dSYM/
+*.ipa
+*.app/
+node_modules/
+*venv*/
+__pycache__/
+*.pyc
+Evidence/
+
+# Local IDE state
+.DS_Store
+xcuserdata/
+*.xcuserstate
+.swiftpm/
+
+# Credentials and device pairing data
+.env
+.env.*
+*.p12
+*.p8
+*.mobileprovision
+*.provisionprofile
+*.key
+*.cer
+*.crt
+*.pem
+!DeveloperTools/rork-device/Tests/RorkDeviceTests/Fixtures/TLS/*.pem
+remote-pairing.plist
+pairing-records/
+
+# Restore with DeveloperTools/iCTRL/Scripts/fetch-idevice.sh
+DeveloperTools/iCTRL/Frameworks/

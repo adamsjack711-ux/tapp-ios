@@ -1,0 +1,118 @@
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUIServices.framework/PointerUIServices:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000227cfeb6c <-[PSPointerClientController clientInteractionState]>:
+227cfeb6c: f9403400    	ldr	x0, [x0, #0x68]
+227cfeb70: d65f03c0    	ret
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUIServices.framework/PointerUIServices:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000227cfeb74 <-[PSPointerClientController pointerVisibilityState]>:
+227cfeb74: f9403800    	ldr	x0, [x0, #0x70]
+227cfeb78: d65f03c0    	ret
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUIServices.framework/PointerUIServices:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000227cfa8d0 <-[PSPointerClientController isClientInteractionEnabled]>:
+227cfa8d0: f9403408    	ldr	x8, [x0, #0x68]
+227cfa8d4: f100051f    	cmp	x8, #0x1
+227cfa8d8: 1a9f17e0    	cset	w0, eq
+227cfa8dc: d65f03c0    	ret
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUIServices.framework/PointerUIServices:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000227cfc09c <___61-[PSPointerClientController clientInteractionStateDidChange:]_block_invoke_2>:
+227cfc09c: d503237f    	pacibsp
+227cfc0a0: d100c3ff    	sub	sp, sp, #0x30
+227cfc0a4: a9014ff4    	stp	x20, x19, [sp, #0x10]
+227cfc0a8: a9027bfd    	stp	x29, x30, [sp, #0x20]
+227cfc0ac: 910083fd    	add	x29, sp, #0x20
+227cfc0b0: aa0003f3    	mov	x19, x0
+227cfc0b4: f9401008    	ldr	x8, [x0, #0x20]
+227cfc0b8: 91018100    	add	x0, x8, #0x60
+227cfc0bc: 941155d9    	bl	 <_objc_msgSend$valueWithCAColorMatrix:+0x44d9a0>
+227cfc0c0: aa0003e3    	mov	x3, x0
+227cfc0c4: 3940a268    	ldrb	w8, [x19, #0x28]
+227cfc0c8: 7100051f    	cmp	w8, #0x1
+227cfc0cc: f90007e0    	str	x0, [sp, #0x8]
+227cfc0d0: 54000161    	b.ne	 <L0>
+227cfc0d4: 90e73288    	adrp	x8, 0x1f634c000 <_os_unfair_lock_unlock+0x1f634c000>
+227cfc0d8: 910a0d01    	add	x1, x8, #0x283
+227cfc0dc: aa0303e0    	mov	x0, x3
+227cfc0e0: 94115ce4    	bl	 <_objc_msgSend$valueWithCAColorMatrix:+0x44f5f0>
+227cfc0e4: f94007e3    	ldr	x3, [sp, #0x8]
+227cfc0e8: 360000a0    	tbz	w0, #0x0,  <L0>
+227cfc0ec: f9401262    	ldr	x2, [x19, #0x20]
+227cfc0f0: aa0303e0    	mov	x0, x3
+227cfc0f4: 9410751b    	bl	 <_objc_msgSend$valueWithCAColorMatrix:+0x4156e0>
+227cfc0f8: f94007e3    	ldr	x3, [sp, #0x8]
+<L0>:
+227cfc0fc: 3940a668    	ldrb	w8, [x19, #0x29]
+227cfc100: 7100051f    	cmp	w8, #0x1
+227cfc104: 54000161    	b.ne	 <L1>
+227cfc108: f0e6d0c8    	adrp	x8, 0x1f5717000 <_os_unfair_lock_unlock+0x1f5717000>
+227cfc10c: 91248501    	add	x1, x8, #0x921
+227cfc110: aa0303e0    	mov	x0, x3
+227cfc114: 94115cd7    	bl	 <_objc_msgSend$valueWithCAColorMatrix:+0x44f5f0>
+227cfc118: f94007e3    	ldr	x3, [sp, #0x8]
+227cfc11c: 360000a0    	tbz	w0, #0x0,  <L1>
+227cfc120: f9401262    	ldr	x2, [x19, #0x20]
+227cfc124: aa0303e0    	mov	x0, x3
+227cfc128: 94107512    	bl	 <_objc_msgSend$valueWithCAColorMatrix:+0x4156f0>
+227cfc12c: f94007e3    	ldr	x3, [sp, #0x8]
+<L1>:
+227cfc130: a9427bfd    	ldp	x29, x30, [sp, #0x20]
+227cfc134: a9414ff4    	ldp	x20, x19, [sp, #0x10]
+227cfc138: 9100c3ff    	add	sp, sp, #0x30
+227cfc13c: d50323ff    	autibsp
+227cfc140: ca1e07d0    	eor	x16, x30, x30, lsl #1
+227cfc144: b6f00050    	tbz	x16, #0x3e,  <L2>
+227cfc148: d4388e20    	brk	#0xc471
+<L2>:
+227cfc14c: 141155c5    	b	 <_objc_msgSend$valueWithCAColorMatrix:+0x44d9e0>
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUIServices.framework/PointerUIServices:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000227cfc2e0 <___61-[PSPointerClientController pointerVisibilityStateDidChange:]_block_invoke.52>:
+227cfc2e0: d503237f    	pacibsp
+227cfc2e4: d100c3ff    	sub	sp, sp, #0x30
+227cfc2e8: a9014ff4    	stp	x20, x19, [sp, #0x10]
+227cfc2ec: a9027bfd    	stp	x29, x30, [sp, #0x20]
+227cfc2f0: 910083fd    	add	x29, sp, #0x20
+227cfc2f4: aa0003f3    	mov	x19, x0
+227cfc2f8: f9401008    	ldr	x8, [x0, #0x20]
+227cfc2fc: 91018100    	add	x0, x8, #0x60
+227cfc300: 94115548    	bl	 <_objc_msgSend$valueWithCAColorMatrix:+0x44d9a0>
+227cfc304: 90e70ce8    	adrp	x8, 0x1f5e98000 <_os_unfair_lock_unlock+0x1f5e98000>
+227cfc308: 9134a501    	add	x1, x8, #0xd29
+227cfc30c: f90007e0    	str	x0, [sp, #0x8]
+227cfc310: 94115c58    	bl	 <_objc_msgSend$valueWithCAColorMatrix:+0x44f5f0>
+227cfc314: 36000080    	tbz	w0, #0x0,  <L0>
+227cfc318: f9401262    	ldr	x2, [x19, #0x20]
+227cfc31c: f94007e0    	ldr	x0, [sp, #0x8]
+227cfc320: 9410749c    	bl	 <_objc_msgSend$valueWithCAColorMatrix:+0x415710>
+<L0>:
+227cfc324: f94007e0    	ldr	x0, [sp, #0x8]
+227cfc328: a9427bfd    	ldp	x29, x30, [sp, #0x20]
+227cfc32c: a9414ff4    	ldp	x20, x19, [sp, #0x10]
+227cfc330: 9100c3ff    	add	sp, sp, #0x30
+227cfc334: d50323ff    	autibsp
+227cfc338: ca1e07d0    	eor	x16, x30, x30, lsl #1
+227cfc33c: b6f00050    	tbz	x16, #0x3e,  <L1>
+227cfc340: d4388e20    	brk	#0xc471
+<L1>:
+227cfc344: 1410dddb    	b	 <_objc_msgSend$valueWithCAColorMatrix:+0x42fc30>

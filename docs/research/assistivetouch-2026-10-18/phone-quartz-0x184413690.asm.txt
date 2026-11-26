@@ -1,0 +1,361 @@
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/Frameworks/QuartzCore.framework/QuartzCore:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+0000000184413690 <__ZN2CA12WindowServer6Server15context_createdEPNS_6Render6ObjectEPvS5_>:
+184413690: d503237f    	pacibsp
+184413694: a9bd57f6    	stp	x22, x21, [sp, #-0x30]!
+184413698: a9014ff4    	stp	x20, x19, [sp, #0x10]
+18441369c: a9027bfd    	stp	x29, x30, [sp, #0x20]
+1844136a0: 910083fd    	add	x29, sp, #0x20
+1844136a4: b9400c08    	ldr	w8, [x0, #0xc]
+1844136a8: 52884009    	mov	w9, #0x4200             ; =16896
+1844136ac: 0a090108    	and	w8, w8, w9
+1844136b0: 7140111f    	cmp	w8, #0x4, lsl #12       ; =0x4000
+1844136b4: 540001c1    	b.ne	 <L0>
+1844136b8: aa0103f4    	mov	x20, x1
+1844136bc: aa0003f3    	mov	x19, x0
+1844136c0: f9401015    	ldr	x21, [x0, #0x20]
+1844136c4: b40002f5    	cbz	x21,  <L2>
+1844136c8: b02ef081    	adrp	x1, 0x1e2224000 <_xpc_user_sessions_get_foreground_uid+0x1e2224000>
+1844136cc: 91288021    	add	x1, x1, #0xa20
+1844136d0: aa1503e0    	mov	x0, x21
+1844136d4: 97fd191b    	bl	 <_CA_CFDictionaryGetInt>
+1844136d8: 34000120    	cbz	w0,  <L1>
+1844136dc: f9403288    	ldr	x8, [x20, #0x60]
+1844136e0: b9401908    	ldr	w8, [x8, #0x18]
+1844136e4: 6b00011f    	cmp	w8, w0
+1844136e8: 54000220    	b.eq	 <L3>
+<L0>:
+1844136ec: a9427bfd    	ldp	x29, x30, [sp, #0x20]
+1844136f0: a9414ff4    	ldp	x20, x19, [sp, #0x10]
+1844136f4: a8c357f6    	ldp	x22, x21, [sp], #0x30
+1844136f8: d65f0fff    	retab
+<L1>:
+1844136fc: 902ef021    	adrp	x1, 0x1e2217000 <_xpc_user_sessions_get_foreground_uid+0x1e2217000>
+184413700: 913c0021    	add	x1, x1, #0xf00
+184413704: aa1503e0    	mov	x0, x21
+184413708: 94f4b55e    	bl	 <_objc_msgSend$zoom+0x39db800>
+18441370c: b40000a0    	cbz	x0,  <L2>
+184413710: f9403681    	ldr	x1, [x20, #0x68]
+184413714: 94f4b56f    	bl	 <_objc_msgSend$zoom+0x39db850>
+184413718: 34fffea0    	cbz	w0,  <L0>
+18441371c: 14000004    	b	 <L3>
+<L2>:
+184413720: f9403288    	ldr	x8, [x20, #0x60]
+184413724: 79483108    	ldrh	w8, [x8, #0x418]
+184413728: 363ffe28    	tbz	w8, #0x7,  <L0>
+<L3>:
+18441372c: aa1403e0    	mov	x0, x20
+184413730: aa1303e1    	mov	x1, x19
+184413734: a9427bfd    	ldp	x29, x30, [sp, #0x20]
+184413738: a9414ff4    	ldp	x20, x19, [sp, #0x10]
+18441373c: a8c357f6    	ldp	x22, x21, [sp], #0x30
+184413740: d50323ff    	autibsp
+184413744: ca1e07d0    	eor	x16, x30, x30, lsl #1
+184413748: b6f00050    	tbz	x16, #0x3e,  <L4>
+18441374c: d4388e20    	brk	#0xc471
+<L4>:
+184413750: 140991a2    	b	 <__ZN2CA12WindowServer6Server11add_contextEPNS_6Render7ContextE>
+
+0000000184413754 <__ZN2CA6Render7Context11server_portEv>:
+184413754: d503237f    	pacibsp
+184413758: d101c3ff    	sub	sp, sp, #0x70
+18441375c: a90457f6    	stp	x22, x21, [sp, #0x40]
+184413760: a9054ff4    	stp	x20, x19, [sp, #0x50]
+184413764: a9067bfd    	stp	x29, x30, [sp, #0x60]
+184413768: 910183fd    	add	x29, sp, #0x60
+18441376c: aa0003f3    	mov	x19, x0
+184413770: b02dea88    	adrp	x8, 0x1e0164000 <_objc_msgSend$zoom+0x5b9feb80>
+184413774: f9453908    	ldr	x8, [x8, #0xa70]
+184413778: f9400108    	ldr	x8, [x8]
+18441377c: f81d83a8    	stur	x8, [x29, #-0x28]
+184413780: d0335760    	adrp	x0, 0x1eaf01000 <__ZL9flipbooks+0x8>
+184413784: 913b8000    	add	x0, x0, #0xee0
+184413788: 94f49fe2    	bl	 <_objc_msgSend$zoom+0x39d6290>
+18441378c: b9410274    	ldr	w20, [x19, #0x100]
+184413790: 35000574    	cbnz	w20,  <L1>
+184413794: 39403668    	ldrb	w8, [x19, #0xd]
+184413798: 37100708    	tbnz	w8, #0x2,  <L2>
+18441379c: 91040275    	add	x21, x19, #0x100
+1844137a0: b0001788    	adrp	x8, 0x184704000 <__ZZL16defines_propertyjE5atoms+0x19c>
+1844137a4: 9115c108    	add	x8, x8, #0x570
+1844137a8: 3dc00100    	ldr	q0, [x8]
+1844137ac: 3d800be0    	str	q0, [sp, #0x20]
+1844137b0: f9001bff    	str	xzr, [sp, #0x30]
+1844137b4: 52800208    	mov	w8, #0x10               ; =16
+1844137b8: 72a00028    	movk	w8, #0x1, lsl #16
+1844137bc: b90023e8    	str	w8, [sp, #0x20]
+1844137c0: b02dea96    	adrp	x22, 0x1e0164000 <_objc_msgSend$zoom+0x5b9feb80>
+1844137c4: f9460ed6    	ldr	x22, [x22, #0xc18]
+1844137c8: b94002c0    	ldr	w0, [x22]
+1844137cc: 910083e1    	add	x1, sp, #0x20
+1844137d0: d2800002    	mov	x2, #0x0                ; =0
+1844137d4: aa1503e3    	mov	x3, x21
+1844137d8: 94f49e12    	bl	 <_objc_msgSend$zoom+0x39d5ba0>
+1844137dc: 35000520    	cbnz	w0,  <L3>
+1844137e0: b94002d4    	ldr	w20, [x22]
+1844137e4: b94002b5    	ldr	w21, [x21]
+1844137e8: 97fb8bd9    	bl	 <__ZN2CA6Render6Server8port_setEv>
+1844137ec: aa0003e2    	mov	x2, x0
+1844137f0: aa1403e0    	mov	x0, x20
+1844137f4: aa1503e1    	mov	x1, x21
+1844137f8: 94f4f542    	bl	 <_objc_msgSend$zoom+0x39eb880>
+1844137fc: 35000740    	cbnz	w0,  <L5>
+184413800: d0335774    	adrp	x20, 0x1eaf01000 <__ZL9flipbooks+0x8>
+184413804: f946c280    	ldr	x0, [x20, #0xd80]
+184413808: b5000100    	cbnz	x0,  <L0>
+18441380c: d2800001    	mov	x1, #0x0                ; =0
+184413810: d2800002    	mov	x2, #0x0                ; =0
+184413814: d2800003    	mov	x3, #0x0                ; =0
+184413818: d2800004    	mov	x4, #0x0                ; =0
+18441381c: d2800005    	mov	x5, #0x0                ; =0
+184413820: 97fb5748    	bl	 <_x_hash_table_new_>
+184413824: f906c280    	str	x0, [x20, #0xd80]
+<L0>:
+184413828: b9410261    	ldr	w1, [x19, #0x100]
+18441382c: aa1303e2    	mov	x2, x19
+184413830: 52800003    	mov	w3, #0x0                ; =0
+184413834: 97fb60cc    	bl	 <__ZL17hash_table_modifyP19x_hash_table_structPvS1_i>
+184413838: b9410274    	ldr	w20, [x19, #0x100]
+<L1>:
+18441383c: d0335760    	adrp	x0, 0x1eaf01000 <__ZL9flipbooks+0x8>
+184413840: 913b8000    	add	x0, x0, #0xee0
+184413844: 94f4934f    	bl	 <_objc_msgSend$zoom+0x39d3100>
+184413848: f85d83a8    	ldur	x8, [x29, #-0x28]
+18441384c: b02dea89    	adrp	x9, 0x1e0164000 <_objc_msgSend$zoom+0x5b9feb80>
+184413850: f9453929    	ldr	x9, [x9, #0xa70]
+184413854: f9400129    	ldr	x9, [x9]
+184413858: eb08013f    	cmp	x9, x8
+18441385c: 54000981    	b.ne	 <L11>
+184413860: aa1403e0    	mov	x0, x20
+184413864: a9467bfd    	ldp	x29, x30, [sp, #0x60]
+184413868: a9454ff4    	ldp	x20, x19, [sp, #0x50]
+18441386c: a94457f6    	ldp	x22, x21, [sp, #0x40]
+184413870: 9101c3ff    	add	sp, sp, #0x70
+184413874: d65f0fff    	retab
+<L2>:
+184413878: 52800014    	mov	w20, #0x0               ; =0
+18441387c: 17fffff0    	b	 <L1>
+<L3>:
+184413880: aa0003f4    	mov	x20, x0
+184413884: f0335768    	adrp	x8, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+184413888: f9432908    	ldr	x8, [x8, #0x650]
+18441388c: b100051f    	cmn	x8, #0x1
+184413890: 54000661    	b.ne	 <L9>
+<L4>:
+184413894: f0335768    	adrp	x8, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+184413898: f9430d13    	ldr	x19, [x8, #0x618]
+18441389c: aa1303e0    	mov	x0, x19
+1844138a0: 52800201    	mov	w1, #0x10               ; =16
+1844138a4: 94f49f83    	bl	 <_objc_msgSend$zoom+0x39d6230>
+1844138a8: 34000580    	cbz	w0,  <L8>
+1844138ac: aa1403e0    	mov	x0, x20
+1844138b0: 94f492d4    	bl	 <_objc_msgSend$zoom+0x39d2f80>
+1844138b4: d0001768    	adrp	x8, 0x184701000 <_stringpool_contents+0x290c>
+1844138b8: fd448500    	ldr	d0, [x8, #0x908]
+1844138bc: bd0003e0    	str	s0, [sp]
+1844138c0: b90007f4    	str	w20, [sp, #0x4]
+1844138c4: 52810408    	mov	w8, #0x820              ; =2080
+1844138c8: 790013e8    	strh	w8, [sp, #0x8]
+1844138cc: f800a3e0    	stur	x0, [sp, #0xa]
+1844138d0: b0fff640    	adrp	x0, 0x1842dc000 <_xpc_user_sessions_get_foreground_uid+0x1842dc000>
+1844138d4: 91000000    	add	x0, x0, #0x0
+1844138d8: b0001943    	adrp	x3, 0x18473c000 <_xpc_user_sessions_get_foreground_uid+0x18473c000>
+1844138dc: 911d2863    	add	x3, x3, #0x74a
+1844138e0: 14000019    	b	 <L7>
+<L5>:
+1844138e4: aa0003f4    	mov	x20, x0
+1844138e8: f0335768    	adrp	x8, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+1844138ec: f9432908    	ldr	x8, [x8, #0x650]
+1844138f0: b100051f    	cmn	x8, #0x1
+1844138f4: 54000401    	b.ne	 <L10>
+<L6>:
+1844138f8: f0335768    	adrp	x8, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+1844138fc: f9430d13    	ldr	x19, [x8, #0x618]
+184413900: aa1303e0    	mov	x0, x19
+184413904: 52800201    	mov	w1, #0x10               ; =16
+184413908: 94f49f6a    	bl	 <_objc_msgSend$zoom+0x39d6230>
+18441390c: 34000260    	cbz	w0,  <L8>
+184413910: aa1403e0    	mov	x0, x20
+184413914: 94f492bb    	bl	 <_objc_msgSend$zoom+0x39d2f80>
+184413918: d0001768    	adrp	x8, 0x184701000 <_stringpool_contents+0x290c>
+18441391c: fd448500    	ldr	d0, [x8, #0x908]
+184413920: bd0003e0    	str	s0, [sp]
+184413924: b90007f4    	str	w20, [sp, #0x4]
+184413928: 52810408    	mov	w8, #0x820              ; =2080
+18441392c: 790013e8    	strh	w8, [sp, #0x8]
+184413930: f800a3e0    	stur	x0, [sp, #0xa]
+184413934: b0fff640    	adrp	x0, 0x1842dc000 <_xpc_user_sessions_get_foreground_uid+0x1842dc000>
+184413938: 91000000    	add	x0, x0, #0x0
+18441393c: b0001943    	adrp	x3, 0x18473c000 <_xpc_user_sessions_get_foreground_uid+0x18473c000>
+184413940: 911e1063    	add	x3, x3, #0x784
+<L7>:
+184413944: 910003e4    	mov	x4, sp
+184413948: aa1303e1    	mov	x1, x19
+18441394c: 52800202    	mov	w2, #0x10               ; =16
+184413950: 52800245    	mov	w5, #0x12               ; =18
+184413954: 94f49aff    	bl	 <_objc_msgSend$zoom+0x39d50d0>
+<L8>:
+184413958: 94f49242    	bl	 <_objc_msgSend$zoom+0x39d2de0>
+<L9>:
+18441395c: f0335760    	adrp	x0, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+184413960: 91194000    	add	x0, x0, #0x650
+184413964: f02eefc1    	adrp	x1, 0x1e220e000 <_CASCARenderServices_subsystem+0xd78>
+184413968: 913d8021    	add	x1, x1, #0xf60
+18441396c: 94f49c59    	bl	 <_objc_msgSend$zoom+0x39d5650>
+184413970: 17ffffc9    	b	 <L4>
+<L10>:
+184413974: f0335760    	adrp	x0, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+184413978: 91194000    	add	x0, x0, #0x650
+18441397c: f02eefc1    	adrp	x1, 0x1e220e000 <_CASCARenderServices_subsystem+0xd78>
+184413980: 913d8021    	add	x1, x1, #0xf60
+184413984: 94f49c53    	bl	 <_objc_msgSend$zoom+0x39d5650>
+184413988: 17ffffdc    	b	 <L6>
+<L11>:
+18441398c: 94f491e9    	bl	 <_objc_msgSend$zoom+0x39d2cb0>
+
+0000000184413990 <__ZN2CA6Render7Context17make_hosting_portEv>:
+184413990: d503237f    	pacibsp
+184413994: d10183ff    	sub	sp, sp, #0x60
+184413998: a9044ff4    	stp	x20, x19, [sp, #0x40]
+18441399c: a9057bfd    	stp	x29, x30, [sp, #0x50]
+1844139a0: 910143fd    	add	x29, sp, #0x50
+1844139a4: aa0003f3    	mov	x19, x0
+1844139a8: b02dea88    	adrp	x8, 0x1e0164000 <_objc_msgSend$zoom+0x5b9feb80>
+1844139ac: f9453908    	ldr	x8, [x8, #0xa70]
+1844139b0: f9400108    	ldr	x8, [x8]
+1844139b4: f81e83a8    	stur	x8, [x29, #-0x18]
+1844139b8: d0335760    	adrp	x0, 0x1eaf01000 <__ZL9flipbooks+0x8>
+1844139bc: 913b8000    	add	x0, x0, #0xee0
+1844139c0: 94f49f54    	bl	 <_objc_msgSend$zoom+0x39d6290>
+1844139c4: 91041274    	add	x20, x19, #0x104
+1844139c8: b9410661    	ldr	w1, [x19, #0x104]
+1844139cc: 350005c1    	cbnz	w1,  <L2>
+1844139d0: 39403668    	ldrb	w8, [x19, #0xd]
+1844139d4: 371006a8    	tbnz	w8, #0x2,  <L3>
+1844139d8: 6f00e400    	movi.2d	v0, #0000000000000000
+1844139dc: 6e180400    	mov.d	v0[1], v0[0]
+1844139e0: 3c8283e0    	stur	q0, [sp, #0x28]
+1844139e4: d0001768    	adrp	x8, 0x184701000 <_stringpool_contents+0x290c>
+1844139e8: fd46ed00    	ldr	d0, [x8, #0xdd8]
+1844139ec: fd0013e0    	str	d0, [sp, #0x20]
+1844139f0: b02dea88    	adrp	x8, 0x1e0164000 <_objc_msgSend$zoom+0x5b9feb80>
+1844139f4: f9460d08    	ldr	x8, [x8, #0xc18]
+1844139f8: b9400100    	ldr	w0, [x8]
+1844139fc: 910083e1    	add	x1, sp, #0x20
+184413a00: aa1403e2    	mov	x2, x20
+184413a04: aa1403e3    	mov	x3, x20
+184413a08: 94f49d86    	bl	 <_objc_msgSend$zoom+0x39d5ba0>
+184413a0c: 35000520    	cbnz	w0,  <L4>
+184413a10: d0335774    	adrp	x20, 0x1eaf01000 <__ZL9flipbooks+0x8>
+184413a14: f946c280    	ldr	x0, [x20, #0xd80]
+184413a18: b5000100    	cbnz	x0,  <L0>
+184413a1c: d2800001    	mov	x1, #0x0                ; =0
+184413a20: d2800002    	mov	x2, #0x0                ; =0
+184413a24: d2800003    	mov	x3, #0x0                ; =0
+184413a28: d2800004    	mov	x4, #0x0                ; =0
+184413a2c: d2800005    	mov	x5, #0x0                ; =0
+184413a30: 97fb56c4    	bl	 <_x_hash_table_new_>
+184413a34: f906c280    	str	x0, [x20, #0xd80]
+<L0>:
+184413a38: b9410661    	ldr	w1, [x19, #0x104]
+184413a3c: aa1303e2    	mov	x2, x19
+184413a40: 52800003    	mov	w3, #0x0                ; =0
+184413a44: 97fb6048    	bl	 <__ZL17hash_table_modifyP19x_hash_table_structPvS1_i>
+184413a48: b9410673    	ldr	w19, [x19, #0x104]
+<L1>:
+184413a4c: d0335760    	adrp	x0, 0x1eaf01000 <__ZL9flipbooks+0x8>
+184413a50: 913b8000    	add	x0, x0, #0xee0
+184413a54: 94f492cb    	bl	 <_objc_msgSend$zoom+0x39d3100>
+184413a58: f85e83a8    	ldur	x8, [x29, #-0x18]
+184413a5c: b02dea89    	adrp	x9, 0x1e0164000 <_objc_msgSend$zoom+0x5b9feb80>
+184413a60: f9453929    	ldr	x9, [x9, #0xa70]
+184413a64: f9400129    	ldr	x9, [x9]
+184413a68: eb08013f    	cmp	x9, x8
+184413a6c: 540006e1    	b.ne	 <L9>
+184413a70: aa1303e0    	mov	x0, x19
+184413a74: a9457bfd    	ldp	x29, x30, [sp, #0x50]
+184413a78: a9444ff4    	ldp	x20, x19, [sp, #0x40]
+184413a7c: 910183ff    	add	sp, sp, #0x60
+184413a80: d65f0fff    	retab
+<L2>:
+184413a84: 3100043f    	cmn	w1, #0x1
+184413a88: 54000100    	b.eq	 <L3>
+184413a8c: b02dea88    	adrp	x8, 0x1e0164000 <_objc_msgSend$zoom+0x5b9feb80>
+184413a90: f9460d08    	ldr	x8, [x8, #0xc18]
+184413a94: b9400100    	ldr	w0, [x8]
+184413a98: aa0103e2    	mov	x2, x1
+184413a9c: 52800283    	mov	w3, #0x14               ; =20
+184413aa0: 94f49d74    	bl	 <_objc_msgSend$zoom+0x39d5bf0>
+184413aa4: 34000420    	cbz	w0,  <L7>
+<L3>:
+184413aa8: 52800013    	mov	w19, #0x0               ; =0
+184413aac: 17ffffe8    	b	 <L1>
+<L4>:
+184413ab0: aa0003f4    	mov	x20, x0
+184413ab4: f0335768    	adrp	x8, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+184413ab8: f9432908    	ldr	x8, [x8, #0x650]
+184413abc: b100051f    	cmn	x8, #0x1
+184413ac0: 54000381    	b.ne	 <L8>
+<L5>:
+184413ac4: f0335768    	adrp	x8, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+184413ac8: f9430d13    	ldr	x19, [x8, #0x618]
+184413acc: aa1303e0    	mov	x0, x19
+184413ad0: 52800201    	mov	w1, #0x10               ; =16
+184413ad4: 94f49ef7    	bl	 <_objc_msgSend$zoom+0x39d6230>
+184413ad8: 34000260    	cbz	w0,  <L6>
+184413adc: aa1403e0    	mov	x0, x20
+184413ae0: 94f49248    	bl	 <_objc_msgSend$zoom+0x39d2f80>
+184413ae4: d0001768    	adrp	x8, 0x184701000 <_stringpool_contents+0x290c>
+184413ae8: fd448500    	ldr	d0, [x8, #0x908]
+184413aec: bd0003e0    	str	s0, [sp]
+184413af0: b90007f4    	str	w20, [sp, #0x4]
+184413af4: 52810408    	mov	w8, #0x820              ; =2080
+184413af8: 790013e8    	strh	w8, [sp, #0x8]
+184413afc: f800a3e0    	stur	x0, [sp, #0xa]
+184413b00: b0fff640    	adrp	x0, 0x1842dc000 <_xpc_user_sessions_get_foreground_uid+0x1842dc000>
+184413b04: 91000000    	add	x0, x0, #0x0
+184413b08: b0001943    	adrp	x3, 0x18473c000 <_xpc_user_sessions_get_foreground_uid+0x18473c000>
+184413b0c: 911ee463    	add	x3, x3, #0x7b9
+184413b10: 910003e4    	mov	x4, sp
+184413b14: aa1303e1    	mov	x1, x19
+184413b18: 52800202    	mov	w2, #0x10               ; =16
+184413b1c: 52800245    	mov	w5, #0x12               ; =18
+184413b20: 94f49a8c    	bl	 <_objc_msgSend$zoom+0x39d50d0>
+<L6>:
+184413b24: 94f491cf    	bl	 <_objc_msgSend$zoom+0x39d2de0>
+<L7>:
+184413b28: b9400293    	ldr	w19, [x20]
+184413b2c: 17ffffc8    	b	 <L1>
+<L8>:
+184413b30: f0335760    	adrp	x0, 0x1eaf02000 <__kHDRProcessingSourceContentTypeHDR10+0x10>
+184413b34: 91194000    	add	x0, x0, #0x650
+184413b38: f02eefc1    	adrp	x1, 0x1e220e000 <_CASCARenderServices_subsystem+0xd78>
+184413b3c: 913d8021    	add	x1, x1, #0xf60
+184413b40: 94f49be4    	bl	 <_objc_msgSend$zoom+0x39d5650>
+184413b44: 17ffffe0    	b	 <L5>
+<L9>:
+184413b48: 94f4917a    	bl	 <_objc_msgSend$zoom+0x39d2cb0>
+
+0000000184413b4c <__ZN2CA6Render7Context21local_quartzcore_uuidEPh>:
+184413b4c: d503237f    	pacibsp
+184413b50: a9bf7bfd    	stp	x29, x30, [sp, #-0x10]!
+184413b54: 910003fd    	mov	x29, sp
+184413b58: aa0003e1    	mov	x1, x0
+184413b5c: b0fff640    	adrp	x0, 0x1842dc000 <_xpc_user_sessions_get_foreground_uid+0x1842dc000>
+184413b60: 91000000    	add	x0, x0, #0x0
+184413b64: 94f4918f    	bl	 <_objc_msgSend$zoom+0x39d2d20>
+184413b68: 36000060    	tbz	w0, #0x0,  <L0>
+184413b6c: a8c17bfd    	ldp	x29, x30, [sp], #0x10
+184413b70: d65f0fff    	retab
+<L0>:
+184413b74: d00017e0    	adrp	x0, 0x184711000 <__ZL13cgpath_counts+0xb11b>
+184413b78: 910d6000    	add	x0, x0, #0x358
+184413b7c: d00017e1    	adrp	x1, 0x184711000 <__ZL13cgpath_counts+0xb11b>
+184413b80: 910db821    	add	x1, x1, #0x36e
+184413b84: d00017e3    	adrp	x3, 0x184711000 <__ZL13cgpath_counts+0xb11b>
+184413b88: 910e0463    	add	x3, x3, #0x381
+184413b8c: 52809b02    	mov	w2, #0x4d8              ; =1240
+184413b90: 94f499d4    	bl	 <_objc_msgSend$zoom+0x39d4e60>

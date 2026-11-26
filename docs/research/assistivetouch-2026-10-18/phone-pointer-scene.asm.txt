@@ -1,0 +1,125 @@
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUISystemServices.framework/PointerUISystemServices:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+000000029e81b250 <-[PSPointerSystemClientController prepareScenesForPointerForDisplayConfiguration:]>:
+29e81b250: d503237f    	pacibsp
+29e81b254: d10143ff    	sub	sp, sp, #0x50
+29e81b258: a90257f6    	stp	x22, x21, [sp, #0x20]
+29e81b25c: a9034ff4    	stp	x20, x19, [sp, #0x30]
+29e81b260: a9047bfd    	stp	x29, x30, [sp, #0x40]
+29e81b264: 910103fd    	add	x29, sp, #0x40
+29e81b268: aa0003f4    	mov	x20, x0
+29e81b26c: 9462d6d1    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b3c90>
+29e81b270: aa0003f3    	mov	x19, x0
+29e81b274: 946389df    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18e08d0>
+29e81b278: 9462db4e    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b4e90>
+29e81b27c: aa0003f5    	mov	x21, x0
+29e81b280: 52800001    	mov	w1, #0x0                ; =0
+29e81b284: 9462d13f    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b2660>
+29e81b288: 340002c0    	cbz	w0,  <L0>
+29e81b28c: aa1303e0    	mov	x0, x19
+29e81b290: 9461d910    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18745b0>
+29e81b294: 9462db47    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b4e90>
+29e81b298: aa0003f6    	mov	x22, x0
+29e81b29c: b0000008    	adrp	x8, 0x29e81c000 <-[PSPointerSystemClientController sceneDidActivate:]+0x60>
+29e81b2a0: fd431500    	ldr	d0, [x8, #0x628]
+29e81b2a4: bd0003e0    	str	s0, [sp]
+29e81b2a8: f80043e0    	stur	x0, [sp, #0x4]
+29e81b2ac: 52810808    	mov	w8, #0x840              ; =2112
+29e81b2b0: 79001be8    	strh	w8, [sp, #0xc]
+29e81b2b4: f800e3f3    	stur	x19, [sp, #0xe]
+29e81b2b8: f0ffffe0    	adrp	x0, 0x29e81a000 <_strcmp+0x29e81a000>
+29e81b2bc: 91000000    	add	x0, x0, #0x0
+29e81b2c0: b0000003    	adrp	x3, 0x29e81c000 <-[PSPointerSystemClientController sceneDidActivate:]+0x60>
+29e81b2c4: 911ec463    	add	x3, x3, #0x7b1
+29e81b2c8: 910003e4    	mov	x4, sp
+29e81b2cc: aa1503e1    	mov	x1, x21
+29e81b2d0: 52800002    	mov	w2, #0x0                ; =0
+29e81b2d4: 528002c5    	mov	w5, #0x16               ; =22
+29e81b2d8: 9462cea6    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b1c50>
+29e81b2dc: 9462d0c5    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b24d0>
+<L0>:
+29e81b2e0: 9462d0c0    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b24c0>
+29e81b2e4: b0192548    	adrp	x8, 0x2d0cc4000 <_objc_msgSend$valueWithBytes:objCType:+0x324a6ee0>
+29e81b2e8: 910d0108    	add	x8, x8, #0x340
+29e81b2ec: f9400102    	ldr	x2, [x8]
+29e81b2f0: aa1403e0    	mov	x0, x20
+29e81b2f4: aa1303e3    	mov	x3, x19
+29e81b2f8: 9461d8d6    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x1874530>
+29e81b2fc: b0192548    	adrp	x8, 0x2d0cc4000 <_objc_msgSend$valueWithBytes:objCType:+0x324a6ee0>
+29e81b300: 910ce108    	add	x8, x8, #0x338
+29e81b304: f9400102    	ldr	x2, [x8]
+29e81b308: aa1403e0    	mov	x0, x20
+29e81b30c: aa1303e3    	mov	x3, x19
+29e81b310: 9461d8d0    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x1874530>
+29e81b314: 9462d0ab    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b24a0>
+29e81b318: a9447bfd    	ldp	x29, x30, [sp, #0x40]
+29e81b31c: a9434ff4    	ldp	x20, x19, [sp, #0x30]
+29e81b320: a94257f6    	ldp	x22, x21, [sp, #0x20]
+29e81b324: 910143ff    	add	sp, sp, #0x50
+29e81b328: d65f0fff    	retab
+
+
+/Users/jackadamslovell/Library/Developer/Xcode/iOS DeviceSupport/iPhone18,4 27.2 (24B5089g)/arm64e/Symbols/System/Library/PrivateFrameworks/PointerUISystemServices.framework/PointerUISystemServices:	file format mach-o arm64
+
+Disassembly of section __TEXT,__text:
+
+000000029e81b99c <-[PSPointerSystemClientController invalidateScenesForPointerForDisplayConfiguration:]>:
+29e81b99c: d503237f    	pacibsp
+29e81b9a0: d10143ff    	sub	sp, sp, #0x50
+29e81b9a4: a90257f6    	stp	x22, x21, [sp, #0x20]
+29e81b9a8: a9034ff4    	stp	x20, x19, [sp, #0x30]
+29e81b9ac: a9047bfd    	stp	x29, x30, [sp, #0x40]
+29e81b9b0: 910103fd    	add	x29, sp, #0x40
+29e81b9b4: aa0003f4    	mov	x20, x0
+29e81b9b8: 9462d4fe    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b3c90>
+29e81b9bc: aa0003f3    	mov	x19, x0
+29e81b9c0: 9463880c    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18e08d0>
+29e81b9c4: 9462d97b    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b4e90>
+29e81b9c8: aa0003f5    	mov	x21, x0
+29e81b9cc: 52800001    	mov	w1, #0x0                ; =0
+29e81b9d0: 9462cf6c    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b2660>
+29e81b9d4: 340002c0    	cbz	w0,  <L0>
+29e81b9d8: aa1303e0    	mov	x0, x19
+29e81b9dc: 9461d73d    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18745b0>
+29e81b9e0: 9462d974    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b4e90>
+29e81b9e4: aa0003f6    	mov	x22, x0
+29e81b9e8: b0000008    	adrp	x8, 0x29e81c000 <-[PSPointerSystemClientController sceneDidActivate:]+0x60>
+29e81b9ec: fd431500    	ldr	d0, [x8, #0x628]
+29e81b9f0: bd0003e0    	str	s0, [sp]
+29e81b9f4: f80043e0    	stur	x0, [sp, #0x4]
+29e81b9f8: 52810808    	mov	w8, #0x840              ; =2112
+29e81b9fc: 79001be8    	strh	w8, [sp, #0xc]
+29e81ba00: f800e3f3    	stur	x19, [sp, #0xe]
+29e81ba04: f0ffffe0    	adrp	x0, 0x29e81a000 <_strcmp+0x29e81a000>
+29e81ba08: 91000000    	add	x0, x0, #0x0
+29e81ba0c: b0000003    	adrp	x3, 0x29e81c000 <-[PSPointerSystemClientController sceneDidActivate:]+0x60>
+29e81ba10: 9121c463    	add	x3, x3, #0x871
+29e81ba14: 910003e4    	mov	x4, sp
+29e81ba18: aa1503e1    	mov	x1, x21
+29e81ba1c: 52800002    	mov	w2, #0x0                ; =0
+29e81ba20: 528002c5    	mov	w5, #0x16               ; =22
+29e81ba24: 9462ccd3    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b1c50>
+29e81ba28: 9462cef2    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b24d0>
+<L0>:
+29e81ba2c: 9462ceed    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b24c0>
+29e81ba30: b0192548    	adrp	x8, 0x2d0cc4000 <_objc_msgSend$valueWithBytes:objCType:+0x324a6ee0>
+29e81ba34: 910d0108    	add	x8, x8, #0x340
+29e81ba38: f9400102    	ldr	x2, [x8]
+29e81ba3c: aa1403e0    	mov	x0, x20
+29e81ba40: aa1303e3    	mov	x3, x19
+29e81ba44: 9461d6ff    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x1874520>
+29e81ba48: b0192548    	adrp	x8, 0x2d0cc4000 <_objc_msgSend$valueWithBytes:objCType:+0x324a6ee0>
+29e81ba4c: 910ce108    	add	x8, x8, #0x338
+29e81ba50: f9400102    	ldr	x2, [x8]
+29e81ba54: aa1403e0    	mov	x0, x20
+29e81ba58: aa1303e3    	mov	x3, x19
+29e81ba5c: 9461d6f9    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x1874520>
+29e81ba60: 9462ced8    	bl	 <_objc_msgSend$valueWithBytes:objCType:+0x18b24a0>
+29e81ba64: a9447bfd    	ldp	x29, x30, [sp, #0x40]
+29e81ba68: a9434ff4    	ldp	x20, x19, [sp, #0x30]
+29e81ba6c: a94257f6    	ldp	x22, x21, [sp, #0x20]
+29e81ba70: 910143ff    	add	sp, sp, #0x50
+29e81ba74: d65f0fff    	retab

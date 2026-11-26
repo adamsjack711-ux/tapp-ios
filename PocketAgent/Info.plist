@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>UIBackgroundModes</key><array><string>processing</string></array>
+    <key>BGTaskSchedulerPermittedIdentifiers</key>
+    <array><string>com.jackadamslovell.PocketAgent.tappcheck.*</string></array>
+    <key>NSSupportsLiveActivities</key><true/>
+	<key>CFBundleDisplayName</key>
+	<string>Tapp</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array><string>ictrl</string></array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key><string>com.jackadamslovell.PocketAgent</string>
+			<key>CFBundleURLSchemes</key><array><string>pocketagent</string></array>
+		</dict>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Tapp connects to your selected local model service and, only when requested, your paired developer screen-control service on this iPhone.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Tapp uses the microphone when you choose to ask by voice.</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>Tapp creates reminders only after showing you an approval request.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Tapp converts your spoken request into text on your command.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>
